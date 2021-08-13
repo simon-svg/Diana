@@ -7,19 +7,19 @@
             <a class="admin__item" href="<?php echo $navArr[0]; ?>">Header Menu lists</a>
         </li>
         <li>
-            <a class="admin__item" href="<?php echo $navArr[1]; ?>">Chefs</a>
+            <a class="admin__item" href="<?php echo $navArr[1]; ?>">Home</a>
         </li>
         <li>
-            <a class="admin__item" href="<?php echo $navArr[2]; ?>">Food Categories</a>
+            <a class="admin__item" href="<?php echo $navArr[2]; ?>">Contact</a>
         </li>
         <li>
-            <a class="admin__item" href="<?php echo $navArr[3]; ?>">All Foods</a>
+            <a class="admin__item" href="<?php echo $navArr[3]; ?>">Subscribe</a>
         </li>
         <li>
-            <a class="admin__item" href="<?php echo $navArr[4]; ?>">Blog Grid</a>
+            <a class="admin__item" href="<?php echo $navArr[4]; ?>">Product Category</a>
         </li>
         <li>
-            <a class="admin__item" href="<?php echo $navArr[5]; ?>">Contacts</a>
+            <a class="admin__item" href="<?php echo $navArr[5]; ?>">Blog</a>
         </li>
         <li>
             <a class="admin__item" href="<?php echo $navArr[6]; ?>">Booking</a>

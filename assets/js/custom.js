@@ -338,7 +338,6 @@
   var formMessages = $('.form-message');
 
   $(form).submit(function(e) {
-    e.preventDefault();
     var formData = form.serialize();
     $.ajax({
       type: 'POST',

@@ -31,7 +31,7 @@
 
     <div class="admin">
         <?php
-        $navArr = ["#", "chefs.php", "foodCategories.php", "allFoods.php", "blogGrid.php", "contacts.php", "booking.php", "homeSection.php", "tags.php"];
+        $navArr = ["#", "home.php", "contact.php", "subscribe.php", "productCategory.php", "blog.php", "booking.php", "homeSection.php", "tags.php"];
         require_once "../../components/adminNav.php";
         ?>
 

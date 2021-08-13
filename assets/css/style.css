@@ -2466,6 +2466,11 @@ section .container-fluid {
   margin-top: 0;
 }
 .product-item .inner-content .product-info {
+  height: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding: 26px 18px 28px;
   text-align: center;
 }
@@ -5690,6 +5695,17 @@ section .container-fluid {
   padding-top: 94px;
   padding-bottom: 57px;
 }
+.blog__title{
+  height: 40px;
+}
+.blog__text{
+  overflow: hidden;
+  height: 200px;
+}
+.blog__text_small{
+  overflow: hidden;
+  height: 40px;
+}
 @media only screen and (max-width: 1199px) {
   .blog-inner-area .container {
     padding-top: 66px;
@@ -5892,6 +5908,14 @@ section .container-fluid {
 }
 .blog-details-content-wrap .blog-details-footer .article-next-previous a:hover i {
   color: #ff383f;
+}
+
+/*
+subscribe
+*/
+.subscribe__success i{
+  color: #ff383f;
+  font-size: 30px;
 }
 
 /*

@@ -2,8 +2,6 @@
 
 require "index.php";
 $obj = new HeaderList($_POST);
-$time = time();
-
 
 if(isset($_POST["submit"])){
 	if(!empty($_POST["id"])){

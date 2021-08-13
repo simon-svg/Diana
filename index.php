@@ -9,35 +9,28 @@
 	<title>Diana – Furniture Store eCommerce Bootstrap5 Template</title>
 
 	<!--== Favicon ==-->
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
-
-	<!--== Google Fonts ==-->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
-
-	<!--== Bootstrap CSS ==-->
 	<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-	<!--== Headroom CSS ==-->
 	<link href="assets/css/headroom.css" rel="stylesheet" />
-	<!--== Animate CSS ==-->
 	<link href="assets/css/animate.css" rel="stylesheet" />
-	<!--== Font Awesome Icon CSS ==-->
 	<link href="assets/css/font-awesome.min.css" rel="stylesheet" />
-	<!--== Bardy Icon CSS ==-->
 	<link href="assets/css/bardy.icon.css" rel="stylesheet" />
-	<!--== Swiper CSS ==-->
 	<link href="assets/css/swiper.min.css" rel="stylesheet" />
-	<!--== Fancybox Min CSS ==-->
 	<link href="assets/css/fancybox.min.css" rel="stylesheet" />
-	<!--== Slicknav Min CSS ==-->
 	<link href="assets/css/slicknav.css" rel="stylesheet" />
-	<!--== Aos Min CSS ==-->
 	<link href="assets/css/aos.min.css" rel="stylesheet" />
-
-	<!--== Main Style CSS ==-->
 	<link href="assets/css/style.css" rel="stylesheet" />
 </head>
 
 <body>
+
+	<?php
+	require_once "php/admin/home/index.php";
+	$obj = new Home();
+	$result = $obj->select(false, "php/connect.php");
+	?>
 
 	<!--wrapper start-->
 	<div class="wrapper">
@@ -77,36 +70,23 @@
 			<section class="home-slider-area">
 				<div class="swiper-container swiper-slide-gap home-slider-container default-slider-container">
 					<div class="swiper-wrapper home-slider-wrapper slider-default">
-						<div class="swiper-slide">
-							<div class="slider-content-area" data-bg-img="assets/img/home/home1.jpg">
-								<div class="container">
-									<div class="row align-items-center">
-										<div class="col-12">
-											<div class="slider-content text-center">
-												<h5 class="sub-title">NEW COLLECTION 2021</h5>
-												<h2 class="title">New Interior Concept <br>Wooden Chairs</h2>
-												<a class="btn-slider" href="shop.html">Shop Now</a>
+						<?php foreach ($result as $res) { ?>
+							<div class="swiper-slide">
+								<div class="slider-content-area" data-bg-img="assets/img/home/<?php echo $res->img ?>">
+									<div class="container">
+										<div class="row align-items-center">
+											<div class="col-12">
+												<div class="slider-content text-center">
+													<h5 class="sub-title"><?php echo $res->sub_title ?></h5>
+													<h2 class="title"><?php echo $res->title ?></h2>
+													<a class="btn-slider" href="shop.php">Shop Now</a>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="swiper-slide">
-							<div class="slider-content-area" data-bg-img="assets/img/home/home2.jpg">
-								<div class="container">
-									<div class="row align-items-center">
-										<div class="col-12">
-											<div class="slider-content text-end">
-												<h5 class="sub-title">NEW COLLECTION 2021</h5>
-												<h2 class="title">The Brighten Up <br>Interior Collection</h2>
-												<a class="btn-slider" href="shop.html">Shop Now</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						<?php } ?>
 					</div>
 
 					<!--== Add Swiper Arrows ==-->
@@ -134,70 +114,49 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="product-category-tab-wrap">
-								<ul data-aos="fade-down"
-									class="nav nav-tabs product-category-nav justify-content-center" id="myTab"
-									role="tablist">
+								<ul data-aos="fade-down" class="nav nav-tabs product-category-nav justify-content-center" id="myTab" role="tablist">
 									<li class="nav-item" role="presentation">
-										<button class="nav-link active" id="featured-tab" data-bs-toggle="tab"
-											data-bs-target="#featured" type="button" role="tab" aria-controls="featured"
-											aria-selected="true">Featured</button>
+										<button class="nav-link active" id="featured-tab" data-bs-toggle="tab" data-bs-target="#featured" type="button" role="tab" aria-controls="featured" aria-selected="true">All</button>
 									</li>
 									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="chair-tab" data-bs-toggle="tab"
-											data-bs-target="#chair" type="button" role="tab" aria-controls="chair"
-											aria-selected="false">Chair</button>
+										<button class="nav-link" id="chair-tab" data-bs-toggle="tab" data-bs-target="#chair" type="button" role="tab" aria-controls="chair" aria-selected="false">Chair</button>
 									</li>
 									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="sofa-tab" data-bs-toggle="tab"
-											data-bs-target="#sofa" type="button" role="tab" aria-controls="sofa"
-											aria-selected="false">Sofa</button>
+										<button class="nav-link" id="sofa-tab" data-bs-toggle="tab" data-bs-target="#sofa" type="button" role="tab" aria-controls="sofa" aria-selected="false">Sofa</button>
 									</li>
 								</ul>
 								<div class="tab-content product-category-content" id="myTabContent">
-									<div class="tab-pane fade show active" id="featured" role="tabpanel"
-										aria-labelledby="featured-tab">
+									<div class="tab-pane fade show active" id="featured" role="tabpanel" aria-labelledby="featured-tab">
 										<div class="row">
 											<div class="col-12">
-												<div
-													class="swiper-container swiper-nav swiper-slide-gap product-swiper-pagination product-slider-container">
+												<div class="swiper-container swiper-nav swiper-slide-gap product-swiper-pagination product-slider-container">
 													<div class="swiper-wrapper">
 														<div class="swiper-slide">
 															<!--== Start Shop Item ==-->
 															<div class="product-item">
 																<div class="inner-content">
 																	<div class="product-thumb">
-																		<a href="shop-single.html">
-																			<img class="w-100"
-																				src="assets/img/shop/1.jpg"
-																				alt="Image-HasTech">
+																		<a href="shop-single.php">
+																			<img class="w-100" src="assets/img/chairs/chair1.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
-																				<a class="add-cart"
-																					href="shop-cart.html">
+																				<a class="add-cart" href="shop-cart.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-shopping-cart"></i>
-																						<i
-																							class="hover-icon bardy bardy-shopping-cart"></i>
+																						<i class="bardy bardy-shopping-cart"></i>
+																						<i class="hover-icon bardy bardy-shopping-cart"></i>
 																					</span>
 																				</a>
-																				<a class="add-wishlist"
-																					href="wishlist.html">
+																				<a class="add-wishlist" href="wishlist.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-wishlist"></i>
-																						<i
-																							class="hover-icon bardy bardy-wishlist"></i>
+																						<i class="bardy bardy-wishlist"></i>
+																						<i class="hover-icon bardy bardy-wishlist"></i>
 																					</span>
 																				</a>
-																				<a class="add-quick-view"
-																					href="javascript:void(0);">
+																				<a class="add-quick-view" href="javascript:void(0);">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-quick-view"></i>
-																						<i
-																							class="hover-icon bardy bardy-quick-view"></i>
+																						<i class="bardy bardy-quick-view"></i>
+																						<i class="hover-icon bardy bardy-quick-view"></i>
 																					</span>
 																				</a>
 																			</div>
@@ -205,8 +164,7 @@
 																	</div>
 																	<div class="product-desc">
 																		<div class="product-info">
-																			<h4 class="title"><a
-																					href="shop-single.html">1. New and
+																			<h4 class="title"><a href="shop-single.php">1. New and
 																					sale badge product</a>
 																			</h4>
 																			<div class="star-content">
@@ -230,38 +188,27 @@
 															<div class="product-item">
 																<div class="inner-content">
 																	<div class="product-thumb">
-																		<a href="shop-single.html">
-																			<img class="w-100"
-																				src="assets/img/shop/2.jpg"
-																				alt="Image-HasTech">
+																		<a href="shop-single.php">
+																			<img class="w-100" src="assets/img/shop/2.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
-																				<a class="add-cart"
-																					href="shop-cart.html">
+																				<a class="add-cart" href="shop-cart.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-shopping-cart"></i>
-																						<i
-																							class="hover-icon bardy bardy-shopping-cart"></i>
+																						<i class="bardy bardy-shopping-cart"></i>
+																						<i class="hover-icon bardy bardy-shopping-cart"></i>
 																					</span>
 																				</a>
-																				<a class="add-wishlist"
-																					href="wishlist.html">
+																				<a class="add-wishlist" href="wishlist.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-wishlist"></i>
-																						<i
-																							class="hover-icon bardy bardy-wishlist"></i>
+																						<i class="bardy bardy-wishlist"></i>
+																						<i class="hover-icon bardy bardy-wishlist"></i>
 																					</span>
 																				</a>
-																				<a class="add-quick-view"
-																					href="javascript:void(0);">
+																				<a class="add-quick-view" href="javascript:void(0);">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-quick-view"></i>
-																						<i
-																							class="hover-icon bardy bardy-quick-view"></i>
+																						<i class="bardy bardy-quick-view"></i>
+																						<i class="hover-icon bardy bardy-quick-view"></i>
 																					</span>
 																				</a>
 																			</div>
@@ -269,8 +216,7 @@
 																	</div>
 																	<div class="product-desc">
 																		<div class="product-info">
-																			<h4 class="title"><a
-																					href="shop-single.html">2. New badge
+																			<h4 class="title"><a href="shop-single.php">2. New badge
 																					product</a></h4>
 																			<div class="star-content">
 																				<i class="fa fa-star-o"></i>
@@ -293,38 +239,27 @@
 															<div class="product-item">
 																<div class="inner-content">
 																	<div class="product-thumb">
-																		<a href="shop-single.html">
-																			<img class="w-100"
-																				src="assets/img/shop/3.jpg"
-																				alt="Image-HasTech">
+																		<a href="shop-single.php">
+																			<img class="w-100" src="assets/img/sofas/sofa3.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
-																				<a class="add-cart"
-																					href="shop-cart.html">
+																				<a class="add-cart" href="shop-cart.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-shopping-cart"></i>
-																						<i
-																							class="hover-icon bardy bardy-shopping-cart"></i>
+																						<i class="bardy bardy-shopping-cart"></i>
+																						<i class="hover-icon bardy bardy-shopping-cart"></i>
 																					</span>
 																				</a>
-																				<a class="add-wishlist"
-																					href="wishlist.html">
+																				<a class="add-wishlist" href="wishlist.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-wishlist"></i>
-																						<i
-																							class="hover-icon bardy bardy-wishlist"></i>
+																						<i class="bardy bardy-wishlist"></i>
+																						<i class="hover-icon bardy bardy-wishlist"></i>
 																					</span>
 																				</a>
-																				<a class="add-quick-view"
-																					href="javascript:void(0);">
+																				<a class="add-quick-view" href="javascript:void(0);">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-quick-view"></i>
-																						<i
-																							class="hover-icon bardy bardy-quick-view"></i>
+																						<i class="bardy bardy-quick-view"></i>
+																						<i class="hover-icon bardy bardy-quick-view"></i>
 																					</span>
 																				</a>
 																			</div>
@@ -332,8 +267,7 @@
 																	</div>
 																	<div class="product-desc">
 																		<div class="product-info">
-																			<h4 class="title"><a
-																					href="shop-single.html">3. Variable
+																			<h4 class="title"><a href="shop-single.php">3. Variable
 																					product</a></h4>
 																			<div class="star-content">
 																				<i class="fa fa-star-o"></i>
@@ -356,38 +290,27 @@
 															<div class="product-item">
 																<div class="inner-content">
 																	<div class="product-thumb">
-																		<a href="shop-single.html">
-																			<img class="w-100"
-																				src="assets/img/shop/4.jpg"
-																				alt="Image-HasTech">
+																		<a href="shop-single.php">
+																			<img class="w-100" src="assets/img/sofas/sofa1.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
-																				<a class="add-cart"
-																					href="shop-cart.html">
+																				<a class="add-cart" href="shop-cart.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-shopping-cart"></i>
-																						<i
-																							class="hover-icon bardy bardy-shopping-cart"></i>
+																						<i class="bardy bardy-shopping-cart"></i>
+																						<i class="hover-icon bardy bardy-shopping-cart"></i>
 																					</span>
 																				</a>
-																				<a class="add-wishlist"
-																					href="wishlist.html">
+																				<a class="add-wishlist" href="wishlist.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-wishlist"></i>
-																						<i
-																							class="hover-icon bardy bardy-wishlist"></i>
+																						<i class="bardy bardy-wishlist"></i>
+																						<i class="hover-icon bardy bardy-wishlist"></i>
 																					</span>
 																				</a>
-																				<a class="add-quick-view"
-																					href="javascript:void(0);">
+																				<a class="add-quick-view" href="javascript:void(0);">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-quick-view"></i>
-																						<i
-																							class="hover-icon bardy bardy-quick-view"></i>
+																						<i class="bardy bardy-quick-view"></i>
+																						<i class="hover-icon bardy bardy-quick-view"></i>
 																					</span>
 																				</a>
 																			</div>
@@ -395,8 +318,7 @@
 																	</div>
 																	<div class="product-desc">
 																		<div class="product-info">
-																			<h4 class="title"><a
-																					href="shop-single.html">4. Soldout
+																			<h4 class="title"><a href="shop-single.php">4. Soldout
 																					product</a></h4>
 																			<div class="star-content">
 																				<i class="fa fa-star-o"></i>
@@ -420,38 +342,27 @@
 															<div class="product-item">
 																<div class="inner-content">
 																	<div class="product-thumb">
-																		<a href="shop-single.html">
-																			<img class="w-100"
-																				src="assets/img/shop/5.jpg"
-																				alt="Image-HasTech">
+																		<a href="shop-single.php">
+																			<img class="w-100" src="assets/img/chairs/chair5.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
-																				<a class="add-cart"
-																					href="shop-cart.html">
+																				<a class="add-cart" href="shop-cart.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-shopping-cart"></i>
-																						<i
-																							class="hover-icon bardy bardy-shopping-cart"></i>
+																						<i class="bardy bardy-shopping-cart"></i>
+																						<i class="hover-icon bardy bardy-shopping-cart"></i>
 																					</span>
 																				</a>
-																				<a class="add-wishlist"
-																					href="wishlist.html">
+																				<a class="add-wishlist" href="wishlist.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-wishlist"></i>
-																						<i
-																							class="hover-icon bardy bardy-wishlist"></i>
+																						<i class="bardy bardy-wishlist"></i>
+																						<i class="hover-icon bardy bardy-wishlist"></i>
 																					</span>
 																				</a>
-																				<a class="add-quick-view"
-																					href="javascript:void(0);">
+																				<a class="add-quick-view" href="javascript:void(0);">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-quick-view"></i>
-																						<i
-																							class="hover-icon bardy bardy-quick-view"></i>
+																						<i class="bardy bardy-quick-view"></i>
+																						<i class="hover-icon bardy bardy-quick-view"></i>
 																					</span>
 																				</a>
 																			</div>
@@ -459,8 +370,7 @@
 																	</div>
 																	<div class="product-desc">
 																		<div class="product-info">
-																			<h4 class="title"><a
-																					href="shop-single.html">5. Simple
+																			<h4 class="title"><a href="shop-single.php">5. Simple
 																					product</a></h4>
 																			<div class="star-content">
 																				<i class="fa fa-star-o"></i>
@@ -482,38 +392,27 @@
 															<div class="product-item">
 																<div class="inner-content">
 																	<div class="product-thumb">
-																		<a href="shop-single.html">
-																			<img class="w-100"
-																				src="assets/img/shop/6.jpg"
-																				alt="Image-HasTech">
+																		<a href="shop-single.php">
+																			<img class="w-100" src="assets/img/shop/6.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
-																				<a class="add-cart"
-																					href="shop-cart.html">
+																				<a class="add-cart" href="shop-cart.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-shopping-cart"></i>
-																						<i
-																							class="hover-icon bardy bardy-shopping-cart"></i>
+																						<i class="bardy bardy-shopping-cart"></i>
+																						<i class="hover-icon bardy bardy-shopping-cart"></i>
 																					</span>
 																				</a>
-																				<a class="add-wishlist"
-																					href="wishlist.html">
+																				<a class="add-wishlist" href="wishlist.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-wishlist"></i>
-																						<i
-																							class="hover-icon bardy bardy-wishlist"></i>
+																						<i class="bardy bardy-wishlist"></i>
+																						<i class="hover-icon bardy bardy-wishlist"></i>
 																					</span>
 																				</a>
-																				<a class="add-quick-view"
-																					href="javascript:void(0);">
+																				<a class="add-quick-view" href="javascript:void(0);">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-quick-view"></i>
-																						<i
-																							class="hover-icon bardy bardy-quick-view"></i>
+																						<i class="bardy bardy-quick-view"></i>
+																						<i class="hover-icon bardy bardy-quick-view"></i>
 																					</span>
 																				</a>
 																			</div>
@@ -521,8 +420,7 @@
 																	</div>
 																	<div class="product-desc">
 																		<div class="product-info">
-																			<h4 class="title"><a
-																					href="shop-single.html">6. Variable
+																			<h4 class="title"><a href="shop-single.php">6. Variable
 																					with soldout product</a>
 																			</h4>
 																			<div class="star-content">
@@ -547,38 +445,27 @@
 															<div class="product-item">
 																<div class="inner-content">
 																	<div class="product-thumb">
-																		<a href="shop-single.html">
-																			<img class="w-100"
-																				src="assets/img/shop/7.jpg"
-																				alt="Image-HasTech">
+																		<a href="shop-single.php">
+																			<img class="w-100" src="assets/img/sofas/sofa7.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
-																				<a class="add-cart"
-																					href="shop-cart.html">
+																				<a class="add-cart" href="shop-cart.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-shopping-cart"></i>
-																						<i
-																							class="hover-icon bardy bardy-shopping-cart"></i>
+																						<i class="bardy bardy-shopping-cart"></i>
+																						<i class="hover-icon bardy bardy-shopping-cart"></i>
 																					</span>
 																				</a>
-																				<a class="add-wishlist"
-																					href="wishlist.html">
+																				<a class="add-wishlist" href="wishlist.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-wishlist"></i>
-																						<i
-																							class="hover-icon bardy bardy-wishlist"></i>
+																						<i class="bardy bardy-wishlist"></i>
+																						<i class="hover-icon bardy bardy-wishlist"></i>
 																					</span>
 																				</a>
-																				<a class="add-quick-view"
-																					href="javascript:void(0);">
+																				<a class="add-quick-view" href="javascript:void(0);">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-quick-view"></i>
-																						<i
-																							class="hover-icon bardy bardy-quick-view"></i>
+																						<i class="bardy bardy-quick-view"></i>
+																						<i class="hover-icon bardy bardy-quick-view"></i>
 																					</span>
 																				</a>
 																			</div>
@@ -586,8 +473,7 @@
 																	</div>
 																	<div class="product-desc">
 																		<div class="product-info">
-																			<h4 class="title"><a
-																					href="shop-single.html">7. Sample
+																			<h4 class="title"><a href="shop-single.php">7. Sample
 																					affiliate product</a></h4>
 																			<div class="star-content">
 																				<i class="fa fa-star-o"></i>
@@ -609,49 +495,36 @@
 															<div class="product-item">
 																<div class="inner-content">
 																	<div class="product-thumb">
-																		<a href="shop-single.html">
-																			<img class="w-100"
-																				src="assets/img/shop/8.jpg"
-																				alt="Image-HasTech">
+																		<a href="shop-single.php">
+																			<img class="w-100" src="assets/img/shop/8.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
-																				<a class="add-cart"
-																					href="shop-cart.html">
+																				<a class="add-cart" href="shop-cart.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-shopping-cart"></i>
-																						<i
-																							class="hover-icon bardy bardy-shopping-cart"></i>
+																						<i class="bardy bardy-shopping-cart"></i>
+																						<i class="hover-icon bardy bardy-shopping-cart"></i>
 																					</span>
 																				</a>
-																				<a class="add-wishlist"
-																					href="wishlist.html">
+																				<a class="add-wishlist" href="wishlist.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-wishlist"></i>
-																						<i
-																							class="hover-icon bardy bardy-wishlist"></i>
+																						<i class="bardy bardy-wishlist"></i>
+																						<i class="hover-icon bardy bardy-wishlist"></i>
 																					</span>
 																				</a>
-																				<a class="add-quick-view"
-																					href="javascript:void(0);">
+																				<a class="add-quick-view" href="javascript:void(0);">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-quick-view"></i>
-																						<i
-																							class="hover-icon bardy bardy-quick-view"></i>
+																						<i class="bardy bardy-quick-view"></i>
+																						<i class="hover-icon bardy bardy-quick-view"></i>
 																					</span>
 																				</a>
 																			</div>
 																		</div>
-																		<div class="ht-countdown ht-countdown-style"
-																			data-date="4/24/2022"></div>
+																		<div class="ht-countdown ht-countdown-style" data-date="4/24/2022"></div>
 																	</div>
 																	<div class="product-desc">
 																		<div class="product-info">
-																			<h4 class="title"><a
-																					href="shop-single.html">8. Countdown
+																			<h4 class="title"><a href="shop-single.php">8. Countdown
 																					product</a></h4>
 																			<div class="star-content">
 																				<i class="fa fa-star-o"></i>
@@ -675,38 +548,27 @@
 															<div class="product-item">
 																<div class="inner-content">
 																	<div class="product-thumb">
-																		<a href="shop-single.html">
-																			<img class="w-100"
-																				src="assets/img/shop/9.jpg"
-																				alt="Image-HasTech">
+																		<a href="shop-single.php">
+																			<img class="w-100" src="assets/img/chairs/chair8.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
-																				<a class="add-cart"
-																					href="shop-cart.html">
+																				<a class="add-cart" href="shop-cart.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-shopping-cart"></i>
-																						<i
-																							class="hover-icon bardy bardy-shopping-cart"></i>
+																						<i class="bardy bardy-shopping-cart"></i>
+																						<i class="hover-icon bardy bardy-shopping-cart"></i>
 																					</span>
 																				</a>
-																				<a class="add-wishlist"
-																					href="wishlist.html">
+																				<a class="add-wishlist" href="wishlist.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-wishlist"></i>
-																						<i
-																							class="hover-icon bardy bardy-wishlist"></i>
+																						<i class="bardy bardy-wishlist"></i>
+																						<i class="hover-icon bardy bardy-wishlist"></i>
 																					</span>
 																				</a>
-																				<a class="add-quick-view"
-																					href="javascript:void(0);">
+																				<a class="add-quick-view" href="javascript:void(0);">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-quick-view"></i>
-																						<i
-																							class="hover-icon bardy bardy-quick-view"></i>
+																						<i class="bardy bardy-quick-view"></i>
+																						<i class="hover-icon bardy bardy-quick-view"></i>
 																					</span>
 																				</a>
 																			</div>
@@ -714,8 +576,7 @@
 																	</div>
 																	<div class="product-desc">
 																		<div class="product-info">
-																			<h4 class="title"><a
-																					href="shop-single.html">9. Without
+																			<h4 class="title"><a href="shop-single.php">9. Without
 																					shortcode product</a></h4>
 																			<div class="star-content">
 																				<i class="fa fa-star-o"></i>
@@ -737,38 +598,27 @@
 															<div class="product-item">
 																<div class="inner-content">
 																	<div class="product-thumb">
-																		<a href="shop-single.html">
-																			<img class="w-100"
-																				src="assets/img/shop/10.jpg"
-																				alt="Image-HasTech">
+																		<a href="shop-single.php">
+																			<img class="w-100" src="assets/img/sofas/sofa4.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
-																				<a class="add-cart"
-																					href="shop-cart.html">
+																				<a class="add-cart" href="shop-cart.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-shopping-cart"></i>
-																						<i
-																							class="hover-icon bardy bardy-shopping-cart"></i>
+																						<i class="bardy bardy-shopping-cart"></i>
+																						<i class="hover-icon bardy bardy-shopping-cart"></i>
 																					</span>
 																				</a>
-																				<a class="add-wishlist"
-																					href="wishlist.html">
+																				<a class="add-wishlist" href="wishlist.php">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-wishlist"></i>
-																						<i
-																							class="hover-icon bardy bardy-wishlist"></i>
+																						<i class="bardy bardy-wishlist"></i>
+																						<i class="hover-icon bardy bardy-wishlist"></i>
 																					</span>
 																				</a>
-																				<a class="add-quick-view"
-																					href="javascript:void(0);">
+																				<a class="add-quick-view" href="javascript:void(0);">
 																					<span class="icon">
-																						<i
-																							class="bardy bardy-quick-view"></i>
-																						<i
-																							class="hover-icon bardy bardy-quick-view"></i>
+																						<i class="bardy bardy-quick-view"></i>
+																						<i class="hover-icon bardy bardy-quick-view"></i>
 																					</span>
 																				</a>
 																			</div>
@@ -776,8 +626,7 @@
 																	</div>
 																	<div class="product-desc">
 																		<div class="product-info">
-																			<h4 class="title"><a
-																					href="shop-single.html">11. Product
+																			<h4 class="title"><a href="shop-single.php">11. Product
 																					with video</a></h4>
 																			<div class="star-content">
 																				<i class="fa fa-star-o"></i>
@@ -798,10 +647,8 @@
 													</div>
 
 													<!--== Add Swiper navigation Buttons ==-->
-													<div class="swiper-button swiper-button-prev"><i
-															class="fa fa-angle-left"></i></div>
-													<div class="swiper-button swiper-button-next"><i
-															class="fa fa-angle-right"></i></div>
+													<div class="swiper-button swiper-button-prev"><i class="fa fa-angle-left"></i></div>
+													<div class="swiper-button swiper-button-next"><i class="fa fa-angle-right"></i></div>
 
 													<!--== Add Swiper Pagination Buttons ==-->
 													<div class="swiper-pagination"></div>
@@ -816,32 +663,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/1.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/chairs/chair1.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -849,7 +691,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">1. New and
+																<h4 class="title"><a href="shop-single.php">1. New and
 																		sale badge product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -872,32 +714,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/2.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/chairs/chair5.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -905,7 +742,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">2. New
+																<h4 class="title"><a href="shop-single.php">2. New
 																		badge product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -928,32 +765,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/3.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/chairs/chair2.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -961,7 +793,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">3. Variable
+																<h4 class="title"><a href="shop-single.php">3. Variable
 																		product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -984,32 +816,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/4.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/chairs/chair6.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -1017,7 +844,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">4. Soldout
+																<h4 class="title"><a href="shop-single.php">4. Soldout
 																		product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1041,32 +868,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/5.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/chairs/chair3.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -1074,7 +896,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">5. Simple
+																<h4 class="title"><a href="shop-single.php">5. Simple
 																		product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1096,32 +918,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/6.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/chairs/chair7.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -1129,7 +946,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">6. Variable
+																<h4 class="title"><a href="shop-single.php">6. Variable
 																		with soldout product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1153,32 +970,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/7.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/chairs/chair4.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -1186,7 +998,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">7. Sample
+																<h4 class="title"><a href="shop-single.php">7. Sample
 																		affiliate product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1208,42 +1020,36 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/8.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/chairs/chair8.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
 															</div>
-															<div class="ht-countdown ht-countdown-style"
-																data-date="4/24/2022"></div>
+															<div class="ht-countdown ht-countdown-style" data-date="4/24/2022"></div>
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">8.
+																<h4 class="title"><a href="shop-single.php">8.
 																		Countdown product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1271,32 +1077,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/1.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/sofas/sofa1.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -1304,7 +1105,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">1. New and
+																<h4 class="title"><a href="shop-single.php">1. New and
 																		sale badge product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1327,32 +1128,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/2.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/sofas/sofa5.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -1360,7 +1156,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">2. New
+																<h4 class="title"><a href="shop-single.php">2. New
 																		badge product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1383,32 +1179,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/3.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/sofas/sofa2.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -1416,7 +1207,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">3. Variable
+																<h4 class="title"><a href="shop-single.php">3. Variable
 																		product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1439,32 +1230,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/4.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/sofas/sofa6.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -1472,7 +1258,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">4. Soldout
+																<h4 class="title"><a href="shop-single.php">4. Soldout
 																		product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1496,32 +1282,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/5.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/sofas/sofa3.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -1529,7 +1310,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">5. Simple
+																<h4 class="title"><a href="shop-single.php">5. Simple
 																		product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1551,32 +1332,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/6.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/sofas/sofa7.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -1584,7 +1360,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">6. Variable
+																<h4 class="title"><a href="shop-single.php">6. Variable
 																		with soldout product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1608,32 +1384,27 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/7.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/sofas/sofa4.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
@@ -1641,7 +1412,7 @@
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">7. Sample
+																<h4 class="title"><a href="shop-single.php">7. Sample
 																		affiliate product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1663,42 +1434,36 @@
 												<div class="product-item">
 													<div class="inner-content">
 														<div class="product-thumb">
-															<a href="shop-single.html">
-																<img class="w-100" src="assets/img/shop/8.jpg"
-																	alt="Image-HasTech">
+															<a href="shop-single.php">
+																<img class="w-100" src="assets/img/sofas/sofa8.jpg" alt="Image-HasTech">
 															</a>
 															<div class="product-action">
 																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.html">
+																	<a class="add-cart" href="shop-cart.php">
 																		<span class="icon">
 																			<i class="bardy bardy-shopping-cart"></i>
-																			<i
-																				class="hover-icon bardy bardy-shopping-cart"></i>
+																			<i class="hover-icon bardy bardy-shopping-cart"></i>
 																		</span>
 																	</a>
-																	<a class="add-wishlist" href="wishlist.html">
+																	<a class="add-wishlist" href="wishlist.php">
 																		<span class="icon">
 																			<i class="bardy bardy-wishlist"></i>
-																			<i
-																				class="hover-icon bardy bardy-wishlist"></i>
+																			<i class="hover-icon bardy bardy-wishlist"></i>
 																		</span>
 																	</a>
-																	<a class="add-quick-view"
-																		href="javascript:void(0);">
+																	<a class="add-quick-view" href="javascript:void(0);">
 																		<span class="icon">
 																			<i class="bardy bardy-quick-view"></i>
-																			<i
-																				class="hover-icon bardy bardy-quick-view"></i>
+																			<i class="hover-icon bardy bardy-quick-view"></i>
 																		</span>
 																	</a>
 																</div>
 															</div>
-															<div class="ht-countdown ht-countdown-style"
-																data-date="4/24/2022"></div>
+															<div class="ht-countdown ht-countdown-style" data-date="4/24/2022"></div>
 														</div>
 														<div class="product-desc">
 															<div class="product-info">
-																<h4 class="title"><a href="shop-single.html">8.
+																<h4 class="title"><a href="shop-single.php">8.
 																		Countdown product</a></h4>
 																<div class="star-content">
 																	<i class="fa fa-star-o"></i>
@@ -1734,7 +1499,7 @@
 						<div class="col-12">
 							<!--== Start Single Banner Item ==-->
 							<div class="single-banner-image" data-aos="fade-right">
-								<a href="shop.html">
+								<a href="shop.php">
 									<img class="w-100" src="assets/img/home/home3.jpg" alt="Image-HasTech">
 								</a>
 							</div>
@@ -1769,19 +1534,18 @@
 										<div class="product-item">
 											<div class="inner-content">
 												<div class="product-thumb">
-													<a href="shop-single.html">
-														<img class="w-100" src="assets/img/shop/1.jpg"
-															alt="Image-HasTech">
+													<a href="shop-single.php">
+														<img class="w-100" src="assets/img/shop/1.jpg" alt="Image-HasTech">
 													</a>
 													<div class="product-action">
 														<div class="addto-wrap">
-															<a class="add-cart" href="shop-cart.html">
+															<a class="add-cart" href="shop-cart.php">
 																<span class="icon">
 																	<i class="bardy bardy-shopping-cart"></i>
 																	<i class="hover-icon bardy bardy-shopping-cart"></i>
 																</span>
 															</a>
-															<a class="add-wishlist" href="wishlist.html">
+															<a class="add-wishlist" href="wishlist.php">
 																<span class="icon">
 																	<i class="bardy bardy-wishlist"></i>
 																	<i class="hover-icon bardy bardy-wishlist"></i>
@@ -1798,7 +1562,7 @@
 												</div>
 												<div class="product-desc">
 													<div class="product-info">
-														<h4 class="title"><a href="shop-single.html">1. New and sale
+														<h4 class="title"><a href="shop-single.php">1. New and sale
 																badge product</a></h4>
 														<div class="star-content">
 															<i class="fa fa-star-o"></i>
@@ -1822,19 +1586,18 @@
 										<div class="product-item">
 											<div class="inner-content">
 												<div class="product-thumb">
-													<a href="shop-single.html">
-														<img class="w-100" src="assets/img/shop/2.jpg"
-															alt="Image-HasTech">
+													<a href="shop-single.php">
+														<img class="w-100" src="assets/img/shop/2.jpg" alt="Image-HasTech">
 													</a>
 													<div class="product-action">
 														<div class="addto-wrap">
-															<a class="add-cart" href="shop-cart.html">
+															<a class="add-cart" href="shop-cart.php">
 																<span class="icon">
 																	<i class="bardy bardy-shopping-cart"></i>
 																	<i class="hover-icon bardy bardy-shopping-cart"></i>
 																</span>
 															</a>
-															<a class="add-wishlist" href="wishlist.html">
+															<a class="add-wishlist" href="wishlist.php">
 																<span class="icon">
 																	<i class="bardy bardy-wishlist"></i>
 																	<i class="hover-icon bardy bardy-wishlist"></i>
@@ -1851,7 +1614,7 @@
 												</div>
 												<div class="product-desc">
 													<div class="product-info">
-														<h4 class="title"><a href="shop-single.html">2. New badge
+														<h4 class="title"><a href="shop-single.php">2. New badge
 																product</a></h4>
 														<div class="star-content">
 															<i class="fa fa-star-o"></i>
@@ -1874,19 +1637,18 @@
 										<div class="product-item">
 											<div class="inner-content">
 												<div class="product-thumb">
-													<a href="shop-single.html">
-														<img class="w-100" src="assets/img/shop/3.jpg"
-															alt="Image-HasTech">
+													<a href="shop-single.php">
+														<img class="w-100" src="assets/img/shop/3.jpg" alt="Image-HasTech">
 													</a>
 													<div class="product-action">
 														<div class="addto-wrap">
-															<a class="add-cart" href="shop-cart.html">
+															<a class="add-cart" href="shop-cart.php">
 																<span class="icon">
 																	<i class="bardy bardy-shopping-cart"></i>
 																	<i class="hover-icon bardy bardy-shopping-cart"></i>
 																</span>
 															</a>
-															<a class="add-wishlist" href="wishlist.html">
+															<a class="add-wishlist" href="wishlist.php">
 																<span class="icon">
 																	<i class="bardy bardy-wishlist"></i>
 																	<i class="hover-icon bardy bardy-wishlist"></i>
@@ -1903,7 +1665,7 @@
 												</div>
 												<div class="product-desc">
 													<div class="product-info">
-														<h4 class="title"><a href="shop-single.html">3. Variable
+														<h4 class="title"><a href="shop-single.php">3. Variable
 																product</a></h4>
 														<div class="star-content">
 															<i class="fa fa-star-o"></i>
@@ -1927,19 +1689,18 @@
 										<div class="product-item">
 											<div class="inner-content">
 												<div class="product-thumb">
-													<a href="shop-single.html">
-														<img class="w-100" src="assets/img/shop/4.jpg"
-															alt="Image-HasTech">
+													<a href="shop-single.php">
+														<img class="w-100" src="assets/img/shop/4.jpg" alt="Image-HasTech">
 													</a>
 													<div class="product-action">
 														<div class="addto-wrap">
-															<a class="add-cart" href="shop-cart.html">
+															<a class="add-cart" href="shop-cart.php">
 																<span class="icon">
 																	<i class="bardy bardy-shopping-cart"></i>
 																	<i class="hover-icon bardy bardy-shopping-cart"></i>
 																</span>
 															</a>
-															<a class="add-wishlist" href="wishlist.html">
+															<a class="add-wishlist" href="wishlist.php">
 																<span class="icon">
 																	<i class="bardy bardy-wishlist"></i>
 																	<i class="hover-icon bardy bardy-wishlist"></i>
@@ -1956,7 +1717,7 @@
 												</div>
 												<div class="product-desc">
 													<div class="product-info">
-														<h4 class="title"><a href="shop-single.html">4. Soldout
+														<h4 class="title"><a href="shop-single.php">4. Soldout
 																product</a></h4>
 														<div class="star-content">
 															<i class="fa fa-star-o"></i>
@@ -1980,19 +1741,18 @@
 										<div class="product-item">
 											<div class="inner-content">
 												<div class="product-thumb">
-													<a href="shop-single.html">
-														<img class="w-100" src="assets/img/shop/5.jpg"
-															alt="Image-HasTech">
+													<a href="shop-single.php">
+														<img class="w-100" src="assets/img/shop/5.jpg" alt="Image-HasTech">
 													</a>
 													<div class="product-action">
 														<div class="addto-wrap">
-															<a class="add-cart" href="shop-cart.html">
+															<a class="add-cart" href="shop-cart.php">
 																<span class="icon">
 																	<i class="bardy bardy-shopping-cart"></i>
 																	<i class="hover-icon bardy bardy-shopping-cart"></i>
 																</span>
 															</a>
-															<a class="add-wishlist" href="wishlist.html">
+															<a class="add-wishlist" href="wishlist.php">
 																<span class="icon">
 																	<i class="bardy bardy-wishlist"></i>
 																	<i class="hover-icon bardy bardy-wishlist"></i>
@@ -2009,7 +1769,7 @@
 												</div>
 												<div class="product-desc">
 													<div class="product-info">
-														<h4 class="title"><a href="shop-single.html">5. Simple
+														<h4 class="title"><a href="shop-single.php">5. Simple
 																product</a></h4>
 														<div class="star-content">
 															<i class="fa fa-star-o"></i>
@@ -2032,19 +1792,18 @@
 										<div class="product-item">
 											<div class="inner-content">
 												<div class="product-thumb">
-													<a href="shop-single.html">
-														<img class="w-100" src="assets/img/shop/6.jpg"
-															alt="Image-HasTech">
+													<a href="shop-single.php">
+														<img class="w-100" src="assets/img/shop/6.jpg" alt="Image-HasTech">
 													</a>
 													<div class="product-action">
 														<div class="addto-wrap">
-															<a class="add-cart" href="shop-cart.html">
+															<a class="add-cart" href="shop-cart.php">
 																<span class="icon">
 																	<i class="bardy bardy-shopping-cart"></i>
 																	<i class="hover-icon bardy bardy-shopping-cart"></i>
 																</span>
 															</a>
-															<a class="add-wishlist" href="wishlist.html">
+															<a class="add-wishlist" href="wishlist.php">
 																<span class="icon">
 																	<i class="bardy bardy-wishlist"></i>
 																	<i class="hover-icon bardy bardy-wishlist"></i>
@@ -2061,7 +1820,7 @@
 												</div>
 												<div class="product-desc">
 													<div class="product-info">
-														<h4 class="title"><a href="shop-single.html">6. Variable with
+														<h4 class="title"><a href="shop-single.php">6. Variable with
 																soldout product</a></h4>
 														<div class="star-content">
 															<i class="fa fa-star-o"></i>
@@ -2085,19 +1844,18 @@
 										<div class="product-item">
 											<div class="inner-content">
 												<div class="product-thumb">
-													<a href="shop-single.html">
-														<img class="w-100" src="assets/img/shop/7.jpg"
-															alt="Image-HasTech">
+													<a href="shop-single.php">
+														<img class="w-100" src="assets/img/shop/7.jpg" alt="Image-HasTech">
 													</a>
 													<div class="product-action">
 														<div class="addto-wrap">
-															<a class="add-cart" href="shop-cart.html">
+															<a class="add-cart" href="shop-cart.php">
 																<span class="icon">
 																	<i class="bardy bardy-shopping-cart"></i>
 																	<i class="hover-icon bardy bardy-shopping-cart"></i>
 																</span>
 															</a>
-															<a class="add-wishlist" href="wishlist.html">
+															<a class="add-wishlist" href="wishlist.php">
 																<span class="icon">
 																	<i class="bardy bardy-wishlist"></i>
 																	<i class="hover-icon bardy bardy-wishlist"></i>
@@ -2114,7 +1872,7 @@
 												</div>
 												<div class="product-desc">
 													<div class="product-info">
-														<h4 class="title"><a href="shop-single.html">7. Sample affiliate
+														<h4 class="title"><a href="shop-single.php">7. Sample affiliate
 																product</a></h4>
 														<div class="star-content">
 															<i class="fa fa-star-o"></i>
@@ -2137,19 +1895,18 @@
 										<div class="product-item">
 											<div class="inner-content">
 												<div class="product-thumb">
-													<a href="shop-single.html">
-														<img class="w-100" src="assets/img/shop/8.jpg"
-															alt="Image-HasTech">
+													<a href="shop-single.php">
+														<img class="w-100" src="assets/img/shop/8.jpg" alt="Image-HasTech">
 													</a>
 													<div class="product-action">
 														<div class="addto-wrap">
-															<a class="add-cart" href="shop-cart.html">
+															<a class="add-cart" href="shop-cart.php">
 																<span class="icon">
 																	<i class="bardy bardy-shopping-cart"></i>
 																	<i class="hover-icon bardy bardy-shopping-cart"></i>
 																</span>
 															</a>
-															<a class="add-wishlist" href="wishlist.html">
+															<a class="add-wishlist" href="wishlist.php">
 																<span class="icon">
 																	<i class="bardy bardy-wishlist"></i>
 																	<i class="hover-icon bardy bardy-wishlist"></i>
@@ -2168,7 +1925,7 @@
 												</div>
 												<div class="product-desc">
 													<div class="product-info">
-														<h4 class="title"><a href="shop-single.html">8. Countdown
+														<h4 class="title"><a href="shop-single.php">8. Countdown
 																product</a></h4>
 														<div class="star-content">
 															<i class="fa fa-star-o"></i>
@@ -2192,19 +1949,18 @@
 										<div class="product-item">
 											<div class="inner-content">
 												<div class="product-thumb">
-													<a href="shop-single.html">
-														<img class="w-100" src="assets/img/shop/9.jpg"
-															alt="Image-HasTech">
+													<a href="shop-single.php">
+														<img class="w-100" src="assets/img/shop/9.jpg" alt="Image-HasTech">
 													</a>
 													<div class="product-action">
 														<div class="addto-wrap">
-															<a class="add-cart" href="shop-cart.html">
+															<a class="add-cart" href="shop-cart.php">
 																<span class="icon">
 																	<i class="bardy bardy-shopping-cart"></i>
 																	<i class="hover-icon bardy bardy-shopping-cart"></i>
 																</span>
 															</a>
-															<a class="add-wishlist" href="wishlist.html">
+															<a class="add-wishlist" href="wishlist.php">
 																<span class="icon">
 																	<i class="bardy bardy-wishlist"></i>
 																	<i class="hover-icon bardy bardy-wishlist"></i>
@@ -2221,7 +1977,7 @@
 												</div>
 												<div class="product-desc">
 													<div class="product-info">
-														<h4 class="title"><a href="shop-single.html">9. Without
+														<h4 class="title"><a href="shop-single.php">9. Without
 																shortcode product</a></h4>
 														<div class="star-content">
 															<i class="fa fa-star-o"></i>
@@ -2244,19 +2000,18 @@
 										<div class="product-item">
 											<div class="inner-content">
 												<div class="product-thumb">
-													<a href="shop-single.html">
-														<img class="w-100" src="assets/img/shop/10.jpg"
-															alt="Image-HasTech">
+													<a href="shop-single.php">
+														<img class="w-100" src="assets/img/shop/10.jpg" alt="Image-HasTech">
 													</a>
 													<div class="product-action">
 														<div class="addto-wrap">
-															<a class="add-cart" href="shop-cart.html">
+															<a class="add-cart" href="shop-cart.php">
 																<span class="icon">
 																	<i class="bardy bardy-shopping-cart"></i>
 																	<i class="hover-icon bardy bardy-shopping-cart"></i>
 																</span>
 															</a>
-															<a class="add-wishlist" href="wishlist.html">
+															<a class="add-wishlist" href="wishlist.php">
 																<span class="icon">
 																	<i class="bardy bardy-wishlist"></i>
 																	<i class="hover-icon bardy bardy-wishlist"></i>
@@ -2273,7 +2028,7 @@
 												</div>
 												<div class="product-desc">
 													<div class="product-info">
-														<h4 class="title"><a href="shop-single.html">11. Product with
+														<h4 class="title"><a href="shop-single.php">11. Product with
 																video</a></h4>
 														<div class="star-content">
 															<i class="fa fa-star-o"></i>
@@ -2317,11 +2072,10 @@
 										and discount</p>
 									<div class="newsletter-content-wrap">
 										<div class="newsletter-form">
-											<form action="#">
-												<input type="email" class="form-control"
-													placeholder="Enter your email here">
-												<button class="btn-submit" type="button">Subscribe</button>
-											</form>
+											<div class="suscribe-form">
+												<input type="email" class="form-control subscribe-inp" name="email" placeholder="Enter your email here">
+												<button class="btn-submit subscribe-btn" type="button">Subscribe</button>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -2356,20 +2110,19 @@
 										<div class="post-item">
 											<div class="inner-content">
 												<div class="thumb">
-													<a href="single-blog.html">
-														<img class="w-100" src="assets/img/blog/1.jpg"
-															alt="Image-HasTech">
+													<a href="single-blog.php">
+														<img class="w-100" src="assets/img/blog/1.jpg" alt="Image-HasTech">
 													</a>
 												</div>
 												<div class="content">
-													<h4 class="title"><a href="single-blog.html">Standard dummy text
+													<h4 class="title"><a href="single-blog.php">Standard dummy text
 															ever since</a></h4>
 													<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem
 														sequi nesciunt. Neque porro
 														quisquam est,...</p>
-													<a class="btn-link" href="single-blog.html">Read More</a>
+													<a class="btn-link" href="single-blog.php">Read More</a>
 													<ul class="meta-info">
-														<li><span>By - </span><a class="author" href="blog.html">Diana
+														<li><span>By - </span><a class="author" href="blog.php">Diana
 																Demo Admin</a></li>
 														<li><span>01 February, 2021</span></li>
 													</ul>
@@ -2383,20 +2136,19 @@
 										<div class="post-item">
 											<div class="inner-content">
 												<div class="thumb">
-													<a href="single-blog.html">
-														<img class="w-100" src="assets/img/blog/2.jpg"
-															alt="Image-HasTech">
+													<a href="single-blog.php">
+														<img class="w-100" src="assets/img/blog/2.jpg" alt="Image-HasTech">
 													</a>
 												</div>
 												<div class="content">
-													<h4 class="title"><a href="single-blog.html">Make a type specimen
+													<h4 class="title"><a href="single-blog.php">Make a type specimen
 															book</a></h4>
 													<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem
 														sequi nesciunt. Neque porro
 														quisquam est,...</p>
-													<a class="btn-link" href="single-blog.html">Read More</a>
+													<a class="btn-link" href="single-blog.php">Read More</a>
 													<ul class="meta-info">
-														<li><span>By - </span><a class="author" href="blog.html">Diana
+														<li><span>By - </span><a class="author" href="blog.php">Diana
 																Demo Admin</a></li>
 														<li><span>01 February, 2021</span></li>
 													</ul>
@@ -2410,20 +2162,19 @@
 										<div class="post-item">
 											<div class="inner-content">
 												<div class="thumb">
-													<a href="single-blog.html">
-														<img class="w-100" src="assets/img/blog/3.jpg"
-															alt="Image-HasTech">
+													<a href="single-blog.php">
+														<img class="w-100" src="assets/img/blog/3.jpg" alt="Image-HasTech">
 													</a>
 												</div>
 												<div class="content">
-													<h4 class="title"><a href="single-blog.html">Lorem Ipsum is simply
+													<h4 class="title"><a href="single-blog.php">Lorem Ipsum is simply
 															dummy</a></h4>
 													<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem
 														sequi nesciunt. Neque porro
 														quisquam est,...</p>
-													<a class="btn-link" href="single-blog.html">Read More</a>
+													<a class="btn-link" href="single-blog.php">Read More</a>
 													<ul class="meta-info">
-														<li><span>By - </span><a class="author" href="blog.html">Diana
+														<li><span>By - </span><a class="author" href="blog.php">Diana
 																Demo Admin</a></li>
 														<li><span>01 February, 2021</span></li>
 													</ul>
@@ -2437,20 +2188,19 @@
 										<div class="post-item">
 											<div class="inner-content">
 												<div class="thumb">
-													<a href="single-blog.html">
-														<img class="w-100" src="assets/img/blog/4.jpg"
-															alt="Image-HasTech">
+													<a href="single-blog.php">
+														<img class="w-100" src="assets/img/blog/4.jpg" alt="Image-HasTech">
 													</a>
 												</div>
 												<div class="content">
-													<h4 class="title"><a href="single-blog.html">It is a long
+													<h4 class="title"><a href="single-blog.php">It is a long
 															established</a></h4>
 													<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem
 														sequi nesciunt. Neque porro
 														quisquam est,...</p>
-													<a class="btn-link" href="single-blog.html">Read More</a>
+													<a class="btn-link" href="single-blog.php">Read More</a>
 													<ul class="meta-info">
-														<li><span>By - </span><a class="author" href="blog.html">Diana
+														<li><span>By - </span><a class="author" href="blog.php">Diana
 																Demo Admin</a></li>
 														<li><span>01 February, 2021</span></li>
 													</ul>
@@ -2464,20 +2214,19 @@
 										<div class="post-item">
 											<div class="inner-content">
 												<div class="thumb">
-													<a href="single-blog.html">
-														<img class="w-100" src="assets/img/blog/5.jpg"
-															alt="Image-HasTech">
+													<a href="single-blog.php">
+														<img class="w-100" src="assets/img/blog/5.jpg" alt="Image-HasTech">
 													</a>
 												</div>
 												<div class="content">
-													<h4 class="title"><a href="single-blog.html">Sed quia non
+													<h4 class="title"><a href="single-blog.php">Sed quia non
 															numquam</a></h4>
 													<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem
 														sequi nesciunt. Neque porro
 														quisquam est,...</p>
-													<a class="btn-link" href="single-blog.html">Read More</a>
+													<a class="btn-link" href="single-blog.php">Read More</a>
 													<ul class="meta-info">
-														<li><span>By - </span><a class="author" href="blog.html">Diana
+														<li><span>By - </span><a class="author" href="blog.php">Diana
 																Demo Admin</a></li>
 														<li><span>01 February, 2021</span></li>
 													</ul>
@@ -2491,20 +2240,19 @@
 										<div class="post-item">
 											<div class="inner-content">
 												<div class="thumb">
-													<a href="single-blog.html">
-														<img class="w-100" src="assets/img/blog/6.jpg"
-															alt="Image-HasTech">
+													<a href="single-blog.php">
+														<img class="w-100" src="assets/img/blog/6.jpg" alt="Image-HasTech">
 													</a>
 												</div>
 												<div class="content">
-													<h4 class="title"><a href="single-blog.html">Ratione voluptatem
+													<h4 class="title"><a href="single-blog.php">Ratione voluptatem
 															sequi nesciunt</a></h4>
 													<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem
 														sequi nesciunt. Neque porro
 														quisquam est,...</p>
-													<a class="btn-link" href="single-blog.html">Read More</a>
+													<a class="btn-link" href="single-blog.php">Read More</a>
 													<ul class="meta-info">
-														<li><span>By - </span><a class="author" href="blog.html">Diana
+														<li><span>By - </span><a class="author" href="blog.php">Diana
 																Demo Admin</a></li>
 														<li><span>01 February, 2021</span></li>
 													</ul>
@@ -2707,6 +2455,8 @@
 
 	<!--=== jQuery Custom Js ===-->
 	<script src="assets/js/custom.js"></script>
+	<script src="assets/js/subscribe.js"></script>
+
 
 </body>
 

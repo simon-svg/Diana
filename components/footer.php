@@ -29,8 +29,7 @@
                                 <li><a href="page-search.php">Search</a></li>
                                 <li><a href="about.php">About</a></li>
                                 <li><a href="contact.php">Contact</a></li>
-                                <li><a href="shipping-policy.php">Shipping policy</a></li>
-                                <li><a href="wishlist.php">Wishlist</a></li>
+                                <li><a href="shop-shipping-policy.php">Shipping policy</a></li>
                                 <li><a href="shop.php">All Products</a></li>
                             </ul>
                         </div>
@@ -44,12 +43,8 @@
                         <h4 class="widget-title">Information</h4>
                         <div class="widget-menu-wrap">
                             <ul class="nav-menu">
-                                <li><a href="login.php">Login</a></li>
-                                <li><a href="#/">My Account</a></li>
-                                <li><a href="#/">Terms & Conditions</a></li>
                                 <li><a href="shop-shipping-policy.php">Shipping policy</a></li>
                                 <li><a href="shop-checkout.php">Payment System</a></li>
-                                <li><a href="#/">Promotional Offers</a></li>
                             </ul>
                         </div>
                     </div>
