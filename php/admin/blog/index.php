@@ -53,7 +53,7 @@ class Blog
 
     // insert ******************************************************************
 
-    public function insert() 
+    public function insert()
     {
         require_once '../../connect.php';
         $conn = Config::getConnect();
@@ -86,6 +86,21 @@ class Blog
             array_push($arr, $obj);
         }
         return $arr;
+    }
+
+    // search ******************************************************************
+
+    public function search($like)
+    {
+        require_once "../../connect.php";
+        $conn = Config::getConnect();
+        $query = "SELECT * FROM blog WHERE title LIKE '%$like%'";
+        $result = $conn->query($query);
+        $arr = [];
+        while ($obj = $result->fetch_object()) {
+            array_push($arr, $obj);
+        }
+        var_dump($arr);
     }
 
     // update ******************************************************************

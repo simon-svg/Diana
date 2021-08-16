@@ -16,19 +16,21 @@
             <a class="admin__item" href="<?php echo $navArr[3]; ?>">Subscribe</a>
         </li>
         <li>
-            <a class="admin__item" href="<?php echo $navArr[4]; ?>">Product Category</a>
+            <a class="admin__item" href="<?php echo $navArr[4]; ?>">Blog</a>
         </li>
         <li>
-            <a class="admin__item" href="<?php echo $navArr[5]; ?>">Blog</a>
+            <a class="admin__item" href="<?php echo $navArr[5]; ?>">Product Category</a>
         </li>
         <li>
-            <a class="admin__item" href="<?php echo $navArr[6]; ?>">Booking</a>
+            <a class="admin__item" href="<?php echo $navArr[6]; ?>">Product Color</a>
         </li>
         <li>
-            <a class="admin__item" href="<?php echo $navArr[7]; ?>">Home</a>
+            <a class="admin__item" href="<?php echo $navArr[7]; ?>">Product Type</a>
         </li>
         <li>
-            <a class="admin__item" href="<?php echo $navArr[8]; ?>">Tags</a>
+            <a class="admin__item" href="<?php echo $navArr[8]; ?>">Product Size</a>
+        </li><li>
+            <a class="admin__item" href="<?php echo $navArr[9]; ?>">Product Tag</a>
         </li>
     </ul>
 </nav>

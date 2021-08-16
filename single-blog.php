@@ -22,14 +22,6 @@
 </head>
 
 <body>
-	<?php
-
-	require_once "php/admin/blog/index.php";
-	$obj = new Blog();
-	$res = $obj->select($_GET["blog_id"], "php/connect.php")[0];
-
-	?>
-
 	<!--wrapper start-->
 	<div class="wrapper">
 
@@ -63,6 +55,11 @@
 				<div class="container">
 					<div class="row flex-row-reverse">
 						<div class="col-lg-8">
+							<?php
+							require_once "php/admin/blog/index.php";
+							$obj = new Blog();
+							$res = $obj->select($_GET["blog_id"], "php/connect.php")[0];
+							?>
 							<div class="blog-details-content-wrap">
 								<div class="thumb">
 									<img src="assets/img/blogs/<?php echo $res->img; ?>" alt="Image-HasTech">
@@ -106,13 +103,13 @@
 											?>
 												<div class="post-item">
 													<div class="thumb">
-														<a href="?blog_id=<?php echo $res->id;?>">
-															<img src="assets/img/blogs/<?php echo $res->img;?>" alt="<?php echo $res->title;?>">
+														<a href="?blog_id=<?php echo $res->id; ?>">
+															<img src="assets/img/blogs/<?php echo $res->img; ?>" alt="<?php echo $res->title; ?>">
 														</a>
 													</div>
 													<div class="content">
-														<h4 class="title"><a href="?blog_id<?php echo $res->id;?>"><?php echo $res->title;?></a></h4>
-														<p class="blog__text_small"><?php echo $res->text;?></p>
+														<h4 class="title"><a href="?blog_id<?php echo $res->id; ?>"><?php echo $res->title; ?></a></h4>
+														<p class="blog__text_small"><?php echo $res->text; ?></p>
 													</div>
 												</div>
 											<?php } ?>

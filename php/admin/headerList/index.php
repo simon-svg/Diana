@@ -54,9 +54,9 @@ class HeaderList
 
     // select ******************************************************************
 
-    public function select($id = null)
+    public function select($id = null, $conn="../connect.php")
     {
-        require_once "../connect.php";
+        require_once $conn;
         $conn = Config::getConnect();
         if ($id) {
             $query = "SELECT * FROM header_list WHERE id = $id";

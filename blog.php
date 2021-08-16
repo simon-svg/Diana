@@ -118,7 +118,7 @@
 										<div class="sidebar-search-form">
 											<form action="#">
 												<div class="form-group">
-													<input class="form-control" type="text" placeholder="Enter key words">
+													<input class="form-control blog__search_inp" type="text" placeholder="Enter key words">
 													<button type="submit" class="btn-src">Search</button>
 												</div>
 											</form>
@@ -158,22 +158,15 @@
 								<div class="sidebar-item">
 									<h4 class="sidebar-title">Archive</h4>
 									<div class="sidebar-body">
+										<?php
+										$objBlogName = new Blog();
+										$result = $objBlogName->select(false, "php/connect.php");
+										?>
 										<div class="category-sub-menu pt-1">
-											<span class="title">February 2019</span>
 											<ul>
-												<li><a href="#/">Standard dummy text ever since</a></li>
-												<li><a href="#/">Make a type specimen book</a></li>
-												<li><a href="#/">Lorem Ipsum is simply dummy</a></li>
-												<li><a href="#/">It is a long established</a></li>
-												<li><a href="#/">Sed quia non numquam</a></li>
-												<li><a href="#/">Ratione voluptatem sequi nesciunt</a></li>
-												<li><a href="#/">Sit aspernatur aut odit</a></li>
-											</ul>
-											<span class="title">January 2019</span>
-											<ul>
-												<li><a href="#/">Guis nostrum Nemo enim ipsam</a></li>
-												<li><a href="#/">Neque porro quisquam est</a></li>
-												<li><a href="#/">Qui dolorem ipsum quia</a></li>
+												<?php foreach ($result as $res) { ?>
+													<li><a href="single-blog.php?blog_id=<?php echo $res->id ?>"><?php echo $res->title ?></a></li>
+												<?php } ?>
 											</ul>
 										</div>
 									</div>
@@ -334,38 +327,22 @@
 
 	<!--=======================Javascript============================-->
 
-	<!--=== jQuery Modernizr Min Js ===-->
 	<script src="assets/js/modernizr.js"></script>
-	<!--=== jQuery Min Js ===-->
 	<script src="assets/js/jquery-main.js"></script>
-	<!--=== jQuery Migration Min Js ===-->
 	<script src="assets/js/jquery-migrate.js"></script>
-	<!--=== jQuery Popper Min Js ===-->
 	<script src="assets/js/popper.min.js"></script>
-	<!--=== jQuery Bootstrap Min Js ===-->
 	<script src="assets/js/bootstrap.min.js"></script>
-	<!--=== jQuery Appear Js ===-->
 	<script src="assets/js/jquery.appear.js"></script>
-	<!--=== jQuery Headroom Min Js ===-->
 	<script src="assets/js/headroom.min.js"></script>
-	<!--=== jQuery Swiper Min Js ===-->
 	<script src="assets/js/swiper.min.js"></script>
-	<!--=== jQuery Fancybox Min Js ===-->
 	<script src="assets/js/fancybox.min.js"></script>
-	<!--=== jQuery Slick Nav Js ===-->
 	<script src="assets/js/slicknav.js"></script>
-	<!--=== jQuery Waypoint Js ===-->
 	<script src="assets/js/waypoint.js"></script>
-	<!--=== jQuery Parallax Min Js ===-->
 	<script src="assets/js/parallax.min.js"></script>
-	<!--=== jQuery Aos Min Js ===-->
 	<script src="assets/js/aos.min.js"></script>
-	<!--=== jQuery Countdown Js ===-->
 	<script src="assets/js/countdown.js"></script>
-
-	<!--=== jQuery Custom Js ===-->
 	<script src="assets/js/custom.js"></script>
-
+	<script src="assets/js/blogSearch.js"></script>
 </body>
 
 </html>

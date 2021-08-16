@@ -511,21 +511,6 @@
 
 								<!--== Start Sidebar Item ==-->
 								<div class="product-sidebar-item">
-									<h4 class="product-sidebar-title">Vendors</h4>
-									<div class="product-sidebar-body">
-										<div class="product-sidebar-nav-menu">
-											<a href="#/">Vendor <span>1</span></a>
-											<a href="#/">Vendor <span>10</span></a>
-											<a href="#/">Vendor <span>11</span></a>
-											<a href="#/">Vendor <span>2</span></a>
-											<a href="#/">Vendor <span>3</span></a>
-										</div>
-									</div>
-								</div>
-								<!--== End Sidebar Item ==-->
-
-								<!--== Start Sidebar Item ==-->
-								<div class="product-sidebar-item">
 									<h4 class="product-sidebar-title">Banner</h4>
 									<div class="product-sidebar-body">
 										<!--== Start Product Item ==-->

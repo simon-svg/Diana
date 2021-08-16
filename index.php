@@ -9,7 +9,7 @@
 	<title>Diana – Furniture Store eCommerce Bootstrap5 Template</title>
 
 	<!--== Favicon ==-->
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 	<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
 	<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,13 +25,6 @@
 </head>
 
 <body>
-
-	<?php
-	require_once "php/admin/home/index.php";
-	$obj = new Home();
-	$result = $obj->select(false, "php/connect.php");
-	?>
-
 	<!--wrapper start-->
 	<div class="wrapper">
 
@@ -70,7 +63,11 @@
 			<section class="home-slider-area">
 				<div class="swiper-container swiper-slide-gap home-slider-container default-slider-container">
 					<div class="swiper-wrapper home-slider-wrapper slider-default">
-						<?php foreach ($result as $res) { ?>
+						<?php
+						require_once "php/admin/home/index.php";
+						$obj = new Home();
+						$result = $obj->select(false, "php/connect.php");
+						foreach ($result as $res) { ?>
 							<div class="swiper-slide">
 								<div class="slider-content-area" data-bg-img="assets/img/home/<?php echo $res->img ?>">
 									<div class="container">
@@ -116,17 +113,21 @@
 							<div class="product-category-tab-wrap">
 								<ul data-aos="fade-down" class="nav nav-tabs product-category-nav justify-content-center" id="myTab" role="tablist">
 									<li class="nav-item" role="presentation">
-										<button class="nav-link active" id="featured-tab" data-bs-toggle="tab" data-bs-target="#featured" type="button" role="tab" aria-controls="featured" aria-selected="true">All</button>
+										<button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All</button>
 									</li>
-									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="chair-tab" data-bs-toggle="tab" data-bs-target="#chair" type="button" role="tab" aria-controls="chair" aria-selected="false">Chair</button>
-									</li>
-									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="sofa-tab" data-bs-toggle="tab" data-bs-target="#sofa" type="button" role="tab" aria-controls="sofa" aria-selected="false">Sofa</button>
-									</li>
+									<?php
+									require_once "php/admin/productCategory/index.php";
+									$objProdCat = new ProductCategory();
+									$result = $objProdCat->select(false, "php/connect.php");
+									foreach ($result as $res) {
+									?>
+										<li class="nav-item" role="presentation">
+											<button class="nav-link" id="<?php echo $res->name; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $res->name; ?>" type="button" role="tab" aria-controls="<?php echo $res->name; ?>" aria-selected="false"><?php echo $res->name; ?></button>
+										</li>
+									<?php } ?>
 								</ul>
 								<div class="tab-content product-category-content" id="myTabContent">
-									<div class="tab-pane fade show active" id="featured" role="tabpanel" aria-labelledby="featured-tab">
+									<div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
 										<div class="row">
 											<div class="col-12">
 												<div class="swiper-container swiper-nav swiper-slide-gap product-swiper-pagination product-slider-container">
@@ -189,7 +190,7 @@
 																<div class="inner-content">
 																	<div class="product-thumb">
 																		<a href="shop-single.php">
-																			<img class="w-100" src="assets/img/shop/2.jpg" alt="Image-HasTech">
+																			<img class="w-100" src="assets/img/chairs/chair2.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
@@ -393,7 +394,7 @@
 																<div class="inner-content">
 																	<div class="product-thumb">
 																		<a href="shop-single.php">
-																			<img class="w-100" src="assets/img/shop/6.jpg" alt="Image-HasTech">
+																			<img class="w-100" src="assets/img/chairs/chair6.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
@@ -496,7 +497,7 @@
 																<div class="inner-content">
 																	<div class="product-thumb">
 																		<a href="shop-single.php">
-																			<img class="w-100" src="assets/img/shop/8.jpg" alt="Image-HasTech">
+																			<img class="w-100" src="assets/img/sofas/sofa2.jpg" alt="Image-HasTech">
 																		</a>
 																		<div class="product-action">
 																			<div class="addto-wrap">
@@ -2105,162 +2106,37 @@
 						<div class="col-12">
 							<div class="swiper-container swiper-nav swiper-slide-gap post-slider-container">
 								<div class="swiper-wrapper">
-									<div class="swiper-slide">
-										<!--== Start Blog Item ==-->
-										<div class="post-item">
-											<div class="inner-content">
-												<div class="thumb">
-													<a href="single-blog.php">
-														<img class="w-100" src="assets/img/blog/1.jpg" alt="Image-HasTech">
-													</a>
-												</div>
-												<div class="content">
-													<h4 class="title"><a href="single-blog.php">Standard dummy text
-															ever since</a></h4>
-													<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem
-														sequi nesciunt. Neque porro
-														quisquam est,...</p>
-													<a class="btn-link" href="single-blog.php">Read More</a>
-													<ul class="meta-info">
-														<li><span>By - </span><a class="author" href="blog.php">Diana
-																Demo Admin</a></li>
-														<li><span>01 February, 2021</span></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<!--== End Blog Item ==-->
-									</div>
-									<div class="swiper-slide">
-										<!--== Start Blog Item ==-->
-										<div class="post-item">
-											<div class="inner-content">
-												<div class="thumb">
-													<a href="single-blog.php">
-														<img class="w-100" src="assets/img/blog/2.jpg" alt="Image-HasTech">
-													</a>
-												</div>
-												<div class="content">
-													<h4 class="title"><a href="single-blog.php">Make a type specimen
-															book</a></h4>
-													<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem
-														sequi nesciunt. Neque porro
-														quisquam est,...</p>
-													<a class="btn-link" href="single-blog.php">Read More</a>
-													<ul class="meta-info">
-														<li><span>By - </span><a class="author" href="blog.php">Diana
-																Demo Admin</a></li>
-														<li><span>01 February, 2021</span></li>
-													</ul>
+									<?php
+									require_once "php/admin/blog/index.php";
+									$objBlog = new Blog();
+									$result = $objBlog->select(false, "php/connect.php");
+									foreach ($result as $res) {
+									?>
+										<div class="swiper-slide">
+											<!--== Start Blog Item ==-->
+											<div class="post-item">
+												<div class="inner-content">
+													<div class="thumb">
+														<a href="single-blog.php?blog_id=<?php echo $res->id; ?>">
+															<img class="w-100" src="assets/img/blogs/<?php echo $res->img; ?>" alt="<?php echo $res->name; ?>">
+														</a>
+													</div>
+													<div class="content">
+														<h4 class="title blog__title">
+															<a href="single-blog.php"><?php echo $res->title; ?></a>
+														</h4>
+														<p class="blog__text"><?php echo $res->text; ?></p>
+														<a class="btn-link" href="single-blog.php?blog_id=<?php echo $res->id; ?>">Read More</a>
+														<ul class="meta-info">
+															<li><span><?php echo $res->date; ?></span></li>
+														</ul>
+													</div>
 												</div>
 											</div>
+											<!--== End Blog Item ==-->
 										</div>
-										<!--== End Blog Item ==-->
-									</div>
-									<div class="swiper-slide">
-										<!--== Start Blog Item ==-->
-										<div class="post-item">
-											<div class="inner-content">
-												<div class="thumb">
-													<a href="single-blog.php">
-														<img class="w-100" src="assets/img/blog/3.jpg" alt="Image-HasTech">
-													</a>
-												</div>
-												<div class="content">
-													<h4 class="title"><a href="single-blog.php">Lorem Ipsum is simply
-															dummy</a></h4>
-													<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem
-														sequi nesciunt. Neque porro
-														quisquam est,...</p>
-													<a class="btn-link" href="single-blog.php">Read More</a>
-													<ul class="meta-info">
-														<li><span>By - </span><a class="author" href="blog.php">Diana
-																Demo Admin</a></li>
-														<li><span>01 February, 2021</span></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<!--== End Blog Item ==-->
-									</div>
-									<div class="swiper-slide">
-										<!--== Start Blog Item ==-->
-										<div class="post-item">
-											<div class="inner-content">
-												<div class="thumb">
-													<a href="single-blog.php">
-														<img class="w-100" src="assets/img/blog/4.jpg" alt="Image-HasTech">
-													</a>
-												</div>
-												<div class="content">
-													<h4 class="title"><a href="single-blog.php">It is a long
-															established</a></h4>
-													<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem
-														sequi nesciunt. Neque porro
-														quisquam est,...</p>
-													<a class="btn-link" href="single-blog.php">Read More</a>
-													<ul class="meta-info">
-														<li><span>By - </span><a class="author" href="blog.php">Diana
-																Demo Admin</a></li>
-														<li><span>01 February, 2021</span></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<!--== End Blog Item ==-->
-									</div>
-									<div class="swiper-slide">
-										<!--== Start Blog Item ==-->
-										<div class="post-item">
-											<div class="inner-content">
-												<div class="thumb">
-													<a href="single-blog.php">
-														<img class="w-100" src="assets/img/blog/5.jpg" alt="Image-HasTech">
-													</a>
-												</div>
-												<div class="content">
-													<h4 class="title"><a href="single-blog.php">Sed quia non
-															numquam</a></h4>
-													<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem
-														sequi nesciunt. Neque porro
-														quisquam est,...</p>
-													<a class="btn-link" href="single-blog.php">Read More</a>
-													<ul class="meta-info">
-														<li><span>By - </span><a class="author" href="blog.php">Diana
-																Demo Admin</a></li>
-														<li><span>01 February, 2021</span></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<!--== End Blog Item ==-->
-									</div>
-									<div class="swiper-slide">
-										<!--== Start Blog Item ==-->
-										<div class="post-item">
-											<div class="inner-content">
-												<div class="thumb">
-													<a href="single-blog.php">
-														<img class="w-100" src="assets/img/blog/6.jpg" alt="Image-HasTech">
-													</a>
-												</div>
-												<div class="content">
-													<h4 class="title"><a href="single-blog.php">Ratione voluptatem
-															sequi nesciunt</a></h4>
-													<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem
-														sequi nesciunt. Neque porro
-														quisquam est,...</p>
-													<a class="btn-link" href="single-blog.php">Read More</a>
-													<ul class="meta-info">
-														<li><span>By - </span><a class="author" href="blog.php">Diana
-																Demo Admin</a></li>
-														<li><span>01 February, 2021</span></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<!--== End Blog Item ==-->
-									</div>
+
+									<?php }	?>
 								</div>
 
 								<!--== Add Swiper navigation Buttons ==-->

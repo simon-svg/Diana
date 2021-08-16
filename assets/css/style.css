@@ -2332,6 +2332,9 @@ section .container-fluid {
   Shop CSS
 -----------------------------------------------------------------------
 */
+.product__info{
+  text-transform: capitalize;
+}
 .product-area.product-grid-list-area .container {
   padding-top: 85px;
   padding-bottom: 57px;

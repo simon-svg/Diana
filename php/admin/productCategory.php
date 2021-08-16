@@ -31,7 +31,8 @@
 
     <div class="admin">
         <?php
-        $navArr = ["index.php", "home.php", "contact.php", "subscribe.php", "productCategory.php", "blog.php", "booking.php", "homeSection.php", "tags.php"];
+        $navArr = ["index.php", "home.php", "contact.php", "subscribe.php", "blog.php", "#", "productColor.php",
+        "productType.php", "productSize.php", "productTag.php"];
         require_once "../../components/adminNav.php";
         ?>
 
@@ -47,13 +48,11 @@
                         <tr>
                             <th class="admin__table_title">id</th>
                             <th class="admin__table_title">name</th>
-                            <th class="admin__table_title">product id</th>
                             <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
                         $id = '';
                         $name = '';
-                        $productId = '';
 
                         $obj = new ProductCategory();
                         $result = $obj->select();
@@ -66,9 +65,6 @@
                                 </td>
                                 <td class="admin__section_item_td">
                                     <h3 class="admin__section_item_name"><?php echo $res->name ?></h3>
-                                </td>
-                                <td class="admin__section_item_td">
-                                    <h3 class="admin__section_item_pos"><?php echo $res->product_id ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
                                     <a href="?id=<?php echo $res->id ?>">
@@ -87,7 +83,6 @@
 
                 $id = '';
                 $name = '';
-                $productId = '';
 
                 if (isset($_GET["id"])) {
                     $result = $obj->select($_GET["id"]);
@@ -95,7 +90,6 @@
                     foreach ($result as $res) {
                         $id = $res->id;
                         $name = $res->name;
-                        $productId = $res->product_id;
                     }
                 }
 
@@ -103,8 +97,6 @@
                 <form class="admin__form" action="productCategory/querys.php" method="POST">
                     <div class="form__flex">
                         <input class="admin__inp admin__inp_header form-control" type="text" name="name" value="<?php echo $name ?>" placeholder="Name" required>
-
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="product_id" value="<?php echo $productId ?>" placeholder="Product Id" required>
 
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                     </div>

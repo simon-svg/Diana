@@ -15,3 +15,6 @@ if(isset($_POST["submit"])){
 if(!empty($_GET["id"])){
 	echo $obj->delete($_GET["id"], $_GET["img"]);
 }
+if(!empty($_GET["search"])){
+	echo $obj->search($_POST["blogSearchInp"]);
+}

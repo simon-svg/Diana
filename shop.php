@@ -1700,25 +1700,13 @@
 									<h4 class="product-sidebar-title">Categories</h4>
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-nav-menu">
-											<a href="#/">Chair <span>(12)</span></a>
-											<a href="#/">Featured <span>(12)</span></a>
-											<a href="#/">Home page <span>(1)</span></a>
-											<a href="#/">Sofa <span>(12)</span></a>
-										</div>
-									</div>
-								</div>
-								<!--== End Sidebar Item ==-->
-
-								<!--== Start Sidebar Item ==-->
-								<div class="product-sidebar-item">
-									<h4 class="product-sidebar-title">Vendors</h4>
-									<div class="product-sidebar-body">
-										<div class="product-sidebar-nav-menu">
-											<a href="#/">Vendor <span>1</span></a>
-											<a href="#/">Vendor <span>10</span></a>
-											<a href="#/">Vendor <span>11</span></a>
-											<a href="#/">Vendor <span>2</span></a>
-											<a href="#/">Vendor <span>3</span></a>
+											<?php
+											require_once "php/admin/productCategory/index.php";
+											$productCatObj = new ProductCategory();
+											$result = $productCatObj->select(false, "php/connect.php");
+											foreach ($result as $res) { ?>
+												<a class="product__info" href="#/"><?php echo $res->name ?> <span>(12)</span></a>
+											<?php } ?>
 										</div>
 									</div>
 								</div>
@@ -1729,11 +1717,13 @@
 									<h4 class="product-sidebar-title">Products Types</h4>
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-nav-menu">
-											<a href="#/">Type <span>1</span></a>
-											<a href="#/">Type <span>10</span></a>
-											<a href="#/">Type <span>11</span></a>
-											<a href="#/">Type <span>2</span></a>
-											<a href="#/">Type <span>3</span></a>
+											<?php
+											require_once "php/admin/productType/index.php";
+											$productCatObj = new ProductType();
+											$result = $productCatObj->select(false, "php/connect.php");
+											foreach ($result as $res) { ?>
+												<a class="product__info" href="#/"><?php echo $res->name; ?> <span>(1)</span></a>
+											<?php } ?>
 										</div>
 									</div>
 								</div>
@@ -1744,16 +1734,13 @@
 									<h4 class="product-sidebar-title">Color</h4>
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-color-menu">
-											<div class="red"></div>
-											<div class="green"></div>
-											<div class="blue"></div>
-											<div class="yellow"></div>
-											<div class="white"></div>
-											<div class="gold"></div>
-											<div class="gray"></div>
-											<div class="magenta"></div>
-											<div class="maroon"></div>
-											<div class="navy"></div>
+											<?php
+											require_once "php/admin/productColor/index.php";
+											$colorObj = new ProductColor();
+											$result = $colorObj->select(false, "php/connect.php");
+											foreach ($result as $res) { ?>
+												<div class="<?php echo $res->name ?>"></div>
+											<?php } ?>
 										</div>
 									</div>
 								</div>
@@ -1765,11 +1752,13 @@
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-size-menu">
 											<ul>
-												<li><a href="#/">s</a></li>
-												<li><a href="#/">m</a></li>
-												<li><a href="#/">l</a></li>
-												<li><a href="#/">xl</a></li>
-												<li><a href="#/">xxl</a></li>
+												<?php
+												require_once "php/admin/productSize/index.php";
+												$sizeObj = new ProductSize();
+												$result = $sizeObj->select(false, "php/connect.php");
+												foreach ($result as $res) { ?>
+													<li><a href="#/"><?php echo $res->name ?></a></li>
+												<?php } ?>
 											</ul>
 										</div>
 									</div>
