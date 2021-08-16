@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 13 2021 г., 14:26
+-- Время создания: Авг 16 2021 г., 15:00
 -- Версия сервера: 10.3.13-MariaDB
 -- Версия PHP: 7.1.22
 
@@ -90,10 +90,7 @@ CREATE TABLE `header_list` (
 INSERT INTO `header_list` (`id`, `name`, `link`, `parent_id`) VALUES
 (1, 'home', 'index.php', 0),
 (2, 'shop', 'shop.php', 0),
-(3, 'pages', '#', 0),
-(4, 'Size Chart', 'shop-size-chart.php', 3),
-(5, 'Shipping policy', 'shop-shipping-policy.php', 3),
-(6, 'About', 'about.php', 3),
+(3, 'about', 'about.php', 0),
 (7, 'Blog', 'blog.php', 0),
 (8, 'Contact', 'contact.php', 0);
 
@@ -131,13 +128,16 @@ CREATE TABLE `product` (
   `sale` varchar(3) NOT NULL,
   `info` text NOT NULL,
   `description` text NOT NULL,
+  `img` varchar(128) NOT NULL,
+  `category_id` int(3) NOT NULL,
+  `size_id` int(16) NOT NULL,
+  `color_id` int(16) NOT NULL,
+  `type_id` int(16) NOT NULL,
+  `stock_time` int(32) NOT NULL,
   `tags` varchar(256) NOT NULL,
-  `count` int(8) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `up_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `category_id` int(3) NOT NULL,
-  `img` varchar(128) NOT NULL,
-  `stock_time` int(32) NOT NULL
+  `count` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -148,17 +148,16 @@ CREATE TABLE `product` (
 
 CREATE TABLE `product_category` (
   `id` int(16) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `product_id` int(16) NOT NULL
+  `name` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `product_category`
 --
 
-INSERT INTO `product_category` (`id`, `name`, `product_id`) VALUES
-(1, 'Chair', 1),
-(2, 'Sofa', 2);
+INSERT INTO `product_category` (`id`, `name`) VALUES
+(1, 'chair'),
+(2, 'sofa');
 
 -- --------------------------------------------------------
 
@@ -168,21 +167,24 @@ INSERT INTO `product_category` (`id`, `name`, `product_id`) VALUES
 
 CREATE TABLE `product_color` (
   `id` int(16) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `product_id` int(16) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-
--- --------------------------------------------------------
+  `name` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Структура таблицы `product_material`
+-- Дамп данных таблицы `product_color`
 --
 
-CREATE TABLE `product_material` (
-  `id` int(16) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `product_id` int(16) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+INSERT INTO `product_color` (`id`, `name`) VALUES
+(1, 'red'),
+(2, 'green'),
+(3, 'blue'),
+(4, 'yellow'),
+(5, 'white'),
+(6, 'gold'),
+(7, 'gray'),
+(8, 'magenta'),
+(9, 'maroon'),
+(10, 'navy');
 
 -- --------------------------------------------------------
 
@@ -192,9 +194,72 @@ CREATE TABLE `product_material` (
 
 CREATE TABLE `product_size` (
   `id` int(16) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `product_id` int(16) NOT NULL
+  `name` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `product_size`
+--
+
+INSERT INTO `product_size` (`id`, `name`) VALUES
+(1, 'xs'),
+(2, 's'),
+(3, 'm'),
+(4, 'l'),
+(5, 'xl'),
+(6, 'xxl');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `product_tag`
+--
+
+CREATE TABLE `product_tag` (
+  `id` int(16) NOT NULL,
+  `name` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Дамп данных таблицы `product_tag`
+--
+
+INSERT INTO `product_tag` (`id`, `name`) VALUES
+(1, 'black'),
+(2, 'blue'),
+(3, 'fiber'),
+(4, 'gold'),
+(5, 'gray'),
+(6, 'green'),
+(7, 'leather'),
+(8, 'magenta'),
+(9, 'maroon'),
+(10, 'metal'),
+(11, 'navy'),
+(12, 'ornage'),
+(13, 'pink');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `product_type`
+--
+
+CREATE TABLE `product_type` (
+  `id` int(16) NOT NULL,
+  `name` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `product_type`
+--
+
+INSERT INTO `product_type` (`id`, `name`) VALUES
+(1, 'metal'),
+(2, 'resin'),
+(3, 'leather'),
+(4, 'slag'),
+(5, 'fiber');
 
 -- --------------------------------------------------------
 
@@ -257,6 +322,30 @@ ALTER TABLE `product_category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `product_color`
+--
+ALTER TABLE `product_color`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `product_size`
+--
+ALTER TABLE `product_size`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `product_tag`
+--
+ALTER TABLE `product_tag`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `product_type`
+--
+ALTER TABLE `product_type`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `subscribe`
 --
 ALTER TABLE `subscribe`
@@ -300,13 +389,37 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT для таблицы `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `product_color`
+--
+ALTER TABLE `product_color`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT для таблицы `product_size`
+--
+ALTER TABLE `product_size`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT для таблицы `product_tag`
+--
+ALTER TABLE `product_tag`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT для таблицы `product_type`
+--
+ALTER TABLE `product_type`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `subscribe`
 --
 ALTER TABLE `subscribe`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
