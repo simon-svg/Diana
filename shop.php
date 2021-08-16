@@ -1771,21 +1771,13 @@
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-tag-menu">
 											<ul>
-												<li><a href="#/">black</a></li>
-												<li><a href="#/">blue</a></li>
-												<li><a href="#/">fiber</a></li>
-												<li><a href="#/">gold</a></li>
-												<li><a href="#/">gray</a></li>
-												<li><a href="#/">green</a></li>
-												<li><a href="#/">l</a></li>
-												<li><a href="#/">leather</a></li>
-												<li><a href="#/">m</a></li>
-												<li><a href="#/">magenta</a></li>
-												<li><a href="#/">maroon</a></li>
-												<li><a href="#/">metal</a></li>
-												<li><a href="#/">navy</a></li>
-												<li><a href="#/">orange</a></li>
-												<li><a href="#/">pink</a></li>
+												<?php
+												require_once "php/admin/productTag/index.php";
+												$tagObj = new ProductTag();
+												$result = $tagObj->select(false, "php/connect.php");
+												foreach ($result as $res) { ?>
+													<li><a href="#/"><?php echo $res->name ?></a></li>
+												<?php } ?>
 											</ul>
 										</div>
 									</div>

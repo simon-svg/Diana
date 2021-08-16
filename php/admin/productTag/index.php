@@ -1,6 +1,6 @@
 <?php
 
-class ProductColor
+class ProductTag
 {
     public $id = null;
     public $name;
@@ -30,7 +30,7 @@ class ProductColor
     {
         require_once '../../connect.php';
         $conn = Config::getConnect();
-        $query = 'INSERT INTO product_color(name) 
+        $query = 'INSERT INTO product_tag(name) 
 		          VALUES("' . $this->getName() . '")';
 
         $conn->query($query);
@@ -38,7 +38,7 @@ class ProductColor
         if ($conn->error) {
             return $conn->error;
         } else {
-            header("Location: ../productColor.php");
+            header("Location: ../productTag.php");
         }
     }
 
@@ -49,9 +49,9 @@ class ProductColor
         require_once $conn;
         $conn = Config::getConnect();
         if ($id) {
-            $query = "SELECT * FROM product_color WHERE id = $id";
+            $query = "SELECT * FROM product_tag WHERE id = $id";
         } else {
-            $query = "SELECT * FROM product_color";
+            $query = "SELECT * FROM product_tag";
         }
         $result = $conn->query($query);
         $arr = [];
@@ -68,13 +68,13 @@ class ProductColor
         require_once "../../connect.php";
         $conn = Config::getConnect();
 
-        $query = "UPDATE product_color SET name='" . $this->getName() . "' WHERE id = " . $this->getId();
+        $query = "UPDATE product_tag SET name='" . $this->getName() . "' WHERE id = " . $this->getId();
 
         $result = $conn->query($query);
         if ($result->error) {
             return $result->error;
         } else {
-            header("Location: ../productColor.php");
+            header("Location: ../productTag.php");
         }
     }
 
@@ -85,13 +85,13 @@ class ProductColor
         require_once "../../connect.php";
         $conn = Config::getConnect();
 
-        $query = "DELETE FROM product_color WHERE id = " . $id;
+        $query = "DELETE FROM product_tag WHERE id = " . $id;
 
         $result = $conn->query($query);
         if ($result->error) {
             return $result->error;
         } else {
-            header("Location: ../productColor.php");
+            header("Location: ../productTag.php");
         }
     }
 }

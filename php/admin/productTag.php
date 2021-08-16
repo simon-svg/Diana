@@ -70,7 +70,7 @@
                                     <a href="?id=<?php echo $res->id ?>">
                                         <i class="example__class admin__icon fas fa-pencil-alt"></i>
                                     </a>
-                                    <a href="productColor/querys.php?id=<?php echo $res->id ?>">
+                                    <a href="productTag/querys.php?id=<?php echo $res->id ?>">
                                         <i class="admin__icon fas fa-times"></i>
                                     </a>
                                 </td>
@@ -94,14 +94,14 @@
                 }
 
                 ?>
-                <form class="admin__form" action="productColor/querys.php" method="POST">
+                <form class="admin__form" action="productTag/querys.php" method="POST">
                     <div class="form__flex">
                         <input class="admin__inp admin__inp_header form-control" type="text" name="name" value="<?php echo $name ?>" placeholder="Name" required>
 
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                     </div>
                     <div>
-                        <button class="btn custom-btn admin__form_btn" name="submit">Add Product Color</button>
+                        <button class="btn custom-btn admin__form_btn" name="submit">Add Product Tag</button>
                     </div>
                 </form>
             </div>
