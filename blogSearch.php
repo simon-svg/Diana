@@ -5,8 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>About – Diana – Furniture Store eCommerce Bootstrap5 Template</title>
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<title>News – Diana – Furniture Store eCommerce Bootstrap5 Template</title>
 	<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,400i,600,700" rel="stylesheet">
@@ -23,6 +22,12 @@
 </head>
 
 <body>
+	<?php
+
+	require_once "php/admin/blog/index.php";
+	$obj = new Blog();
+
+	?>
 
 	<!--wrapper start-->
 	<div class="wrapper">
@@ -47,87 +52,131 @@
 		<main class="main-content">
 			<!--== Start Page Header Area Wrapper ==-->
 			<?php
-			$pagesTopSection = "About";
+			$pagesTopSection = "Blog";
 			require_once "components/pagesTopSection.php";
 			?>
 			<!--== End Page Header Area Wrapper ==-->
 
-			<!--== Start About Area Wrapper ==-->
-			<section class="about-area about-inner-area">
+			<!--== Start Blog Area Wrapper ==-->
+			<section class="blog-area blog-inner-area">
 				<div class="container">
-					<div class="row">
-						<div class="col-12">
-							<div class="about-inner-wrap">
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="about-content">
-											<div class="section-title mb--0">
-												<h2 class="sub-title">Provide the best</h2>
-												<h2 class="title">Furniture For You</h2>
-												<div class="desc">
-													<p>Modern furniture refers to furniture produced from the late 19th century through the present that is influenced by modernism. Post-World War II ideals of cutting excess, commodification, and practicality of materials in design heavily influenced the aesthetic of the furniture.</p>
-													<p>It was a tremendous departure from all furniture design that had gone before it. There was an opposition to the decorative arts, which included Art Nouveau, Neoclassical, and Victorian styles.</p>
+					<div class="row flex-row-reverse">
+						<div class="col-lg-8">
+							<div class="row">
+								<?php
+								$result = $obj->search($_GET["search"]);
+								foreach ($result as $res) {
+								?>
+									<div class="col-md-6">
+										<!--== Start Blog Item ==-->
+										<div class="post-item">
+											<div class="inner-content">
+												<div class="thumb">
+													<a href="single-blog.php?blog_id=<?php echo $res->id; ?>">
+														<img class="w-100" src="assets/img/blogs/<?php echo $res->img; ?>" alt="<?php echo $res->title; ?>">
+													</a>
+												</div>
+												<div class="content">
+													<h4 class="title blog__title"><a href="single-blog.php"><?php echo $res->title; ?></a></h4>
+													<p class="blog__text"><?php echo $res->text; ?></p>
+													<a class="btn-link" href="single-blog.php?blog_id=<?php echo $res->id; ?>">Read More</a>
+													<ul class="meta-info">
+														<li><span><?php echo $res->date; ?></span></li>
+													</ul>
 												</div>
 											</div>
-											<a href="#" class="btn-theme">LEARN MORE</a>
 										</div>
+										<!--== End Blog Item ==-->
 									</div>
-									<div class="col-lg-6 col-xl-5 offset-xl-1">
-										<div class="about-thumb">
-											<img class="w-100" src="assets/img/about/3.jpg" alt="Image-HasTech">
-										</div>
-									</div>
-								</div>
+								<?php } ?>
 							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!--== End About Area Wrapper ==-->
-
-			<!--== Start Single Banner Wrapper ==-->
-			<section>
-				<div class="container pt--0">
-					<div class="row">
-						<div class="col-12">
-							<!--== Start Single Banner Item ==-->
-							<div class="single-banner-image">
-								<a>
-									<img class="w-100" src="assets/img/about/1.jpg" alt="Image-HasTech">
-								</a>
-							</div>
-							<!--== End Single Banner Item ==-->
-						</div>
-					</div>
-				</div>
-			</section>
-			<!--== End Single Banner Wrapper ==-->
-
-			<!--== Start Divider Area Wrapper ==-->
-			<section class="divider-area divider-offer-area bg-color-222">
-				<div class="container">
-					<div class="row">
-						<div class="col-12">
-							<div class="divider-style-wrap text-center">
-								<div class="divider-content">
-									<h4 class="sub-title">Special <span>Offers</span> for Subscription</h4>
-									<h4 class="title">GET INSTANT DISCOUNT FOR MEMBERSHIP</h4>
-									<p>Subscribe our newsletter and get all latest news abot our latest <br>products, promotions, offers and discount</p>
-									<div class="newsletter-content-wrap">
-										<div class="newsletter-form">
-											<div class="suscribe-form">
-												<input type="email" class="form-control subscribe-inp" name="email" placeholder="Enter your email here">
-												<button class="btn-submit subscribe-btn" type="button">Subscribe</button>
-											</div>
-										</div>
+							<!--== Start Pagination Wrap ==-->
+							<div class="row">
+								<div class="col-12">
+									<div class="pagination-content-wrap">
+										<nav class="pagination-nav">
+											<ul class="pagination justify-content-center">
+												<li><a class="disabled prev" href="#/"><i class="fa fa-angle-left"></i>Back</a></li>
+												<li><a class="disabled" href="#/">1</a></li>
+												<li><a class="active" href="#/">2</a></li>
+												<li><a class="next" href="#/">Next <i class="fa fa-angle-right"></i></a></li>
+											</ul>
+										</nav>
 									</div>
 								</div>
 							</div>
+							<!--== End Pagination Wrap ==-->
+						</div>
+						<div class="col-lg-4">
+							<!--== Start Sidebar Wrapper ==-->
+							<div class="sidebar-wrapper sidebar-left">
+								<!--== Start Sidebar Item ==-->
+								<div class="sidebar-item">
+									<h4 class="sidebar-title">Search</h4>
+									<div class="sidebar-body">
+										<div class="sidebar-search-form">
+											<form action="#">
+												<div class="form-group">
+													<input class="form-control blog__search_inp" type="text" placeholder="Enter key words">
+													<button type="submit" class="btn-src">Search</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<!--== End Sidebar Item ==-->
+
+								<!--== Start Sidebar Item ==-->
+								<div class="sidebar-item sidebar-recent-post-item">
+									<h4 class="sidebar-title">Recent Post</h4>
+									<div class="sidebar-body">
+										<div class="sidebar-post-item">
+											<?php
+											$objBlogName = new Blog();
+											$result = $objBlogName->select(false, "php/connect.php");
+											$result1 = array_slice($result, 0, 3);
+											foreach ($result1 as $res) {
+											?>
+												<div class="post-item">
+													<div class="thumb">
+														<a href="single-blog.php?blog_id=<?php echo $res->id; ?>">
+															<img src="assets/img/blogs/<?php echo $res->img; ?>" alt="<?php echo $res->title; ?>">
+														</a>
+													</div>
+													<div class="content">
+														<h4 class="title"><a href="single-blog.php?blog_id=<?php echo $res->id; ?>"><?php echo $res->title; ?></a></h4>
+														<p class="blog__text_small"><?php echo $res->text; ?></p>
+													</div>
+												</div>
+											<?php } ?>
+										</div>
+									</div>
+								</div>
+								<!--== End Sidebar Item ==-->
+
+								<!--== Start Sidebar Item ==-->
+								<div class="sidebar-item">
+									<h4 class="sidebar-title">Archive</h4>
+									<div class="sidebar-body">
+										<?php
+										?>
+										<div class="category-sub-menu pt-1">
+											<ul>
+												<?php foreach ($result as $res) { ?>
+													<li><a href="single-blog.php?blog_id=<?php echo $res->id ?>"><?php echo $res->title ?></a></li>
+												<?php } ?>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<!--== End Sidebar Item ==-->
+							</div>
+							<!--== End Sidebar Wrapper ==-->
 						</div>
 					</div>
 				</div>
 			</section>
-			<!--== End Divider Area Wrapper ==-->
+			<!--== End Blog Area Wrapper ==-->
 
 			<!--== Start Feature Area Wrapper ==-->
 			<section class="feature-area">
@@ -276,38 +325,22 @@
 
 	<!--=======================Javascript============================-->
 
-	<!--=== jQuery Modernizr Min Js ===-->
 	<script src="assets/js/modernizr.js"></script>
-	<!--=== jQuery Min Js ===-->
 	<script src="assets/js/jquery-main.js"></script>
-	<!--=== jQuery Migration Min Js ===-->
 	<script src="assets/js/jquery-migrate.js"></script>
-	<!--=== jQuery Popper Min Js ===-->
 	<script src="assets/js/popper.min.js"></script>
-	<!--=== jQuery Bootstrap Min Js ===-->
 	<script src="assets/js/bootstrap.min.js"></script>
-	<!--=== jQuery Appear Js ===-->
 	<script src="assets/js/jquery.appear.js"></script>
-	<!--=== jQuery Headroom Min Js ===-->
 	<script src="assets/js/headroom.min.js"></script>
-	<!--=== jQuery Swiper Min Js ===-->
 	<script src="assets/js/swiper.min.js"></script>
-	<!--=== jQuery Fancybox Min Js ===-->
 	<script src="assets/js/fancybox.min.js"></script>
-	<!--=== jQuery Slick Nav Js ===-->
 	<script src="assets/js/slicknav.js"></script>
-	<!--=== jQuery Waypoint Js ===-->
 	<script src="assets/js/waypoint.js"></script>
-	<!--=== jQuery Parallax Min Js ===-->
 	<script src="assets/js/parallax.min.js"></script>
-	<!--=== jQuery Aos Min Js ===-->
 	<script src="assets/js/aos.min.js"></script>
-	<!--=== jQuery Countdown Js ===-->
 	<script src="assets/js/countdown.js"></script>
-
-	<!--=== jQuery Custom Js ===-->
 	<script src="assets/js/custom.js"></script>
-	<script src="assets/js/subscribe.js"></script>
+	<script src="assets/js/blogSearch.js"></script>
 </body>
 
 </html>

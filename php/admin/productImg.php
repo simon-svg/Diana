@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    <?php require_once "productTag/index.php" ?>
+    <?php require_once "productImg/index.php" ?>
 
     <div class="admin">
         <?php require_once "../../components/adminNav.php"; ?>
@@ -36,21 +36,23 @@
 
         <div class="admin__section admin__section_header-list">
             <div class="admin__section_head">
-                <h3 class="admin__section_title">Product Tag</h3>
+                <h3 class="admin__section_title">Product Img</h3>
             </div>
             <div class="admin__section_content">
                 <div class="admin__contact">
                     <table class="admin__table">
                         <tr>
                             <th class="admin__table_title">id</th>
-                            <th class="admin__table_title">name</th>
+                            <th class="admin__table_title">img</th>
+                            <th class="admin__table_title">product id</th>
                             <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
                         $id = '';
-                        $name = '';
+                        $img = '';
+                        $productId = '';
 
-                        $obj = new productTag();
+                        $obj = new productImg();
                         $result = $obj->select();
 
 
@@ -60,13 +62,16 @@
                                     <h3 class="admin__section_item_name"><?php echo $res->id ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
-                                    <h3 class="admin__section_item_name"><?php echo $res->name ?></h3>
+                                    <img style="width: 100px;" src="../../assets/img/productImg/<?php echo $res->img ?>" class="admin__section_item_name">
+                                </td>
+                                <td class="admin__section_item_td">
+                                    <h3 class="admin__section_item_name"><?php echo $res->product_id ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
                                     <a href="?id=<?php echo $res->id ?>">
                                         <i class="example__class admin__icon fas fa-pencil-alt"></i>
                                     </a>
-                                    <a href="productTag/querys.php?id=<?php echo $res->id ?>">
+                                    <a href="productImg/querys.php?id=<?php echo $res->id ?>">
                                         <i class="admin__icon fas fa-times"></i>
                                     </a>
                                 </td>
@@ -77,27 +82,36 @@
                 </div>
                 <?php
 
-                $id = '';
-                $name = '';
-
                 if (isset($_GET["id"])) {
                     $result = $obj->select($_GET["id"]);
 
                     foreach ($result as $res) {
                         $id = $res->id;
-                        $name = $res->name;
+                        $img = $res->img;
+                        $productId = $res->product_id;
                     }
                 }
 
                 ?>
-                <form class="admin__form" action="productTag/querys.php" method="POST">
+                <form class="admin__form" action="productImg/querys.php" method="POST" enctype="multipart/form-data">
                     <div class="form__flex">
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="name" value="<?php echo $name ?>" placeholder="Name" required>
+                        <input class="admin__inp admin__inp_header form-control" type="file" name="img" value="<?php echo $img ?>" placeholder="Name"   <?php if(!isset($_GET["id"])){echo "required";} ?> >
+
+                        
+                        <!-- <select id="productId" name="product_id">
+                            <option value="null">no</option>
+                            <?php
+                            $result = $obj->select();
+
+                            foreach ($result as $res) { ?>
+                                <option value="<?php echo $res->id ?>"><?php echo $res->name ?></option>
+                            <?php } ?>
+                        </select> -->
 
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                     </div>
                     <div>
-                        <button class="btn custom-btn admin__form_btn" name="submit">Add Product Tag</button>
+                        <button class="btn custom-btn admin__form_btn" name="submit">Add Product Img</button>
                     </div>
                 </form>
             </div>

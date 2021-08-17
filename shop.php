@@ -65,9 +65,6 @@
 										</div>
 									</nav>
 								</div>
-								<div class="show-product-area">
-									<p class="show-product">Showing 1 - 15 of 33 result</p>
-								</div>
 								<div class="nav-short-area">
 									<div class="toolbar-shorter">
 										<label for="SortBy">Sort by</label>
@@ -88,778 +85,71 @@
 								<div class="tab-content" id="nav-tabContent">
 									<div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
 										<div class="row">
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/1.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
+											<?php
+											require_once "php/admin/product/index.php";
+											$products = new Product();
+											$result =  $products->select(false, "php/connect.php");
+											foreach ($result as $res) {
+											?>
+												<div class="col-sm-6 col-xl-4">
+													<!--== Start Shop Item ==-->
+													<div class="product-item">
+														<div class="inner-content">
+															<div class="product-thumb">
+																<a href="shop-single.php?=<?php echo $res->id; ?>">
+																	<img class="w-100" src="assets/img/product/<?php echo $res->img; ?>" alt="<?php echo $res->img; ?>">
+																</a>
+																<div class="product-action">
+																	<div class="addto-wrap">
+																		<a class="add-cart" href="shop-cart.php?id=<?php echo $res->id; ?>">
+																			<span class="icon">
+																				<i class="bardy bardy-shopping-cart"></i>
+																				<i class="hover-icon bardy bardy-shopping-cart"></i>
+																			</span>
+																		</a>
+																		<a class="add-wishlist" href="wishlist.php">
+																			<span class="icon">
+																				<i class="bardy bardy-wishlist"></i>
+																				<i class="hover-icon bardy bardy-wishlist"></i>
+																			</span>
+																		</a>
+																		<a class="add-quick-view" href="javascript:void(0);">
+																			<span class="icon">
+																				<i class="bardy bardy-quick-view"></i>
+																				<i class="hover-icon bardy bardy-quick-view"></i>
+																			</span>
+																		</a>
+																	</div>
 																</div>
+																<?php if (!empty($res->stock_time)) { ?>
+																	<div class="ht-countdown ht-countdown-style" data-date="<?php echo $res->stock_time; ?>"></div>
+																<?php } ?>
 															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">1. New and sale badge product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 110.00 </span>
-																	<span class="price-old">Tk 130.00</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/11.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">10. This is the large title for testing large title and there is an image for testing</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 19.00</span>
-																	<span class="price-old">Tk 21.00</span>
+															<div class="product-desc">
+																<div class="product-info">
+																	<h4 class="title product__title"><a href="shop-single.php"><?php echo $res->name; ?></a></h4>
+																	<div class="star-content">
+																		<i class="fa fa-star-o"></i>
+																		<i class="fa fa-star-o"></i>
+																		<i class="fa fa-star-o"></i>
+																		<i class="fa fa-star-o"></i>
+																		<i class="fa fa-star-o"></i>
+																	</div>
+																	<div class="prices">
+																		<?php if (!empty($res->sale)) { ?>
+																			<span class="price">$<?php echo $res->sale; ?></span>
+																			<span class="price-old">$<?php echo $res->price; ?></span>
+																		<?php } else { ?>
+																			<span class="price">$<?php echo $res->price; ?></span>
+																		<?php } ?>
+																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
+													<!--== End Shop Item ==-->
 												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/10.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">11. Product with video</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 39.00</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/2.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">2. New badge product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 80.00</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/3.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">3. Variable product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 40.00</span>
-																	<span class="price-old">Tk 85.00</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/4.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">4. Soldout product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 19.00</span>
-																	<span class="price-old">Tk 29.00</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/5.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">5. Simple product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 50.00</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/6.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">6. Variable with soldout product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 55.00 </span>
-																	<span class="price-old">Tk 75.00</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/7.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">7. Sample affiliate product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 29.00 </span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/8.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-															<div class="ht-countdown ht-countdown-style" data-date="4/24/2022"></div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">8. Countdown product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 39.00 </span>
-																	<span class="price-old">Tk 60.00</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/9.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">9. Without shortcode product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 79.00 </span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/12.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">Demo product title</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 29.00 </span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/5.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">Demo product title</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 50.00 </span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/13.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">Demo product title</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 80.00 </span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-
-											<div class="col-sm-6 col-xl-4">
-												<!--== Start Shop Item ==-->
-												<div class="product-item">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/14.jpg" alt="Image-HasTech">
-															</a>
-															<div class="product-action">
-																<div class="addto-wrap">
-																	<a class="add-cart" href="shop-cart.php">
-																		<span class="icon">
-																			<i class="bardy bardy-shopping-cart"></i>
-																			<i class="hover-icon bardy bardy-shopping-cart"></i>
-																		</span>
-																	</a>
-																	<a class="add-wishlist" href="wishlist.php">
-																		<span class="icon">
-																			<i class="bardy bardy-wishlist"></i>
-																			<i class="hover-icon bardy bardy-wishlist"></i>
-																		</span>
-																	</a>
-																	<a class="add-quick-view" href="javascript:void(0);">
-																		<span class="icon">
-																			<i class="bardy bardy-quick-view"></i>
-																			<i class="hover-icon bardy bardy-quick-view"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">Demo product title</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 19.00 </span>
-																	<span class="price-old">Tk 21.00</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
+											<?php } ?>
 										</div>
 										<!--== Start Pagination Wrap ==-->
 										<div class="row">
@@ -881,779 +171,68 @@
 									</div>
 									<div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
 										<div class="row">
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/1.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">1. New and sale badge product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 110.00 </span>
-																	<span class="price-old">Tk 130.00</span>
-																</div>
-																<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
+											<?php
+											foreach ($result as $res) {
+											?>
+												<div class="col-12">
+													<!--== Start Shop Item ==-->
+													<div class="product-item product-item-list">
+														<div class="inner-content">
+															<div class="product-thumb">
+																<a href="shop-single.php?id=<?php echo $res->id; ?>">
+																	<img class="w-100" src="assets/img/product/<?php echo $res->img; ?>" alt="<?php echo $res->name; ?>">
+																</a>
+															</div>
+															<div class="product-desc">
+																<div class="product-info">
+																	<h4 class="title">
+																		<a href="shop-single.php?id=<?php echo $res->id; ?>"><?php echo $res->name; ?></a>
+																	</h4>
+																	<div class="star-content">
+																		<i class="fa fa-star-o"></i>
+																		<i class="fa fa-star-o"></i>
+																		<i class="fa fa-star-o"></i>
+																		<i class="fa fa-star-o"></i>
+																		<i class="fa fa-star-o"></i>
+																	</div>
+																	<div class="prices">
+																		<?php if (!empty($res->sale)) { ?>
+																			<span class="price">$<?php echo $res->sale; ?></span>
+																			<span class="price-old">$<?php echo $res->price; ?></span>
+																		<?php } else { ?>
+																			<span class="price">$<?php echo $res->price; ?></span>
+																		<?php } ?>
+																	</div>
+																	<p><?php echo $res->info; ?></p>
+																	<div class="product-action">
+																		<div class="addto-wrap">
+																			<a class="add-cart" href="shop-cart.php">
+																				<span class="icon">
+																					<i class="bardy bardy-shopping-cart"></i>
+																					<i class="hover-icon bardy bardy-shopping-cart"></i>
+																				</span>
+																			</a>
+																			<a class="add-wishlist" href="wishlist.php">
+																				<span class="icon">
+																					<i class="bardy bardy-wishlist"></i>
+																					<i class="hover-icon bardy bardy-wishlist"></i>
+																				</span>
+																			</a>
+																			<a class="add-quick-view" href="javascript:void(0);">
+																				<span class="icon">
+																					<i class="bardy bardy-quick-view"></i>
+																					<i class="hover-icon bardy bardy-quick-view"></i>
+																				</span>
+																			</a>
+																		</div>
 																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
+													<!--== End Shop Item ==-->
 												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/11.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">10. This is the large title for testing large title and there is an image for testing</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 19.00 </span>
-																	<span class="price-old">Tk 21.00</span>
-																</div>
-																<p>A long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal...</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/10.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">11. Product with video</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 39.00 </span>
-																</div>
-																<p>As opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for...</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/2.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">2. New badge product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 80.00 </span>
-																</div>
-																<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/3.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">3. Variable product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 40.00 </span>
-																	<span class="price-old">Tk 85.00</span>
-																</div>
-																<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/4.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">4. Soldout product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 19.00 </span>
-																	<span class="price-old">Tk 29.00</span>
-																</div>
-																<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/5.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">5. Simple product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 50.00 </span>
-																</div>
-																<p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/6.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">6. Variable with soldout product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 55.00 </span>
-																	<span class="price-old">Tk 75.00</span>
-																</div>
-																<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/7.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">7. Sample affiliate product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 29.00 </span>
-																</div>
-																<p>I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/8.jpg" alt="Image-HasTech">
-															</a>
-															<div class="ht-countdown ht-countdown-style" data-date="4/24/2022"></div>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">8. Countdown product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 39.00 </span>
-																	<span class="price-old">Tk 60.00</span>
-																</div>
-																<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/9.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">9. Without shortcode product</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 79.00 </span>
-																</div>
-																<p>we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that...</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/12.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">Demo product title</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 29.00 </span>
-																</div>
-																<p>I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/5.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">Demo product title</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 50.00 </span>
-																</div>
-																<p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/13.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">Demo product title</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 80.00 </span>
-																</div>
-																<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
-											<div class="col-12">
-												<!--== Start Shop Item ==-->
-												<div class="product-item product-item-list">
-													<div class="inner-content">
-														<div class="product-thumb">
-															<a href="shop-single.php">
-																<img class="w-100" src="assets/img/shop/14.jpg" alt="Image-HasTech">
-															</a>
-														</div>
-														<div class="product-desc">
-															<div class="product-info">
-																<h4 class="title"><a href="shop-single.php">Demo product title</a></h4>
-																<div class="star-content">
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																	<i class="fa fa-star-o"></i>
-																</div>
-																<div class="prices">
-																	<span class="price">Tk 19.00 </span>
-																	<span class="price-old">Tk 21.00</span>
-																</div>
-																<p>A long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal...</p>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--== End Shop Item ==-->
-											</div>
+											<?php } ?>
 										</div>
 										<!--== Start Pagination Wrap ==-->
 										<div class="row">
@@ -1703,9 +282,9 @@
 											<?php
 											require_once "php/admin/productCategory/index.php";
 											$productCatObj = new ProductCategory();
-											$result = $productCatObj->select(false, "php/connect.php");
+											$result = $productCatObj->select(false, "php/connect.php", "name");
 											foreach ($result as $res) { ?>
-												<a class="product__info" href="#/"><?php echo $res->name ?> <span>(12)</span></a>
+												<a class="product__info" href="#/"><?php echo $res->name ?><span> (<?php echo $res->count ?>)</span></a>
 											<?php } ?>
 										</div>
 									</div>
@@ -1737,7 +316,7 @@
 											<?php
 											require_once "php/admin/productColor/index.php";
 											$colorObj = new ProductColor();
-											$result = $colorObj->select(false, "php/connect.php");
+											$result = $colorObj->select(false, "php/connect.php", "name");
 											foreach ($result as $res) { ?>
 												<div class="<?php echo $res->name ?>"></div>
 											<?php } ?>
@@ -1780,23 +359,6 @@
 												<?php } ?>
 											</ul>
 										</div>
-									</div>
-								</div>
-								<!--== End Sidebar Item ==-->
-
-								<!--== Start Sidebar Item ==-->
-								<div class="product-sidebar-item">
-									<h4 class="product-sidebar-title">Banner</h4>
-									<div class="product-sidebar-body">
-										<!--== Start Product Item ==-->
-										<div class="product-sidebar-item">
-											<div class="thumb">
-												<a href="single-product-simple.php">
-													<img class="w-100" src="assets/img/slider/slider-05.jpg" alt="Image-HasTech">
-												</a>
-											</div>
-										</div>
-										<!--== End Product Item ==-->
 									</div>
 								</div>
 								<!--== End Sidebar Item ==-->

@@ -1,7 +1,7 @@
 <?php
 
 require "index.php";
-$obj = new Blog($_POST);
+$obj = new Product($_POST);
 $obj->setImg($obj->getImg());
 
 if(isset($_POST["submit"])){

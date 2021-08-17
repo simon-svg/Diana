@@ -4,6 +4,7 @@ class ProductColor
 {
     public $id = null;
     public $name;
+    public $product_id;
 
     public function __construct($input = null)
     {
@@ -22,6 +23,10 @@ class ProductColor
     {
         return $this->name;
     }
+    public function getProductId()
+    {
+        return $this->product_id;
+    }
 
 
     // insert ******************************************************************
@@ -30,8 +35,8 @@ class ProductColor
     {
         require_once '../../connect.php';
         $conn = Config::getConnect();
-        $query = 'INSERT INTO product_color(name) 
-		          VALUES("' . $this->getName() . '")';
+        $query = 'INSERT INTO product_color(name, product_id) 
+		          VALUES("' . $this->getName() . '", "' . $this->getProductId() . '")';
 
         $conn->query($query);
 
@@ -44,14 +49,19 @@ class ProductColor
 
     // select ******************************************************************
 
-    public function select($id = null, $conn="../connect.php")
+    public function select($id = null, $conn="../connect.php", $name = null)
     {
         require_once $conn;
         $conn = Config::getConnect();
+
+        $groupName = "";
+        if (!empty($name)) {
+            $groupName = " GROUP BY $name";
+        }
         if ($id) {
             $query = "SELECT * FROM product_color WHERE id = $id";
         } else {
-            $query = "SELECT * FROM product_color";
+            $query = "SELECT * FROM product_color" . $groupName;
         }
         $result = $conn->query($query);
         $arr = [];
@@ -68,7 +78,7 @@ class ProductColor
         require_once "../../connect.php";
         $conn = Config::getConnect();
 
-        $query = "UPDATE product_color SET name='" . $this->getName() . "' WHERE id = " . $this->getId();
+        $query = "UPDATE product_color SET name='" . $this->getName() . "', product_id='" . $this->getProductId() . "' WHERE id = " . $this->getId();
 
         $result = $conn->query($query);
         if ($result->error) {

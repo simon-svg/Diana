@@ -30,11 +30,7 @@
     <?php require_once "home/index.php" ?>
 
     <div class="admin">
-        <?php
-        $navArr = ["index.php", "#", "contact.php", "subscribe.php", "blog.php", "productCategory.php","productColor.php",
-        "productType.php", "productSize.php", "productTag.php"];
-        require_once "../../components/adminNav.php";
-        ?>
+        <?php require_once "../../components/adminNav.php"; ?>
 
         <!-- ---------------------------------- HEADER MENUE LIST ----------------------------------------------- -->
 
@@ -113,10 +109,12 @@
                 <form class="admin__form" action="home/querys.php" method="POST" enctype="multipart/form-data">
                     <div class="form__flex">
                         <input class="admin__inp admin__inp_header form-control" type="text" name="title" value="<?php echo $title ?>" placeholder="Title" required>
-                        
+
                         <input class="admin__inp admin__inp_header form-control" type="text" name="sub_title" value="<?php echo $subTitle ?>" placeholder="Sub Title" required>
-                        
-                        <input class="admin__inp admin__inp_header form-control" type="file" name="img" value="<?php echo $img ?>" <?php if(!isset($_GET["id"])){echo "required";} ?>>
+
+                        <input class="admin__inp admin__inp_header form-control" type="file" name="img" value="<?php echo $img ?>" <?php if (!isset($_GET["id"])) {
+                                                                                                                                        echo "required";
+                                                                                                                                    } ?>>
 
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="hidden" name="img" value="<?php echo $img; ?>">

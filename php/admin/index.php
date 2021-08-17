@@ -30,11 +30,7 @@
     <?php require_once "headerList/index.php" ?>
 
     <div class="admin">
-        <?php
-        $navArr = ["#", "home.php", "contact.php", "subscribe.php", "blog.php", "productCategory.php",
-        "productColor.php", "productType.php", "productSize.php", "productTag.php"];
-        require_once "../../components/adminNav.php";
-        ?>
+        <?php require_once "../../components/adminNav.php"; ?>
 
         <!-- ---------------------------------- HEADER MENUE LIST ----------------------------------------------- -->
 

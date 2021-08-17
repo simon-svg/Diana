@@ -128,58 +128,6 @@
 			</section>
 			<!--== End Contact Area Wrapper ==-->
 
-			<!--== Start Brand Logo Area Wrapper ==-->
-			<section class="brand-logo-area">
-				<div class="container pt--0">
-					<div class="brand-logo-content">
-						<div class="row">
-							<div class="col-12">
-								<div class="swiper-container brand-logo-slider-container">
-									<div class="swiper-wrapper">
-										<div class="swiper-slide">
-											<!--== Start Brand Logo Item ==-->
-											<div class="brand-logo-item">
-												<a href="#/"><img src="assets/img/brand-logo/1.jpg" alt="Image-HasTech"></a>
-											</div>
-											<!--== End Brand Logo Item ==-->
-										</div>
-										<div class="swiper-slide">
-											<!--== Start Brand Logo Item ==-->
-											<div class="brand-logo-item">
-												<a href="#/"><img src="assets/img/brand-logo/2.jpg" alt="Image-HasTech"></a>
-											</div>
-											<!--== End Brand Logo Item ==-->
-										</div>
-										<div class="swiper-slide">
-											<!--== Start Brand Logo Item ==-->
-											<div class="brand-logo-item">
-												<a href="#/"><img src="assets/img/brand-logo/3.jpg" alt="Image-HasTech"></a>
-											</div>
-											<!--== End Brand Logo Item ==-->
-										</div>
-										<div class="swiper-slide">
-											<!--== Start Brand Logo Item ==-->
-											<div class="brand-logo-item">
-												<a href="#/"><img src="assets/img/brand-logo/4.jpg" alt="Image-HasTech"></a>
-											</div>
-											<!--== End Brand Logo Item ==-->
-										</div>
-										<div class="swiper-slide">
-											<!--== Start Brand Logo Item ==-->
-											<div class="brand-logo-item">
-												<a href="#/"><img src="assets/img/brand-logo/5.jpg" alt="Image-HasTech"></a>
-											</div>
-											<!--== End Brand Logo Item ==-->
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!--== End Brand Logo Area Wrapper ==-->
-
 			<!--== Start Feature Area Wrapper ==-->
 			<section class="feature-area">
 				<div class="feature-container">

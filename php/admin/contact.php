@@ -30,11 +30,7 @@
     <?php require_once "contact/index.php" ?>
 
     <div class="admin">
-        <?php
-        $navArr = ["index.php", "home.php", "#", "subscribe.php", "blog.php", "productCategory.php", "productColor.php",
-        "productType.php", "productSize.php", "productTag.php"];
-        require_once "../../components/adminNav.php";
-        ?>
+        <?php require_once "../../components/adminNav.php"; ?>
 
         <!-- ---------------------------------- HEADER MENUE LIST ----------------------------------------------- -->
 
@@ -147,9 +143,6 @@
 
     <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
-    <script>
-        $('option[value="<?php echo $parentId ?>"]').attr('selected', true);
-    </script>
 </body>
 
 </html>

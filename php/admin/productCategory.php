@@ -30,11 +30,7 @@
     <?php require_once "productCategory/index.php" ?>
 
     <div class="admin">
-        <?php
-        $navArr = ["index.php", "home.php", "contact.php", "subscribe.php", "blog.php", "#", "productColor.php",
-        "productType.php", "productSize.php", "productTag.php"];
-        require_once "../../components/adminNav.php";
-        ?>
+        <?php require_once "../../components/adminNav.php"; ?>
 
         <!-- ---------------------------------- HEADER MENUE LIST ----------------------------------------------- -->
 
@@ -48,11 +44,13 @@
                         <tr>
                             <th class="admin__table_title">id</th>
                             <th class="admin__table_title">name</th>
+                            <th class="admin__table_title">product id</th>
                             <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
                         $id = '';
                         $name = '';
+                        $productId = '';
 
                         $obj = new ProductCategory();
                         $result = $obj->select();
@@ -65,6 +63,9 @@
                                 </td>
                                 <td class="admin__section_item_td">
                                     <h3 class="admin__section_item_name"><?php echo $res->name ?></h3>
+                                </td>
+                                <td class="admin__section_item_td">
+                                    <h3 class="admin__section_item_name"><?php echo $res->product_id ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
                                     <a href="?id=<?php echo $res->id ?>">
@@ -81,15 +82,12 @@
                 </div>
                 <?php
 
-                $id = '';
-                $name = '';
-
                 if (isset($_GET["id"])) {
                     $result = $obj->select($_GET["id"]);
-
                     foreach ($result as $res) {
                         $id = $res->id;
                         $name = $res->name;
+                        $productId = $res->product_id;
                     }
                 }
 
@@ -97,6 +95,17 @@
                 <form class="admin__form" action="productCategory/querys.php" method="POST">
                     <div class="form__flex">
                         <input class="admin__inp admin__inp_header form-control" type="text" name="name" value="<?php echo $name ?>" placeholder="Name" required>
+
+                        <select id="productId" name="product_id">
+                            <option value="0">no</option>
+                            <?php
+                            require_once "product/index.php";
+                            $products = new Product();
+                            $result = $products->select();
+                            foreach ($result as $res) { ?>
+                                <option value="<?php echo $res->id ?>"><?php echo $res->name ?></option>
+                            <?php } ?>
+                        </select>
 
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                     </div>
@@ -111,6 +120,9 @@
 
     <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+    <script>
+        $('option[value="<?php echo $productId ?>"]').attr('selected', true);
+    </script>
 </body>
 
 </html>

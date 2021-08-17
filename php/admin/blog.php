@@ -30,11 +30,7 @@
     <?php require_once "blog/index.php" ?>
 
     <div class="admin">
-        <?php
-        $navArr = ["index.php", "home.php", "contact.php", "subscribe.php", "#", "productCategory.php", "productColor.php",
-        "productType.php", "productSize.php", "productTag.php"];
-        require_once "../../components/adminNav.php";
-        ?>
+        <?php require_once "../../components/adminNav.php"; ?>
 
         <!-- ---------------------------------- Blog ----------------------------------------------- -->
 

@@ -86,7 +86,7 @@
 													<span>m / gold</span>
 												</td>
 												<td class="pro-price">
-													<span class="amount">Tk 80.00</span>
+													<span class="amount">$80.00</span>
 												</td>
 												<td class="pro-quantity">
 													<div class="pro-qty">
@@ -94,7 +94,7 @@
 													</div>
 												</td>
 												<td class="pro-subtotal">
-													<span class="subtotal-amount">Tk 80.00</span>
+													<span class="subtotal-amount">$80.00</span>
 												</td>
 												<td class="pro-remove">
 													<a class="remove" href="#/"><i class="fa fa-trash-o"></i></a>
@@ -108,7 +108,7 @@
 													<h4 class="title"><a href="shop.php">5. Simple product</a></h4>
 												</td>
 												<td class="pro-price">
-													<span class="amount">Tk 50.00</span>
+													<span class="amount">$50.00</span>
 												</td>
 												<td class="pro-quantity">
 													<div class="pro-qty">
@@ -116,7 +116,7 @@
 													</div>
 												</td>
 												<td class="pro-subtotal">
-													<span class="subtotal-amount">Tk 50.00</span>
+													<span class="subtotal-amount">$50.00</span>
 												</td>
 												<td class="pro-remove">
 													<a class="remove" href="#/"><i class="fa fa-trash-o"></i></a>
@@ -195,12 +195,12 @@
 															<tbody>
 																<tr class="cart-subtotal">
 																	<th>Subtotal</th>
-																	<td><span class="amount"><span>Tk 130.00</span></span></td>
+																	<td><span class="amount"><span>$130.00</span></span></td>
 																</tr>
 																<tr class="order-total">
 																	<th>Grand Total</th>
 																	<td>
-																		<span class="amount"><span>Tk 130.00</span></span>
+																		<span class="amount"><span>$130.00</span></span>
 																	</td>
 																</tr>
 															</tbody>

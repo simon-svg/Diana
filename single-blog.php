@@ -71,21 +71,6 @@
 									</ul>
 									<p><?php echo $res->text; ?></p>
 								</div>
-								<div class="blog-details-footer">
-									<div class="social-sharing">
-										<ul class="social-icon">
-											<span>Share:</span>
-											<li><a href="#/">facebook,</a></li>
-											<li><a href="#/">Twitter,</a></li>
-											<li><a href="#/">pinterest,</a></li>
-											<li><a href="#/">Google+</a></li>
-										</ul>
-									</div>
-									<div class="article-next-previous">
-										<a class="previous" href="#/"><i class="fa fa-long-arrow-left"></i>Previous</a>
-										<a class="next" href="#/">Next<i class="fa fa-long-arrow-right"></i></a>
-									</div>
-								</div>
 							</div>
 						</div>
 						<div class="col-lg-4">
@@ -97,18 +82,19 @@
 									<div class="sidebar-body">
 										<div class="sidebar-post-item">
 											<?php
-											$obj2 = new Blog();
-											$result = $obj2->select(false, "php/connect.php", 3);
-											foreach ($result as $res) {
+											$objBlogName = new Blog();
+											$result = $objBlogName->select(false, "php/connect.php");
+											$result1 = array_slice($result, 0,3);
+											foreach ($result1 as $res) {
 											?>
 												<div class="post-item">
 													<div class="thumb">
-														<a href="?blog_id=<?php echo $res->id; ?>">
+														<a href="single-blog.php?blog_id=<?php echo $res->id; ?>">
 															<img src="assets/img/blogs/<?php echo $res->img; ?>" alt="<?php echo $res->title; ?>">
 														</a>
 													</div>
 													<div class="content">
-														<h4 class="title"><a href="?blog_id<?php echo $res->id; ?>"><?php echo $res->title; ?></a></h4>
+														<h4 class="title"><a href="single-blog.php?blog_id=<?php echo $res->id; ?>"><?php echo $res->title; ?></a></h4>
 														<p class="blog__text_small"><?php echo $res->text; ?></p>
 													</div>
 												</div>
@@ -122,22 +108,13 @@
 								<div class="sidebar-item">
 									<h4 class="sidebar-title">Archive</h4>
 									<div class="sidebar-body">
+										<?php
+										?>
 										<div class="category-sub-menu pt-1">
-											<span class="title">February 2019</span>
 											<ul>
-												<li><a href="#/">Standard dummy text ever since</a></li>
-												<li><a href="#/">Make a type specimen book</a></li>
-												<li><a href="#/">Lorem Ipsum is simply dummy</a></li>
-												<li><a href="#/">It is a long established</a></li>
-												<li><a href="#/">Sed quia non numquam</a></li>
-												<li><a href="#/">Ratione voluptatem sequi nesciunt</a></li>
-												<li><a href="#/">Sit aspernatur aut odit</a></li>
-											</ul>
-											<span class="title">January 2019</span>
-											<ul>
-												<li><a href="#/">Guis nostrum Nemo enim ipsam</a></li>
-												<li><a href="#/">Neque porro quisquam est</a></li>
-												<li><a href="#/">Qui dolorem ipsum quia</a></li>
+												<?php foreach ($result as $res) { ?>
+													<li><a href="single-blog.php?blog_id=<?php echo $res->id ?>"><?php echo $res->title ?></a></li>
+												<?php } ?>
 											</ul>
 										</div>
 									</div>

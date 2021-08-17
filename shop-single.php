@@ -137,8 +137,8 @@
 										<div class="product-single-info">
 											<h4 class="title">3. Variable product</h4>
 											<div class="prices">
-												<span class="price">Tk 70.00</span>
-												<span class="price-old">Tk 85.00</span>
+												<span class="price">$70.00</span>
+												<span class="price-old">$85.00</span>
 											</div>
 											<div class="star-content">
 												<i class="fa fa-star-o"></i>
@@ -508,23 +508,6 @@
 									</div>
 								</div>
 								<!--== End Product Sidebar Item ==-->
-
-								<!--== Start Sidebar Item ==-->
-								<div class="product-sidebar-item">
-									<h4 class="product-sidebar-title">Banner</h4>
-									<div class="product-sidebar-body">
-										<!--== Start Product Item ==-->
-										<div class="product-sidebar-item">
-											<div class="thumb">
-												<a href="single-product-simple.php">
-													<img class="w-100" src="assets/img/slider/slider-05.jpg" alt="Image-HasTech">
-												</a>
-											</div>
-										</div>
-										<!--== End Product Item ==-->
-									</div>
-								</div>
-								<!--== End Sidebar Item ==-->
 							</div>
 							<!--== End Product Sidebar Wrapper ==-->
 						</div>

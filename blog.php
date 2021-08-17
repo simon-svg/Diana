@@ -52,7 +52,7 @@
 		<main class="main-content">
 			<!--== Start Page Header Area Wrapper ==-->
 			<?php
-			$pagesTopSection = "About";
+			$pagesTopSection = "Blog";
 			require_once "components/pagesTopSection.php";
 			?>
 			<!--== End Page Header Area Wrapper ==-->
@@ -116,9 +116,9 @@
 									<h4 class="sidebar-title">Search</h4>
 									<div class="sidebar-body">
 										<div class="sidebar-search-form">
-											<form action="#">
+											<form action="blogSearch.php">
 												<div class="form-group">
-													<input class="form-control blog__search_inp" type="text" placeholder="Enter key words">
+													<input class="form-control blog__search_inp" name="search" type="text" placeholder="Enter key words">
 													<button type="submit" class="btn-src">Search</button>
 												</div>
 											</form>
@@ -133,9 +133,10 @@
 									<div class="sidebar-body">
 										<div class="sidebar-post-item">
 											<?php
-											$obj2 = new Blog();
-											$result = $obj2->select(false, "php/connect.php", 3);
-											foreach ($result as $res) {
+											$objBlogName = new Blog();
+											$result = $objBlogName->select(false, "php/connect.php");
+											$result1 = array_slice($result, 0,3);
+											foreach ($result1 as $res) {
 											?>
 												<div class="post-item">
 													<div class="thumb">
@@ -159,8 +160,6 @@
 									<h4 class="sidebar-title">Archive</h4>
 									<div class="sidebar-body">
 										<?php
-										$objBlogName = new Blog();
-										$result = $objBlogName->select(false, "php/connect.php");
 										?>
 										<div class="category-sub-menu pt-1">
 											<ul>

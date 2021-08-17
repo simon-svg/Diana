@@ -1,9 +1,9 @@
 <?php
 
-class ProductCategory
+class ProductImg
 {
     public $id = null;
-    public $name;
+    public $img;
     public $product_id;
 
     public function __construct($input = null)
@@ -35,35 +35,28 @@ class ProductCategory
     {
         require_once '../../connect.php';
         $conn = Config::getConnect();
-        $query = 'INSERT INTO product_category(name, product_id) 
-		          VALUES("' . $this->getName() . '", "' . $this->getProductId() . '")';
+        $query = 'INSERT INTO product_img(name, product_id) 
+		          VALUES("' . $this->getName() . '"' . $this->getProductId() . '")';
 
         $conn->query($query);
 
         if ($conn->error) {
             return $conn->error;
         } else {
-            header("Location: ../productCategory.php");
+            header("Location: ../productImg.php");
         }
     }
 
     // select ******************************************************************
 
-    public function select($id = null, $conn = "../connect.php", $name = null)
+    public function select($id = null, $conn="../connect.php")
     {
         require_once $conn;
         $conn = Config::getConnect();
-
-        $groupCount = "";
-        $groupName = "";
-        if (!empty($name)) {
-            $groupName = " GROUP BY $name";
-            $groupCount = ", COUNT(id) as count";
-        }
         if ($id) {
-            $query = "SELECT * FROM product_category WHERE id = $id";
+            $query = "SELECT * FROM product_img WHERE id = $id";
         } else {
-            $query = "SELECT *" . $groupCount . " FROM product_category" . $groupName;
+            $query = "SELECT * FROM product_img";
         }
         $result = $conn->query($query);
         $arr = [];
@@ -80,13 +73,13 @@ class ProductCategory
         require_once "../../connect.php";
         $conn = Config::getConnect();
 
-        $query = "UPDATE product_category SET name='" . $this->getName() . "', product_id='" . $this->getProductId() . "' WHERE id = " . $this->getId();
+        $query = "UPDATE product_img SET name='" . $this->getName() . "', product_id='" . $this->getProductId() . "' WHERE id = " . $this->getId();;
 
         $result = $conn->query($query);
         if ($result->error) {
             return $result->error;
         } else {
-            header("Location: ../productCategory.php");
+            header("Location: ../productImg.php");
         }
     }
 
@@ -97,13 +90,13 @@ class ProductCategory
         require_once "../../connect.php";
         $conn = Config::getConnect();
 
-        $query = "DELETE FROM product_category WHERE id = " . $id;
+        $query = "DELETE FROM product_img WHERE id = " . $id;
 
         $result = $conn->query($query);
         if ($result->error) {
             return $result->error;
         } else {
-            header("Location: ../productCategory.php");
+            header("Location: ../productImg.php");
         }
     }
 }

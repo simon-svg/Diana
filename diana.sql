@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 16 2021 г., 15:00
+-- Время создания: Авг 17 2021 г., 15:07
 -- Версия сервера: 10.3.13-MariaDB
 -- Версия PHP: 7.1.22
 
@@ -125,20 +125,38 @@ CREATE TABLE `product` (
   `id` int(16) NOT NULL,
   `name` varchar(256) NOT NULL,
   `price` varchar(8) NOT NULL,
-  `sale` varchar(3) NOT NULL,
+  `sale` varchar(3) DEFAULT NULL,
   `info` text NOT NULL,
   `description` text NOT NULL,
   `img` varchar(128) NOT NULL,
-  `category_id` int(3) NOT NULL,
-  `size_id` int(16) NOT NULL,
-  `color_id` int(16) NOT NULL,
-  `type_id` int(16) NOT NULL,
-  `stock_time` int(32) NOT NULL,
+  `stock_time` varchar(128) DEFAULT NULL,
   `tags` varchar(256) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `up_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `count` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `price`, `sale`, `info`, `description`, `img`, `stock_time`, `tags`, `date`, `up_date`, `count`) VALUES
+(1, 'New and sale badge product', '130', '110', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took', 'galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '3484215.jpeg', '', 'leather, magenta', '2021-08-17 07:35:38', '2021-08-17 07:35:38', 4),
+(2, 'popularised in', '21', '19', 'desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset', '1755641.jpeg', '', 'maroon', '2021-08-17 07:49:48', '2021-08-17 07:49:48', 3),
+(3, 'passages', '39', '', 'Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia', 'Finibus Bonorum et Malorum The Extremes of Good and Evil by Cicero, written in 45 BC. This book is a treatise on the theory of ethics,', '64513757.jpeg', '', 'black, maroon', '2021-08-17 07:59:19', '2021-08-17 07:59:19', 1),
+(4, 'just product', '100', '80', 'model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy', 'established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-les', '98463610.jpeg', '', 'gray, navy', '2021-08-17 08:12:50', '2021-08-17 08:12:50', 8),
+(5, 'gold chair', '300', '280', ' text of the printing and typesetting industry. Lorem Ipsum has been the industry', 'lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident', '51929966.jpeg', '', 'gold, orange', '2021-08-17 08:14:27', '2021-08-17 08:14:27', 3),
+(6, 'Soldout chair', '50', '40', 'it has a more-or-less normal distribution of letters, as opposed', 'look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything', '93199065.jpeg', '', 'black, metal', '2021-08-17 08:16:30', '2021-08-17 08:16:30', 9),
+(7, 'Simple chair', '50', '', 'of the word in classical literature, discovered the undoubtable', 'Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable', '22283549.jpeg', '', 'pink, maroon', '2021-08-17 08:18:01', '2021-08-17 08:18:01', 1),
+(8, 'next chair', '75', '55', 'written in 45 BC. This book is a treatise on the theory of ethics, very popular', 'chunk as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful', '51455200.jpeg', '', 'gray, leather', '2021-08-17 08:19:30', '2021-08-17 08:19:30', 4),
+(9, 'sofa', '90', '', 'always free from repetition, injected humour, or non-characteristic words etc.', 'passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of', '68335171.jpeg', '4/24/2022', 'fiber, navy', '2021-08-17 09:56:51', '2021-08-17 09:56:51', 2),
+(10, 'white sofa', '120', '110', 'Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '22743952.jpeg', '', 'maroon, gray', '2021-08-17 10:03:23', '2021-08-17 10:03:23', 5),
+(11, 'elit sofa', '300', '', 'Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the', 'piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the', '46939533.jpeg', '5/10/2024', 'leather, fiber', '2021-08-17 10:04:40', '2021-08-17 10:04:40', 1),
+(12, 'just sofa', '220', '200', 'by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum', 'embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful', '76760640.jpeg', '', 'orange, gray', '2021-08-17 10:05:57', '2021-08-17 10:05:57', 6),
+(13, 'sofa black & gray', '140', '', 'by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', 'It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '40473913.jpeg', '', 'black, gray', '2021-08-17 10:07:06', '2021-08-17 10:07:06', 1),
+(14, 'france sofa', '230', '200', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece', 'popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia', '19531504.jpeg', '7/12/2023', 'magenta, navy', '2021-08-17 10:08:32', '2021-08-17 10:08:32', 2),
+(15, 'england sofa', '180', '', 'looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word ', 'Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word ', '19577633.jpeg', '', 'gray', '2021-08-17 10:09:15', '2021-08-17 10:09:15', 3),
+(16, 'american sofa', '260', '250', 'written in 45 BC. This book is a treatise on the theory of ethics, very popular', 'Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum', '20493817.jpeg', '', 'gray', '2021-08-17 10:09:58', '2021-08-17 10:09:58', 3);
 
 -- --------------------------------------------------------
 
@@ -148,16 +166,31 @@ CREATE TABLE `product` (
 
 CREATE TABLE `product_category` (
   `id` int(16) NOT NULL,
-  `name` varchar(128) NOT NULL
+  `name` varchar(128) NOT NULL,
+  `product_id` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `product_category`
 --
 
-INSERT INTO `product_category` (`id`, `name`) VALUES
-(1, 'chair'),
-(2, 'sofa');
+INSERT INTO `product_category` (`id`, `name`, `product_id`) VALUES
+(1, 'chair', 8),
+(2, 'chair', 7),
+(5, 'chair', 6),
+(6, 'chair', 5),
+(7, 'chair', 4),
+(8, 'chair', 3),
+(9, 'chair', 2),
+(10, 'chair', 1),
+(11, 'sofa', 16),
+(12, 'sofa', 15),
+(13, 'sofa', 14),
+(14, 'sofa', 13),
+(15, 'sofa', 12),
+(16, 'sofa', 11),
+(17, 'sofa', 10),
+(18, 'sofa', 9);
 
 -- --------------------------------------------------------
 
@@ -167,24 +200,53 @@ INSERT INTO `product_category` (`id`, `name`) VALUES
 
 CREATE TABLE `product_color` (
   `id` int(16) NOT NULL,
-  `name` varchar(128) NOT NULL
+  `name` varchar(128) NOT NULL,
+  `product_id` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `product_color`
 --
 
-INSERT INTO `product_color` (`id`, `name`) VALUES
-(1, 'red'),
-(2, 'green'),
-(3, 'blue'),
-(4, 'yellow'),
-(5, 'white'),
-(6, 'gold'),
-(7, 'gray'),
-(8, 'magenta'),
-(9, 'maroon'),
-(10, 'navy');
+INSERT INTO `product_color` (`id`, `name`, `product_id`) VALUES
+(1, 'red', 7),
+(2, 'green', 0),
+(3, 'blue', 0),
+(4, 'yellow', 5),
+(5, 'white', 10),
+(6, 'gold', 5),
+(7, 'gray', 16),
+(8, 'magenta', 0),
+(9, 'maroon', 0),
+(10, 'navy', 0),
+(11, 'red', 3),
+(12, 'yellow', 1),
+(13, 'white', 4),
+(14, 'white', 8),
+(15, 'white', 15),
+(16, 'gold', 1),
+(17, 'gray', 15),
+(18, 'gray', 14),
+(19, 'gray', 11),
+(20, 'gray', 8),
+(21, 'gray', 4),
+(22, 'black', 3),
+(23, 'black', 6),
+(24, 'black', 9),
+(25, 'black', 11),
+(26, 'black', 13);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `product_img`
+--
+
+CREATE TABLE `product_img` (
+  `id` int(16) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `product_id` int(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -328,6 +390,12 @@ ALTER TABLE `product_color`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `product_img`
+--
+ALTER TABLE `product_img`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `product_size`
 --
 ALTER TABLE `product_size`
@@ -359,7 +427,7 @@ ALTER TABLE `subscribe`
 -- AUTO_INCREMENT для таблицы `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `contact`
@@ -383,19 +451,25 @@ ALTER TABLE `home`
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT для таблицы `product_color`
 --
 ALTER TABLE `product_color`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT для таблицы `product_img`
+--
+ALTER TABLE `product_img`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `product_size`
