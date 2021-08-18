@@ -64,7 +64,13 @@
 						<div class="col-lg-8">
 							<div class="row">
 								<?php
-								$result = $obj->search($_GET["search"]);
+								$itemsCount = 2;
+								$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+								$from = ($page - 1) * $itemsCount;
+
+								$result = $obj->search($_GET["search"], "LIMIT $from, $itemsCount");
+								$result2 = $obj->search($_GET["search"]);
+								$dataCount = ceil(count($result2) / 2);
 								foreach ($result as $res) {
 								?>
 									<div class="col-md-6">
@@ -96,10 +102,31 @@
 									<div class="pagination-content-wrap">
 										<nav class="pagination-nav">
 											<ul class="pagination justify-content-center">
-												<li><a class="disabled prev" href="#/"><i class="fa fa-angle-left"></i>Back</a></li>
-												<li><a class="disabled" href="#/">1</a></li>
-												<li><a class="active" href="#/">2</a></li>
-												<li><a class="next" href="#/">Next <i class="fa fa-angle-right"></i></a></li>
+												<li class="<?php if (isset($page) && $page == 1) {
+																echo 'disabled';
+															} else {
+																echo false;
+															} ?>">
+													<a href="?search=<?php echo $_GET["search"] ?>&page=<?php echo $page - 1 ?>">
+														<i class="fa fa-angle-left"></i>Back
+													</a>
+												</li>
+												<?php for ($i = 1; $i <= $dataCount; $i++) { ?>
+													<li class="<?php if ($page == $i) {
+																	echo 'active';
+																} ?>">
+														<a href="?search=<?php echo $_GET["search"] ?>&page=<?php echo $i ?>"><?php echo $i ?></a>
+													</li>
+												<?php } ?>
+												<li class="<?php if (isset($page) && $page == $dataCount) {
+																echo 'disabled';
+															} else {
+																echo false;
+															} ?>">
+													<a href="?search=<?php echo $_GET["search"] ?>&page=<?php echo $page + 1 ?>">
+														Next <i class="fa fa-angle-right"></i>
+													</a>
+												</li>
 											</ul>
 										</nav>
 									</div>
@@ -115,9 +142,9 @@
 									<h4 class="sidebar-title">Search</h4>
 									<div class="sidebar-body">
 										<div class="sidebar-search-form">
-											<form action="#">
+											<form action="blogSearch.php">
 												<div class="form-group">
-													<input class="form-control blog__search_inp" type="text" placeholder="Enter key words">
+													<input class="form-control blog__search_inp" name="search" type="text" placeholder="Enter key words">
 													<button type="submit" class="btn-src">Search</button>
 												</div>
 											</form>

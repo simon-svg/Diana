@@ -64,8 +64,13 @@
 						<div class="col-lg-8">
 							<div class="row">
 								<?php
+								$itemsCount = 2;
+								$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+								$from = ($page - 1) * $itemsCount;
 
-								$result = $obj->select(false, "php/connect.php");
+								$result = $obj->select(false, "php/connect.php", "LIMIT $from, $itemsCount");
+								$result2 = $obj->select(false, "php/connect.php");
+								$dataCount = ceil(count($result2) / 2);
 								foreach ($result as $res) {
 								?>
 									<div class="col-md-6">
@@ -97,10 +102,27 @@
 									<div class="pagination-content-wrap">
 										<nav class="pagination-nav">
 											<ul class="pagination justify-content-center">
-												<li><a class="disabled prev" href="#/"><i class="fa fa-angle-left"></i>Back</a></li>
-												<li><a class="disabled" href="#/">1</a></li>
-												<li><a class="active" href="#/">2</a></li>
-												<li><a class="next" href="#/">Next <i class="fa fa-angle-right"></i></a></li>
+												<li class="<?php if (isset($page) && $page == 1) {
+																echo 'disabled';
+															} else {
+																echo false;
+															} ?>">
+													<a href="?page=<?php echo $page - 1 ?>"><i class="fa fa-angle-left"></i>Back</a>
+												</li>
+												<?php for ($i = 1; $i <= $dataCount; $i++) { ?>
+													<li class="<?php if ($page == $i) {
+																	echo 'active';
+																} ?>">
+														<a href="?page=<?php echo $i ?>"><?php echo $i ?></a>
+													</li>
+												<?php } ?>
+												<li class="<?php if (isset($page) && $page == $dataCount) {
+																echo 'disabled';
+															} else {
+																echo false;
+															} ?>">
+													<a href="?page=<?php echo $page + 1 ?>">Next <i class="fa fa-angle-right"></i></a>
+												</li>
 											</ul>
 										</nav>
 									</div>
@@ -135,7 +157,7 @@
 											<?php
 											$objBlogName = new Blog();
 											$result = $objBlogName->select(false, "php/connect.php");
-											$result1 = array_slice($result, 0,3);
+											$result1 = array_slice($result, 0, 3);
 											foreach ($result1 as $res) {
 											?>
 												<div class="post-item">
@@ -341,7 +363,6 @@
 	<script src="assets/js/aos.min.js"></script>
 	<script src="assets/js/countdown.js"></script>
 	<script src="assets/js/custom.js"></script>
-	<script src="assets/js/blogSearch.js"></script>
 </body>
 
 </html>

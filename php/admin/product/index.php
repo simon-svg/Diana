@@ -87,16 +87,18 @@ class Product
     {
         require_once '../../connect.php';
         $conn = Config::getConnect();
-        $query = 'INSERT INTO product(name, price, info, sale, description, img, stock_time, tags, count) 
-		          VALUES("' . $this->getName() . '", "' . $this->getPrice() . '", "' . $this->getInfo() . '", "' . $this->getSale() . '", "' . $this->getDescription() . '", "' . $this->getImg() . '", "' . $this->getStockTime() . '", "' . $this->getTags() . '", "' . $this->getCount() . '")';
+        // $query = 'INSERT INTO product(name, price, info, sale, description, img, stock_time, tags, count) 
+        //           VALUES("' . $this->getName() . '", "' . $this->getPrice() . '", "' . $this->getInfo() . '", "' . $this->getSale() . '", "' . $this->getDescription() . '", "' . $this->getImg() . '", "' . $this->getStockTime() . '", "' . $this->getTags() . '", "' . $this->getCount() . '")';
 
-        $conn->query($query);
 
-        if ($conn->error) {
-            return $conn->error;
-        } else {
-            header("Location: ../product.php");
-        }
+        var_dump($_POST);
+        // $conn->query($query);
+
+        // if ($conn->error) {
+        //     return $conn->error;
+        // } else {
+        //     header("Location: ../product.php");
+        // }
     }
 
     // select ******************************************************************
@@ -107,7 +109,7 @@ class Product
         $conn = Config::getConnect();
 
         $stockTime = "";
-        if(!empty($name)){
+        if (!empty($name)) {
             $stockTime = " WHERE $name <> ''";
         }
         if ($id) {

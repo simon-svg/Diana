@@ -1,0 +1,20 @@
+.insert__admin_flex{
+    flex-direction: column;
+}
+.admin__inp{
+    margin: 10px 0;
+}
+.more__info_group{
+    display: flex;
+    flex-direction: row;
+}
+.more__info_group_plus{
+    width: 12px;
+    margin: 0 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.category__new{
+    margin-left: 32px;
+    margin-top: 10px;
+}

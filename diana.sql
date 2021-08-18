@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 17 2021 г., 15:07
+-- Время создания: Авг 18 2021 г., 15:11
 -- Версия сервера: 10.3.13-MariaDB
 -- Версия PHP: 7.1.22
 
@@ -47,6 +47,25 @@ INSERT INTO `blog` (`id`, `title`, `text`, `img`, `date`) VALUES
 (4, 'It is a long established', 'nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500sSed quia consequuntu, when an unknown printer took a galley of type and scrambled it to make a type specimen book', '32291103.jpeg', '2021-08-13 10:49:31'),
 (5, 'Sed quia non numquam', 'magnam aliquam quaerat voluptatem. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500sSed quia consequuntu, when an unknown printer took a galley of type and scrambled it to make a type specimen book Neque ', '43985197.jpeg', '2021-08-13 10:49:52'),
 (6, 'Ratione voluptatem sequi nesciunt', 'aliquam quaerat voluptatem. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500sSed quia consequuntu, when an unknown printer took a galley of type and scrambled it to make a type specimen book Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et ', '68382143.jpeg', '2021-08-13 10:50:16');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(16) NOT NULL,
+  `name` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'chair'),
+(2, 'sofa');
 
 -- --------------------------------------------------------
 
@@ -354,6 +373,12 @@ ALTER TABLE `blog`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `contact`
 --
 ALTER TABLE `contact`
@@ -430,6 +455,12 @@ ALTER TABLE `blog`
   MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT для таблицы `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT для таблицы `contact`
 --
 ALTER TABLE `contact`
@@ -451,7 +482,7 @@ ALTER TABLE `home`
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `product_category`

@@ -71,14 +71,19 @@ class Blog
 
     // select ******************************************************************
 
-    public function select($id = null, $connect = "../connect.php")
+    public function select($id = null, $connect = "../connect.php", $limit = null)
     {
         require_once $connect;
         $conn = Config::getConnect();
+
+        $limitQuery = "";
+        if(isset($limit)){
+            $limitQuery = $limit;
+        }
         if ($id) {
             $query = "SELECT * FROM blog WHERE id = $id";
         } else {
-            $query = "SELECT * FROM blog ORDER BY date DESC";
+            $query = "SELECT * FROM blog ORDER BY date DESC " . $limitQuery;
         }
         $result = $conn->query($query);
         $arr = [];
@@ -90,11 +95,16 @@ class Blog
 
     // search ******************************************************************
 
-    public function search($like)
+    public function search($like, $limit = null)
     {
         require_once "php/connect.php";
         $conn = Config::getConnect();
-        $query = "SELECT * FROM blog WHERE title LIKE '%$like%'";
+
+        $limitQuery = "";
+        if(isset($limit)){
+            $limitQuery = $limit;
+        }
+        $query = "SELECT * FROM blog WHERE title LIKE '%$like%' ORDER BY date DESC " . $limitQuery;
         $result = $conn->query($query);
         $arr = [];
         while ($obj = $result->fetch_object()) {

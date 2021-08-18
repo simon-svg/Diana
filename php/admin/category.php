@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    <?php require_once "productCategory/index.php" ?>
+    <?php require_once "category/index.php" ?>
 
     <div class="admin">
         <?php require_once "../../components/adminNav.php"; ?>
@@ -36,7 +36,7 @@
 
         <div class="admin__section admin__section_header-list">
             <div class="admin__section_head">
-                <h3 class="admin__section_title">Product Category</h3>
+                <h3 class="admin__section_title">Category</h3>
             </div>
             <div class="admin__section_content">
                 <div class="admin__contact">
@@ -44,15 +44,13 @@
                         <tr>
                             <th class="admin__table_title">id</th>
                             <th class="admin__table_title">name</th>
-                            <th class="admin__table_title">product id</th>
-                            <!-- <th class="admin__table_title">panel</th> -->
+                            <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
                         $id = '';
                         $name = '';
-                        $productId = '';
 
-                        $obj = new ProductCategory();
+                        $obj = new Category();
                         $result = $obj->select();
 
 
@@ -65,54 +63,38 @@
                                     <h3 class="admin__section_item_name"><?php echo $res->name ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
-                                    <h3 class="admin__section_item_name"><?php echo $res->product_id ?></h3>
-                                </td>
-                                <!-- <td class="admin__section_item_td">
                                     <a href="?id=<?php echo $res->id ?>">
                                         <i class="example__class admin__icon fas fa-pencil-alt"></i>
                                     </a>
-                                    <a href="productCategory/querys.php?id=<?php echo $res->id ?>">
+                                    <a href="category/querys.php?id=<?php echo $res->id ?>">
                                         <i class="admin__icon fas fa-times"></i>
                                     </a>
-                                </td> -->
+                                </td>
                             </tr>
                         <?php } ?>
-
                     </table>
                 </div>
                 <?php
 
-                // if (isset($_GET["id"])) {
-                //     $result = $obj->select($_GET["id"]);
-                //     foreach ($result as $res) {
-                //         $id = $res->id;
-                //         $name = $res->name;
-                //         $productId = $res->product_id;
-                //     }
-                // }
+                if (isset($_GET["id"])) {
+                    $result = $obj->select($_GET["id"]);
+                    foreach ($result as $res) {
+                        $id = $res->id;
+                        $name = $res->name;
+                    }
+                }
 
                 ?>
-                <!-- <form class="admin__form" action="productCategory/querys.php" method="POST">
+                <form class="admin__form" action="category/querys.php" method="POST">
                     <div class="form__flex">
                         <input class="admin__inp admin__inp_header form-control" type="text" name="name" value="<?php echo $name ?>" placeholder="Name" required>
-
-                        <select id="productId" name="product_id">
-                            <option value="0">no</option>
-                            <?php
-                            require_once "product/index.php";
-                            $products = new Product();
-                            $result = $products->select();
-                            foreach ($result as $res) { ?>
-                                <option value="<?php echo $res->id ?>"><?php echo $res->name ?></option>
-                            <?php } ?>
-                        </select>
 
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                     </div>
                     <div>
-                        <button class="btn custom-btn admin__form_btn" name="submit">Add Product Category</button>
+                        <button class="btn custom-btn admin__form_btn" name="submit">Add Category</button>
                     </div>
-                </form> -->
+                </form>
             </div>
         </div>
     </div>
@@ -120,9 +102,6 @@
 
     <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
-    <!-- <script>
-        $('option[value="<?php echo $productId ?>"]').attr('selected', true);
-    </script> -->
 </body>
 
 </html>

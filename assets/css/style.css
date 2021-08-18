@@ -388,11 +388,12 @@ section .container-fluid {
   text-align: center;
   padding: 8px;
 }
-.pagination-content-wrap .pagination-nav .pagination li a.disabled {
-  cursor: not-allowed;
+.pagination-content-wrap .pagination-nav .pagination li.disabled {
+  pointer-events: none;
+  opacity: 0.4;
 }
 .pagination-content-wrap .pagination-nav .pagination li a.active {
-  color: #a4a4a4;
+  color: #ff383f;
 }
 .pagination-content-wrap .pagination-nav .pagination li a:hover {
   color: #ff383f;
@@ -1243,7 +1244,7 @@ section .container-fluid {
   color: #d8d8d8 !important;
 }
 .header-area .header-navigation-area .main-menu.nav .has-submenu .submenu-nav-mega .mega-menu-item.active a {
-  color: #d8d8d8 !important;
+  color: #ff383f !important;
 }
 .header-area .header-navigation-area .main-menu.nav .has-submenu .submenu-nav-mega .mega-menu-item ul > li > a {
   line-height: 21px;
@@ -6257,9 +6258,9 @@ p {
   position: relative;
   left: 250px;
 }
-.admin__section_item_pos{
-  font-size: 17px;
-  overflow: hidden;
+.admin__section_item_pos,
+.admin__section_item_name{
+  font-size: 16px !important;
 }
 .admin__text{
   width: 250px;
@@ -6368,4 +6369,12 @@ p {
 }
 .registration__cont{
   width: 20%;
+}
+
+
+.pagination .active a{
+  color: #ff383f !important;
+}
+.pagination .active a{
+  color: #ff383f !important;
 }

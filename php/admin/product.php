@@ -69,36 +69,7 @@
             }
 
             ?>
-            <form class="admin__form" action="product/querys.php" method="POST" enctype="multipart/form-data">
-                <div class="form__flex">
-                    <input class="admin__inp admin__inp_header form-control" type="text" name="name" value="<?php echo $name ?>" placeholder="Name" required>
-
-                    <input class="admin__inp admin__inp_header form-control" type="number" name="price" value="<?php echo $price ?>" placeholder="Price" required>
-
-                    <textarea class="admin__inp admin__inp_header form-control" type="text" name="info" placeholder="Info" required><?php echo $info ?></textarea>
-
-                    <input class="admin__inp admin__inp_header form-control" type="number" name="sale" value="<?php echo $sale ?>" placeholder="Sale">
-
-                    <textarea class="admin__inp admin__inp_header form-control" type="text" name="description" placeholder="Description" required><?php echo $description ?></textarea>
-
-                    <input class="admin__inp admin__inp_header form-control" type="file" name="img" value="<?php echo $img ?>" <?php if (!isset($_GET["id"])) {
-                                                                                                                                    echo "required";
-                                                                                                                                } ?>>
-
-                    <input class="admin__inp admin__inp_header form-control" type="text" name="stock_time" value="<?php echo $stockTime ?>"
-                    placeholder="1/1/2021+">
-
-                    <input class="admin__inp admin__inp_header form-control" type="text" name="tags" value="<?php echo $tags ?>" placeholder="Tags" required>
-
-                    <input class="admin__inp admin__inp_header form-control" type="number" name="count" value="<?php echo $count ?>" placeholder="Count" required>
-
-                    <input type="hidden" name="id" value="<?php echo $id; ?>">
-                    <input type="hidden" name="img" value="<?php echo $img; ?>">
-                </div>
-                <div>
-                    <button class="btn custom-btn admin__form_btn" name="submit">Add Product</button>
-                </div>
-            </form>
+            <a href="product/insert.php" class="btn custom-btn admin__form_btn">Add Product</a>
             <div class="admin__section_content">
                 <div class="admin__contact">
                     <table class="admin__table">
@@ -106,9 +77,7 @@
                             <th class="admin__table_title">id</th>
                             <th class="admin__table_title">name</th>
                             <th class="admin__table_title">price</th>
-                            <th class="admin__table_title">info</th>
                             <th class="admin__table_title">sale</th>
-                            <th class="admin__table_title">description</th>
                             <th class="admin__table_title">img</th>
                             <th class="admin__table_title">stock time</th>
                             <th class="admin__table_title">tags</th>
@@ -133,14 +102,8 @@
                                 <td class="admin__section_item_td">
                                     <h3 class="admin__section_item_pos"><?php echo $res->price ?></h3>
                                 </td>
-                                <td class="admin__section_item_td admin__text">
-                                    <h3 class="admin__section_item_pos admin__text_inner"><?php echo $res->info ?></h3>
-                                </td>
                                 <td class="admin__section_item_td">
                                     <h3 class="admin__section_item_pos"><?php echo ($res->sale ? $res->sale : "non"); ?></h3>
-                                </td>
-                                <td class="admin__section_item_td admin__text">
-                                    <h3 class="admin__section_item_pos admin__text_inner"><?php echo $res->description ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
                                     <div class="admin__section_img">
@@ -163,7 +126,7 @@
                                     <h3 class="admin__section_item_pos"><?php echo $res->count ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
-                                    <a href="?id=<?php echo $res->id ?>">
+                                    <a href="product/insert.php?id=<?php echo $res->id ?>">
                                         <i class="example__class admin__icon fas fa-pencil-alt"></i>
                                     </a>
                                     <a href="product/querys.php?id=<?php echo $res->id ?>&img=<?php echo $res->img ?>">

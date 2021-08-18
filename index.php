@@ -132,109 +132,118 @@
 											<div class="col-12">
 												<div class="swiper-container swiper-nav swiper-slide-gap product-swiper-pagination product-slider-container">
 													<div class="swiper-wrapper">
-														<div class="swiper-slide">
-															<!--== Start Shop Item ==-->
-															<div class="product-item">
-																<div class="inner-content">
-																	<div class="product-thumb">
-																		<a href="shop-single.php">
-																			<img class="w-100" src="assets/img/chairs/chair1.jpg" alt="Image-HasTech">
-																		</a>
-																		<div class="product-action">
-																			<div class="addto-wrap">
-																				<a class="add-cart" href="shop-cart.php">
-																					<span class="icon">
-																						<i class="bardy bardy-shopping-cart"></i>
-																						<i class="hover-icon bardy bardy-shopping-cart"></i>
-																					</span>
-																				</a>
-																				<a class="add-wishlist" href="wishlist.php">
-																					<span class="icon">
-																						<i class="bardy bardy-wishlist"></i>
-																						<i class="hover-icon bardy bardy-wishlist"></i>
-																					</span>
-																				</a>
-																				<a class="add-quick-view" href="javascript:void(0);">
-																					<span class="icon">
-																						<i class="bardy bardy-quick-view"></i>
-																						<i class="hover-icon bardy bardy-quick-view"></i>
-																					</span>
-																				</a>
+														<?php
+														require_once "php/admin/product/index.php";
+														$objProd = new Product();
+														$result = $objProd->select(false, "php/connect.php");
+														$l = count($result);
+														for ($i = 0; $i < $l; $i+=2) {
+														?>
+															<div class="swiper-slide">
+																<!--== Start Shop Item ==-->
+																<div class="product-item">
+																	<div class="inner-content">
+																		<div class="product-thumb">
+																			<a href="shop-single.php?id=<?php echo $result[$i]->id ?>">
+																				<img class="w-100" src="assets/img/product/<?php echo $result[$i]->img ?>"
+																				alt="<?php echo $result[$i]->name ?>">
+																			</a>
+																			<div class="product-action">
+																				<div class="addto-wrap">
+																					<a class="add-cart" href="shop-cart.php">
+																						<span class="icon">
+																							<i class="bardy bardy-shopping-cart"></i>
+																							<i class="hover-icon bardy bardy-shopping-cart"></i>
+																						</span>
+																					</a>
+																					<a class="add-wishlist" href="wishlist.php">
+																						<span class="icon">
+																							<i class="bardy bardy-wishlist"></i>
+																							<i class="hover-icon bardy bardy-wishlist"></i>
+																						</span>
+																					</a>
+																					<a class="add-quick-view" href="javascript:void(0);">
+																						<span class="icon">
+																							<i class="bardy bardy-quick-view"></i>
+																							<i class="hover-icon bardy bardy-quick-view"></i>
+																						</span>
+																					</a>
+																				</div>
 																			</div>
 																		</div>
-																	</div>
-																	<div class="product-desc">
-																		<div class="product-info">
-																			<h4 class="title"><a href="shop-single.php">1. New and
-																					sale badge product</a>
-																			</h4>
-																			<div class="star-content">
-																				<i class="fa fa-star-o"></i>
-																				<i class="fa fa-star-o"></i>
-																				<i class="fa fa-star-o"></i>
-																				<i class="fa fa-star-o"></i>
-																				<i class="fa fa-star-o"></i>
-																			</div>
-																			<div class="prices">
-																				<span class="price">$110.00 </span>
-																				<span class="price-old">$130.00</span>
+																		<div class="product-desc">
+																			<div class="product-info">
+																				<h4 class="title"><a href="shop-single.php">1. New and
+																						sale badge product</a>
+																				</h4>
+																				<div class="star-content">
+																					<i class="fa fa-star-o"></i>
+																					<i class="fa fa-star-o"></i>
+																					<i class="fa fa-star-o"></i>
+																					<i class="fa fa-star-o"></i>
+																					<i class="fa fa-star-o"></i>
+																				</div>
+																				<div class="prices">
+																					<span class="price">$110.00 </span>
+																					<span class="price-old">$130.00</span>
+																				</div>
 																			</div>
 																		</div>
 																	</div>
 																</div>
-															</div>
-															<!--== End Shop Item ==-->
+																<!--== End Shop Item ==-->
 
-															<!--== Start Shop Item ==-->
-															<div class="product-item">
-																<div class="inner-content">
-																	<div class="product-thumb">
-																		<a href="shop-single.php">
-																			<img class="w-100" src="assets/img/chairs/chair2.jpg" alt="Image-HasTech">
-																		</a>
-																		<div class="product-action">
-																			<div class="addto-wrap">
-																				<a class="add-cart" href="shop-cart.php">
-																					<span class="icon">
-																						<i class="bardy bardy-shopping-cart"></i>
-																						<i class="hover-icon bardy bardy-shopping-cart"></i>
-																					</span>
-																				</a>
-																				<a class="add-wishlist" href="wishlist.php">
-																					<span class="icon">
-																						<i class="bardy bardy-wishlist"></i>
-																						<i class="hover-icon bardy bardy-wishlist"></i>
-																					</span>
-																				</a>
-																				<a class="add-quick-view" href="javascript:void(0);">
-																					<span class="icon">
-																						<i class="bardy bardy-quick-view"></i>
-																						<i class="hover-icon bardy bardy-quick-view"></i>
-																					</span>
-																				</a>
+																<!--== Start Shop Item ==-->
+																<div class="product-item">
+																	<div class="inner-content">
+																		<div class="product-thumb">
+																			<a href="shop-single.php">
+																				<img class="w-100" src="assets/img/chairs/chair2.jpg" alt="Image-HasTech">
+																			</a>
+																			<div class="product-action">
+																				<div class="addto-wrap">
+																					<a class="add-cart" href="shop-cart.php">
+																						<span class="icon">
+																							<i class="bardy bardy-shopping-cart"></i>
+																							<i class="hover-icon bardy bardy-shopping-cart"></i>
+																						</span>
+																					</a>
+																					<a class="add-wishlist" href="wishlist.php">
+																						<span class="icon">
+																							<i class="bardy bardy-wishlist"></i>
+																							<i class="hover-icon bardy bardy-wishlist"></i>
+																						</span>
+																					</a>
+																					<a class="add-quick-view" href="javascript:void(0);">
+																						<span class="icon">
+																							<i class="bardy bardy-quick-view"></i>
+																							<i class="hover-icon bardy bardy-quick-view"></i>
+																						</span>
+																					</a>
+																				</div>
 																			</div>
 																		</div>
-																	</div>
-																	<div class="product-desc">
-																		<div class="product-info">
-																			<h4 class="title"><a href="shop-single.php">2. New badge
-																					product</a></h4>
-																			<div class="star-content">
-																				<i class="fa fa-star-o"></i>
-																				<i class="fa fa-star-o"></i>
-																				<i class="fa fa-star-o"></i>
-																				<i class="fa fa-star-o"></i>
-																				<i class="fa fa-star-o"></i>
-																			</div>
-																			<div class="prices">
-																				<span class="price">$80.00 </span>
+																		<div class="product-desc">
+																			<div class="product-info">
+																				<h4 class="title"><a href="shop-single.php">2. New badge
+																						product</a></h4>
+																				<div class="star-content">
+																					<i class="fa fa-star-o"></i>
+																					<i class="fa fa-star-o"></i>
+																					<i class="fa fa-star-o"></i>
+																					<i class="fa fa-star-o"></i>
+																					<i class="fa fa-star-o"></i>
+																				</div>
+																				<div class="prices">
+																					<span class="price">$80.00 </span>
+																				</div>
 																			</div>
 																		</div>
 																	</div>
 																</div>
+																<!--== End Shop Item ==-->
 															</div>
-															<!--== End Shop Item ==-->
-														</div>
+														<?php } ?>
 														<div class="swiper-slide">
 															<!--== Start Shop Item ==-->
 															<div class="product-item">

@@ -25,6 +25,9 @@
             <a class="admin__item" href="productCategory.php">Product Category</a>
         </li>
         <li>
+            <a class="admin__item" href="category.php">Category</a>
+        </li>
+        <li>
             <a class="admin__item" href="productColor.php">Product Color</a>
         </li>
         <li>
