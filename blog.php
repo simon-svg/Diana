@@ -70,7 +70,7 @@
 
 								$result = $obj->select(false, "php/connect.php", "LIMIT $from, $itemsCount");
 								$result2 = $obj->select(false, "php/connect.php");
-								$dataCount = ceil(count($result2) / 2);
+								$dataCount = ceil(count($result2) / $itemsCount);
 								foreach ($result as $res) {
 								?>
 									<div class="col-md-6">

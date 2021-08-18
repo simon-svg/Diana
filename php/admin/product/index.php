@@ -103,7 +103,7 @@ class Product
 
     // select ******************************************************************
 
-    public function select($id = null, $connect = "../connect.php", $name = null)
+    public function select($id = null, $connect = "../connect.php", $name = null, $limit = null)
     {
         require_once $connect;
         $conn = Config::getConnect();
@@ -112,11 +112,33 @@ class Product
         if (!empty($name)) {
             $stockTime = " WHERE $name <> ''";
         }
+        $limitQuery = "";
+        if (isset($limit)) {
+            $limitQuery = $limit;
+        }
+
         if ($id) {
             $query = "SELECT * FROM product WHERE id = $id";
         } else {
-            $query = "SELECT * FROM product" . $stockTime . " ORDER BY date DESC";
+            $query = "SELECT * FROM product" . $stockTime . " ORDER BY date DESC " . $limitQuery;
         }
+        $result = $conn->query($query);
+        $arr = [];
+        while ($obj = $result->fetch_object()) {
+            array_push($arr, $obj);
+        }
+        return $arr;
+    }
+
+
+    // select ******************************************************************
+
+    public function selectInCat($connect = "../connect.php", $name = null)
+    {
+        require_once $connect;
+        $conn = Config::getConnect();
+
+        $query = "SELECT * FROM product JOIN product_category ON product.id = product_category.product_id AND product_category.name = '$name' ORDER BY date DESC";
         $result = $conn->query($query);
         $arr = [];
         while ($obj = $result->fetch_object()) {
@@ -127,11 +149,16 @@ class Product
 
     // search ******************************************************************
 
-    public function search($like)
+    public function search($like, $limit = null)
     {
         require_once "php/connect.php";
         $conn = Config::getConnect();
-        $query = "SELECT * FROM product WHERE name LIKE '%$like%'";
+
+        $limitQuery = "";
+        if (isset($limit)) {
+            $limitQuery = $limit;
+        }
+        $query = "SELECT * FROM product WHERE product.name LIKE '%$like%' ORDER BY date DESC " . $limitQuery;
         $result = $conn->query($query);
         $arr = [];
         while ($obj = $result->fetch_object()) {

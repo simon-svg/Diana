@@ -3,7 +3,7 @@
 class Config{
     private static $dbHost = 'localhost';
 	private static $dbUser = 'root';
-	private static $dbPass = 'simon605@gmail';
+	private static $dbPass = '';
 	private static $dbName = 'Diana';
 	public static $conn = null;
 

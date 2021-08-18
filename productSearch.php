@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Product – Diana – Furniture Store eCommerce Bootstrap5 Template</title>
+	<title>News – Diana – Furniture Store eCommerce Bootstrap5 Template</title>
 	<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,400i,600,700" rel="stylesheet">
@@ -22,6 +22,12 @@
 </head>
 
 <body>
+	<?php
+
+	require_once "php/admin/product/index.php";
+	$obj = new Product();
+
+	?>
 
 	<!--wrapper start-->
 	<div class="wrapper">
@@ -51,263 +57,119 @@
 			?>
 			<!--== End Page Header Area Wrapper ==-->
 
-			<!--== Start Product Area Wrapper ==-->
-			<section class="product-area product-grid-list-area">
+			<!--== Start Blog Area Wrapper ==-->
+			<section class="blog-area blog-inner-area">
 				<div class="container">
 					<div class="row flex-row-reverse">
-						<div class="col-lg-9">
-							<div class="product-header-wrap">
-								<div class="grid-list-option">
-									<nav>
-										<div class="nav nav-tabs" id="nav-tab" role="tablist">
-											<button class="nav-link active" id="nav-grid-tab" data-bs-toggle="tab" data-bs-target="#nav-grid" type="button" role="tab" aria-controls="nav-grid" aria-selected="true"><span data-bg-img="assets/img/icons/1.webp"></span></button>
-											<button class="nav-link" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="false"><span data-bg-img="assets/img/icons/1.webp"></span></button>
-										</div>
-									</nav>
-								</div>
-								<div class="nav-short-area">
-									<div class="toolbar-shorter">
-										<label for="SortBy">Sort by</label>
-										<select id="SortBy" class="form-select" aria-label="Sort by">
-											<option value="manual">Featured</option>
-											<option value="best-selling">Best Selling</option>
-											<option value="title-ascending" selected>Alphabetically, A-Z</option>
-											<option value="title-descending">Alphabetically, Z-A</option>
-											<option value="price-ascending">Price, low to high</option>
-											<option value="price-descending">Price, high to low</option>
-											<option value="created-descending">Date, new to old</option>
-											<option value="created-ascending">Date, old to new</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="product-body-wrap">
-								<div class="tab-content" id="nav-tabContent">
-									<div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
-										<div class="row">
-											<?php
-											require_once "php/admin/product/index.php";
-											$products = new Product();
+						<div class="col-lg-8">
+							<div class="row">
+								<?php
+								$itemsCount = 3;
+								$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+								$from = ($page - 1) * $itemsCount;
 
-											$itemsCount = 3;
-											$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-											$from = ($page - 1) * $itemsCount;
-
-											$result = $products->select(false, "php/connect.php", false, "LIMIT $from, $itemsCount");
-											$result2 = $products->select(false, "php/connect.php");
-											$dataCount = ceil(count($result2) / $itemsCount);
-											foreach ($result as $res) {
-											?>
-												<div class="col-sm-6 col-xl-4">
-													<!--== Start Shop Item ==-->
-													<div class="product-item">
-														<div class="inner-content">
-															<div class="product-thumb">
-																<a href="shop-single.php?=<?php echo $res->id; ?>">
-																	<img class="w-100" src="assets/img/product/<?php echo $res->img; ?>" alt="<?php echo $res->img; ?>">
-																</a>
-																<div class="product-action">
-																	<div class="addto-wrap">
-																		<a class="add-cart" href="shop-cart.php?id=<?php echo $res->id; ?>">
-																			<span class="icon">
-																				<i class="bardy bardy-shopping-cart"></i>
-																				<i class="hover-icon bardy bardy-shopping-cart"></i>
-																			</span>
-																		</a>
-																		<a class="add-wishlist" href="wishlist.php">
-																			<span class="icon">
-																				<i class="bardy bardy-wishlist"></i>
-																				<i class="hover-icon bardy bardy-wishlist"></i>
-																			</span>
-																		</a>
-																		<a class="add-quick-view" href="javascript:void(0);">
-																			<span class="icon">
-																				<i class="bardy bardy-quick-view"></i>
-																				<i class="hover-icon bardy bardy-quick-view"></i>
-																			</span>
-																		</a>
-																	</div>
-																</div>
-																<?php if (!empty($res->stock_time)) { ?>
-																	<div class="ht-countdown ht-countdown-style" data-date="<?php echo $res->stock_time; ?>"></div>
-																<?php } ?>
-															</div>
-															<div class="product-desc">
-																<div class="product-info">
-																	<h4 class="title product__title"><a href="shop-single.php"><?php echo $res->name; ?></a></h4>
-																	<div class="star-content">
-																		<i class="fa fa-star-o"></i>
-																		<i class="fa fa-star-o"></i>
-																		<i class="fa fa-star-o"></i>
-																		<i class="fa fa-star-o"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="prices">
-																		<?php if (!empty($res->sale)) { ?>
-																			<span class="price">$<?php echo $res->sale; ?></span>
-																			<span class="price-old">$<?php echo $res->price; ?></span>
-																		<?php } else { ?>
-																			<span class="price">$<?php echo $res->price; ?></span>
-																		<?php } ?>
-																	</div>
-																</div>
-															</div>
+								$result = $obj->search($_GET["search"], "LIMIT $from, $itemsCount");
+								$result2 = $obj->search($_GET["search"]);
+								$dataCount = ceil(count($result2) / $itemsCount);
+								foreach ($result as $res) {
+								?>
+									<div class="col-sm-6 col-xl-4">
+										<!--== Start Shop Item ==-->
+										<div class="product-item">
+											<div class="inner-content">
+												<div class="product-thumb">
+													<a href="shop-single.php?=<?php echo $res->id; ?>">
+														<img class="w-100" src="assets/img/product/<?php echo $res->img; ?>" alt="<?php echo $res->img; ?>">
+													</a>
+													<div class="product-action">
+														<div class="addto-wrap">
+															<a class="add-cart" href="shop-cart.php?id=<?php echo $res->id; ?>">
+																<span class="icon">
+																	<i class="bardy bardy-shopping-cart"></i>
+																	<i class="hover-icon bardy bardy-shopping-cart"></i>
+																</span>
+															</a>
+															<a class="add-wishlist" href="wishlist.php">
+																<span class="icon">
+																	<i class="bardy bardy-wishlist"></i>
+																	<i class="hover-icon bardy bardy-wishlist"></i>
+																</span>
+															</a>
+															<a class="add-quick-view" href="javascript:void(0);">
+																<span class="icon">
+																	<i class="bardy bardy-quick-view"></i>
+																	<i class="hover-icon bardy bardy-quick-view"></i>
+																</span>
+															</a>
 														</div>
 													</div>
-													<!--== End Shop Item ==-->
+													<?php if (!empty($res->stock_time)) { ?>
+														<div class="ht-countdown ht-countdown-style" data-date="<?php echo $res->stock_time; ?>"></div>
+													<?php } ?>
 												</div>
-											<?php } ?>
-										</div>
-										<!--== Start Pagination Wrap ==-->
-										<div class="row">
-											<div class="col-12">
-												<div class="pagination-content-wrap">
-													<nav class="pagination-nav">
-														<ul class="pagination justify-content-center">
-															<li class="<?php if (isset($page) && $page == 1) {
-																			echo 'disabled';
-																		} else {
-																			echo false;
-																		} ?>">
-																<a href="?page=<?php echo $page - 1 ?>">
-																	<i class="fa fa-angle-left"></i>Back
-																</a>
-															</li>
-															<?php for ($i = 1; $i <= $dataCount; $i++) { ?>
-																<li class="<?php if ($page == $i) {
-																				echo 'active';
-																			} ?>">
-																	<a href="?page=<?php echo $i ?>"><?php echo $i ?></a>
-																</li>
+												<div class="product-desc">
+													<div class="product-info">
+														<h4 class="title product__title"><a href="shop-single.php"><?php echo $res->name; ?></a></h4>
+														<div class="star-content">
+															<i class="fa fa-star-o"></i>
+															<i class="fa fa-star-o"></i>
+															<i class="fa fa-star-o"></i>
+															<i class="fa fa-star-o"></i>
+															<i class="fa fa-star-o"></i>
+														</div>
+														<div class="prices">
+															<?php if (!empty($res->sale)) { ?>
+																<span class="price">$<?php echo $res->sale; ?></span>
+																<span class="price-old">$<?php echo $res->price; ?></span>
+															<?php } else { ?>
+																<span class="price">$<?php echo $res->price; ?></span>
 															<?php } ?>
-															<li class="<?php if (isset($page) && $page == $dataCount) {
-																			echo 'disabled';
-																		} else {
-																			echo false;
-																		} ?>">
-																<a href="?page=<?php echo $page + 1 ?>">
-																	Next <i class="fa fa-angle-right"></i>
-																</a>
-															</li>
-														</ul>
-													</nav>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
-										<!--== End Pagination Wrap ==-->
+										<!--== End Shop Item ==-->
 									</div>
-									<div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
-										<div class="row">
-											<?php
-											$itemsCount = 3;
-											$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-											$from = ($page - 1) * $itemsCount;
-
-											$result = $products->select(false, "php/connect.php", false, "LIMIT $from, $itemsCount");
-											$result2 = $products->select(false, "php/connect.php");
-											$dataCount = ceil(count($result2) / $itemsCount);
-											foreach ($result as $res) {
-											?>
-												<div class="col-12">
-													<!--== Start Shop Item ==-->
-													<div class="product-item product-item-list">
-														<div class="inner-content">
-															<div class="product-thumb">
-																<a href="shop-single.php?id=<?php echo $res->id; ?>">
-																	<img class="w-100" src="assets/img/product/<?php echo $res->img; ?>" alt="<?php echo $res->name; ?>">
-																</a>
-															</div>
-															<div class="product-desc">
-																<div class="product-info">
-																	<h4 class="title">
-																		<a href="shop-single.php?id=<?php echo $res->id; ?>"><?php echo $res->name; ?></a>
-																	</h4>
-																	<div class="star-content">
-																		<i class="fa fa-star-o"></i>
-																		<i class="fa fa-star-o"></i>
-																		<i class="fa fa-star-o"></i>
-																		<i class="fa fa-star-o"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="prices">
-																		<?php if (!empty($res->sale)) { ?>
-																			<span class="price">$<?php echo $res->sale; ?></span>
-																			<span class="price-old">$<?php echo $res->price; ?></span>
-																		<?php } else { ?>
-																			<span class="price">$<?php echo $res->price; ?></span>
-																		<?php } ?>
-																	</div>
-																	<p><?php echo $res->info; ?></p>
-																	<div class="product-action">
-																		<div class="addto-wrap">
-																			<a class="add-cart" href="shop-cart.php">
-																				<span class="icon">
-																					<i class="bardy bardy-shopping-cart"></i>
-																					<i class="hover-icon bardy bardy-shopping-cart"></i>
-																				</span>
-																			</a>
-																			<a class="add-wishlist" href="wishlist.php">
-																				<span class="icon">
-																					<i class="bardy bardy-wishlist"></i>
-																					<i class="hover-icon bardy bardy-wishlist"></i>
-																				</span>
-																			</a>
-																			<a class="add-quick-view" href="javascript:void(0);">
-																				<span class="icon">
-																					<i class="bardy bardy-quick-view"></i>
-																					<i class="hover-icon bardy bardy-quick-view"></i>
-																				</span>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<!--== End Shop Item ==-->
-												</div>
-											<?php } ?>
-										</div>
-										<!--== Start Pagination Wrap ==-->
-										<div class="row">
-											<div class="col-12">
-												<div class="pagination-content-wrap">
-													<nav class="pagination-nav">
-														<ul class="pagination justify-content-center">
-															<li class="<?php if (isset($page) && $page == 1) {
-																			echo 'disabled';
-																		} else {
-																			echo false;
-																		} ?>">
-																<a href="?page=<?php echo $page - 1 ?>">
-																	<i class="fa fa-angle-left"></i>Back
-																</a>
-															</li>
-															<?php for ($i = 1; $i <= $dataCount; $i++) { ?>
-																<li class="<?php if ($page == $i) {
-																				echo 'active';
-																			} ?>">
-																	<a href="?page=<?php echo $i ?>"><?php echo $i ?></a>
-																</li>
-															<?php } ?>
-															<li class="<?php if (isset($page) && $page == $dataCount) {
-																			echo 'disabled';
-																		} else {
-																			echo false;
-																		} ?>">
-																<a href="?page=<?php echo $page + 1 ?>">
-																	Next <i class="fa fa-angle-right"></i>
-																</a>
-															</li>
-														</ul>
-													</nav>
-												</div>
-											</div>
-										</div>
-										<!--== End Pagination Wrap ==-->
+								<?php } ?>
+							</div>
+							<!--== Start Pagination Wrap ==-->
+							<div class="row">
+								<div class="col-12">
+									<div class="pagination-content-wrap">
+										<nav class="pagination-nav">
+											<ul class="pagination justify-content-center">
+												<li class="<?php if (isset($page) && $page == 1) {
+																echo 'disabled';
+															} else {
+																echo false;
+															} ?>">
+													<a href="?search=<?php echo $_GET["search"] ?>&page=<?php echo $page - 1 ?>">
+														<i class="fa fa-angle-left"></i>Back
+													</a>
+												</li>
+												<?php for ($i = 1; $i <= $dataCount; $i++) { ?>
+													<li class="<?php if ($page == $i) {
+																	echo 'active';
+																} ?>">
+														<a href="?search=<?php echo $_GET["search"] ?>&page=<?php echo $i ?>"><?php echo $i ?></a>
+													</li>
+												<?php } ?>
+												<li class="<?php if (isset($page) && $page == $dataCount) {
+																echo 'disabled';
+															} else {
+																echo false;
+															} ?>">
+													<a href="?search=<?php echo $_GET["search"] ?>&page=<?php echo $page + 1 ?>">
+														Next <i class="fa fa-angle-right"></i>
+													</a>
+												</li>
+											</ul>
+										</nav>
 									</div>
 								</div>
 							</div>
+							<!--== End Pagination Wrap ==-->
 						</div>
 						<div class="col-lg-3">
 							<!--== Start Product Sidebar Wrapper ==-->
@@ -422,7 +284,7 @@
 					</div>
 				</div>
 			</section>
-			<!--== End Product Area Wrapper ==-->
+			<!--== End Blog Area Wrapper ==-->
 
 			<!--== Start Feature Area Wrapper ==-->
 			<section class="feature-area">
@@ -571,38 +433,22 @@
 
 	<!--=======================Javascript============================-->
 
-	<!--=== jQuery Modernizr Min Js ===-->
 	<script src="assets/js/modernizr.js"></script>
-	<!--=== jQuery Min Js ===-->
 	<script src="assets/js/jquery-main.js"></script>
-	<!--=== jQuery Migration Min Js ===-->
 	<script src="assets/js/jquery-migrate.js"></script>
-	<!--=== jQuery Popper Min Js ===-->
 	<script src="assets/js/popper.min.js"></script>
-	<!--=== jQuery Bootstrap Min Js ===-->
 	<script src="assets/js/bootstrap.min.js"></script>
-	<!--=== jQuery Appear Js ===-->
 	<script src="assets/js/jquery.appear.js"></script>
-	<!--=== jQuery Headroom Min Js ===-->
 	<script src="assets/js/headroom.min.js"></script>
-	<!--=== jQuery Swiper Min Js ===-->
 	<script src="assets/js/swiper.min.js"></script>
-	<!--=== jQuery Fancybox Min Js ===-->
 	<script src="assets/js/fancybox.min.js"></script>
-	<!--=== jQuery Slick Nav Js ===-->
 	<script src="assets/js/slicknav.js"></script>
-	<!--=== jQuery Waypoint Js ===-->
 	<script src="assets/js/waypoint.js"></script>
-	<!--=== jQuery Parallax Min Js ===-->
 	<script src="assets/js/parallax.min.js"></script>
-	<!--=== jQuery Aos Min Js ===-->
 	<script src="assets/js/aos.min.js"></script>
-	<!--=== jQuery Countdown Js ===-->
 	<script src="assets/js/countdown.js"></script>
-
-	<!--=== jQuery Custom Js ===-->
 	<script src="assets/js/custom.js"></script>
-
+	<script src="assets/js/blogSearch.js"></script>
 </body>
 
 </html>
