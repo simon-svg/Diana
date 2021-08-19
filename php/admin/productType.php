@@ -44,11 +44,13 @@
                         <tr>
                             <th class="admin__table_title">id</th>
                             <th class="admin__table_title">name</th>
+                            <th class="admin__table_title">product id</th>
                             <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
                         $id = '';
                         $name = '';
+                        $productId = '';
 
                         $obj = new ProductType();
                         $result = $obj->select();
@@ -61,6 +63,9 @@
                                 </td>
                                 <td class="admin__section_item_td">
                                     <h3 class="admin__section_item_name"><?php echo $res->name ?></h3>
+                                </td>
+                                <td class="admin__section_item_td">
+                                    <h3 class="admin__section_item_name"><?php echo $res->product_id ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
                                     <a href="?id=<?php echo $res->id ?>">
@@ -77,15 +82,13 @@
                 </div>
                 <?php
 
-                $id = '';
-                $name = '';
-
                 if (isset($_GET["id"])) {
                     $result = $obj->select($_GET["id"]);
 
                     foreach ($result as $res) {
                         $id = $res->id;
                         $name = $res->name;
+                        $productId = $res->product_id;
                     }
                 }
 

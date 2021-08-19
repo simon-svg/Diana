@@ -64,10 +64,19 @@
                     <a class="admin__item" href="../productColor.php">Product Color</a>
                 </li>
                 <li>
+                    <a class="admin__item" href="../color.php">Color</a>
+                </li>
+                <li>
                     <a class="admin__item" href="../productType.php">Product Type</a>
                 </li>
                 <li>
+                    <a class="admin__item" href="../type.php">Type</a>
+                </li>
+                <li>
                     <a class="admin__item" href="../productSize.php">Product Size</a>
+                </li>
+                <li>
+                    <a class="admin__item" href="../size.php">Size</a>
                 </li>
                 <li>
                     <a class="admin__item" href="../productImg.php">Product Img</a>
@@ -137,14 +146,66 @@
 
                     <input class="admin__inp admin__inp_header form-control" type="number" name="count" value="<?php echo $count ?>" placeholder="Count" required>
 
-                    <div class="product__category_select_group">
+                    <div class="product__select_group">
+                        <span class="select__info">category</span>
                         <div class="more__info_group">
-                            <div class="more__info_group_plus">+</div>
+                            <div class="more__info_group_plus more__category_group_plus">+</div>
                             <select id="category" name="category">
                                 <?php
                                 require_once "../category/index.php";
                                 $catObj = new Category();
-                                $result = $catObj->select(false, "../../connect.php", "name");
+                                $result = $catObj->select(false, "../../connect.php");
+
+                                foreach ($result as $res) { ?>
+                                    <option value="<?php echo $res->id ?>"><?php echo $res->name ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="product__select_group">
+                        <span class="select__info">color</span>
+                        <div class="more__info_group">
+                            <div class="more__info_group_plus more__color_group_plus">+</div>
+                            <select id="color" name="color">
+                                <?php
+                                require_once "../color/index.php";
+                                $colorObj = new Color();
+                                $result = $colorObj->select(false, "../../connect.php");
+
+                                foreach ($result as $res) { ?>
+                                    <option value="<?php echo $res->id ?>"><?php echo $res->name ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="product__select_group">
+                        <span class="select__info">type</span>
+                        <div class="more__info_group">
+                            <div class="more__info_group_plus more__type_group_plus">+</div>
+                            <select id="type" name="type">
+                                <?php
+                                require_once "../type/index.php";
+                                $typeObj = new Type();
+                                $result = $typeObj->select(false, "../../connect.php");
+
+                                foreach ($result as $res) { ?>
+                                    <option value="<?php echo $res->id ?>"><?php echo $res->name ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="product__select_group">
+                        <span class="select__info">syze</span>
+                        <div class="more__info_group">
+                            <div class="more__info_group_plus more__size_group_plus">+</div>
+                            <select id="size" name="size">
+                                <?php
+                                require_once "../size/index.php";
+                                $sizeObj = new Size();
+                                $result = $sizeObj->select(false, "../../connect.php");
 
                                 foreach ($result as $res) { ?>
                                     <option value="<?php echo $res->id ?>"><?php echo $res->name ?></option>

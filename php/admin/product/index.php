@@ -90,8 +90,10 @@ class Product
         // $query = 'INSERT INTO product(name, price, info, sale, description, img, stock_time, tags, count) 
         //           VALUES("' . $this->getName() . '", "' . $this->getPrice() . '", "' . $this->getInfo() . '", "' . $this->getSale() . '", "' . $this->getDescription() . '", "' . $this->getImg() . '", "' . $this->getStockTime() . '", "' . $this->getTags() . '", "' . $this->getCount() . '")';
 
-
+        echo "<pre>";
         var_dump($_POST);
+        echo "</pre>";
+
         // $conn->query($query);
 
         // if ($conn->error) {
@@ -133,12 +135,16 @@ class Product
 
     // select ******************************************************************
 
-    public function selectInCat($connect = "../connect.php", $name = null)
+    public function selectInCat($connect = "../connect.php", $name = null, $limit = null)
     {
         require_once $connect;
         $conn = Config::getConnect();
+        $limitQuery = "";
+        if (isset($limit)) {
+            $limitQuery = $limit;
+        }
 
-        $query = "SELECT * FROM product JOIN product_category ON product.id = product_category.product_id AND product_category.name = '$name' ORDER BY date DESC";
+            $query = "SELECT * FROM product JOIN product_category ON product.id = product_category.product_id AND product_category.name = '$name' ORDER BY date DESC " . $limitQuery;
         $result = $conn->query($query);
         $arr = [];
         while ($obj = $result->fetch_object()) {

@@ -1,6 +1,9 @@
 .insert__admin_flex{
     flex-direction: column;
 }
+.product__select_group{
+    margin-top: 10px;
+}
 .admin__inp{
     margin: 10px 0;
 }
@@ -14,7 +17,11 @@
     font-size: 20px;
     cursor: pointer;
 }
-.category__new{
+.new{
     margin-left: 32px;
     margin-top: 10px;
+}
+.select__info{
+    margin-left: 20px;
+    text-transform: capitalize;
 }

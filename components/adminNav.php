@@ -31,10 +31,19 @@
             <a class="admin__item" href="productColor.php">Product Color</a>
         </li>
         <li>
+            <a class="admin__item" href="color.php">Color</a>
+        </li>
+        <li>
             <a class="admin__item" href="productType.php">Product Type</a>
         </li>
         <li>
+            <a class="admin__item" href="type.php">Type</a>
+        </li>
+        <li>
             <a class="admin__item" href="productSize.php">Product Size</a>
+        </li>
+        <li>
+            <a class="admin__item" href="size.php">Size</a>
         </li>
         <li>
             <a class="admin__item" href="productImg.php">Product Img</a>

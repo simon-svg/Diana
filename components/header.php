@@ -51,8 +51,8 @@
 								<i class="close-icon bardy bardy-cancel"></i>
 							</button>
 							<div class="header-search-form">
-								<form action="#">
-									<input type="search" placeholder="Search our store">
+								<form action="productSearch.php">
+									<input type="search" name="search" placeholder="Search our store">
 									<button type="submit"><i class="bardy bardy-search"></i></button>
 								</form>
 							</div>

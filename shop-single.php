@@ -53,6 +53,11 @@
 			<!--== End Page Header Area Wrapper ==-->
 
 			<!--== Start Product Area Wrapper ==-->
+			<?php
+			require_once "php/admin/product/index.php";
+			$product = new Product();
+			$res = $product->select($_GET["id"], "php/connect.php")[0];
+			?>
 			<section class="product-area product-single-area">
 				<div class="container">
 					<div class="row flex-row-reverse">
@@ -68,7 +73,7 @@
 														<div class="swiper-slide">
 															<div class="zoom zoom-hover">
 																<a class="lightbox-image" data-fancybox="gallery" href="assets/img/shop/product-single/1.jpg">
-																	<img src="assets/img/shop/product-single/1.jpg" alt="Image-HasTech">
+																	<img src="assets/img/product/<?php echo $res->img ?>" alt="<?php echo $res->name ?>">
 																</a>
 															</div>
 														</div>
@@ -135,10 +140,14 @@
 									<div class="col-lg-6">
 										<!--== Start Product Info Area ==-->
 										<div class="product-single-info">
-											<h4 class="title">3. Variable product</h4>
+											<h4 class="title"><?php echo $res->name ?></h4>
 											<div class="prices">
-												<span class="price">$70.00</span>
-												<span class="price-old">$85.00</span>
+												<?php if (!empty($res->sale)) { ?>
+													<span class="price">$<?php echo $res->sale; ?></span>
+													<span class="price-old">$<?php echo $res->price; ?></span>
+												<?php } else { ?>
+													<span class="price">$<?php echo $res->price; ?></span>
+												<?php } ?>
 											</div>
 											<div class="star-content">
 												<i class="fa fa-star-o"></i>
@@ -147,7 +156,7 @@
 												<i class="fa fa-star-o"></i>
 												<i class="fa fa-star-o"></i>
 											</div>
-											<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+											<p><?php echo $res->info; ?></p>
 											<div class="product-select-action">
 												<div class="select-item">
 													<div class="select-size-wrap">
@@ -232,7 +241,6 @@
 										<div class="product-review-tabs-content">
 											<div class="nav nav-tabs product-tab-nav" id="ReviewTab" role="tablist">
 												<button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" aria-controls="description" aria-selected="true">Description</button>
-												<button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" aria-controls="reviews" aria-selected="false">Reviews</button>
 												<button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" aria-controls="comments" aria-selected="false">Comments</button>
 												<button class="nav-link" id="shipping-policy-tab" data-bs-toggle="tab" data-bs-target="#shipping-policy" type="button" aria-controls="shipping-policy" aria-selected="false">Shipping Policy</button>
 												<button class="nav-link" id="size-chart-tab" data-bs-toggle="tab" data-bs-target="#size-chart" type="button" aria-controls="size-chart" aria-selected="false">Size Chart</button>
@@ -240,8 +248,7 @@
 											<div class="tab-content product-tab-content" id="ReviewTabContent">
 												<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
 													<div class="product-description">
-														<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-														<p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.</p>
+														<p><?php echo $res->description; ?></p>
 													</div>
 												</div>
 												<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
@@ -260,149 +267,6 @@
 																<span class="review-write-btn">Write a review</span>
 															</div>
 														</div>
-
-														<!--== Start Reviews Form Item ==-->
-														<div class="reviews-form-area">
-															<h4 class="title">Write a review</h4>
-															<div class="reviews-form-content">
-																<form action="#">
-																	<div class="row">
-																		<div class="col-md-12">
-																			<div class="form-group">
-																				<label for="for_name">Name</label>
-																				<input id="for_name" class="form-control" type="text" placeholder="Enter your name">
-																			</div>
-																		</div>
-																		<div class="col-md-12">
-																			<div class="form-group">
-																				<label for="for_email">Email</label>
-																				<input id="for_email" class="form-control" type="email" placeholder="john.smith@example.com">
-																			</div>
-																		</div>
-																		<div class="col-md-12">
-																			<div class="form-group">
-																				<span class="title">Rating</span>
-																				<ul class="review-rating">
-																					<li class="fa fa-star-o"></li>
-																					<li class="fa fa-star-o"></li>
-																					<li class="fa fa-star-o"></li>
-																					<li class="fa fa-star-o"></li>
-																					<li class="fa fa-star-o"></li>
-																				</ul>
-																			</div>
-																		</div>
-																		<div class="col-md-12">
-																			<div class="form-group">
-																				<label for="for_review-title">Review Title</label>
-																				<input id="for_review-title" class="form-control" type="text" placeholder="Give your review a title">
-																			</div>
-																		</div>
-																		<div class="col-md-12">
-																			<div class="form-group">
-																				<label for="for_comment">Body of Review (1500)</label>
-																				<textarea id="for_comment" class="form-control" placeholder="Write your comments here"></textarea>
-																			</div>
-																		</div>
-																		<div class="col-md-12">
-																			<div class="form-submit-btn">
-																				<button type="submit" class="btn-submit">Post comment</button>
-																			</div>
-																		</div>
-																	</div>
-																</form>
-															</div>
-														</div>
-														<!--== End Reviews Form Item ==-->
-
-														<div class="reviews-content-body">
-															<!--== Start Reviews Content Item ==-->
-															<div class="review-item">
-																<ul class="review-rating">
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																</ul>
-																<h3 class="title">Awesome shipping service!</h3>
-																<h5 class="sub-title"><span>Nantu Nayal</span> no <span>Sep 30, 2018</span></h5>
-																<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-																<a href="#/">Report as Inappropriate</a>
-															</div>
-															<!--== End Reviews Content Item ==-->
-
-															<!--== Start Reviews Content Item ==-->
-															<div class="review-item">
-																<ul class="review-rating">
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star-o"></li>
-																	<li class="fa fa-star-o"></li>
-																	<li class="fa fa-star-o"></li>
-																	<li class="fa fa-star-o"></li>
-																</ul>
-																<h3 class="title">Low Quality</h3>
-																<h5 class="sub-title"><span>Oliv hala</span> no <span>Sep 30, 2018</span></h5>
-																<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-																<a href="#/">Report as Inappropriate</a>
-															</div>
-															<!--== End Reviews Content Item ==-->
-
-															<!--== Start Reviews Content Item ==-->
-															<div class="review-item">
-																<ul class="review-rating">
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																</ul>
-																<h3 class="title">Excellent services!</h3>
-																<h5 class="sub-title"><span>Halk Marron</span> no <span>Sep 30, 2018</span></h5>
-																<p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-																<a href="#/">Report as Inappropriate</a>
-															</div>
-															<!--== End Reviews Content Item ==-->
-
-															<!--== Start Reviews Content Item ==-->
-															<div class="review-item">
-																<ul class="review-rating">
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star-o"></li>
-																	<li class="fa fa-star-o"></li>
-																</ul>
-																<h3 class="title">Price is very high</h3>
-																<h5 class="sub-title"><span>Musa</span> no <span>Sep 30, 2018</span></h5>
-																<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-																<a href="#/">Report as Inappropriate</a>
-															</div>
-															<!--== End Reviews Content Item ==-->
-
-															<!--== Start Reviews Content Item ==-->
-															<div class="review-item">
-																<ul class="review-rating">
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star"></li>
-																	<li class="fa fa-star-o"></li>
-																</ul>
-																<h3 class="title">Normal</h3>
-																<h5 class="sub-title"><span>Muhammad</span> no <span>Sep 30, 2018</span></h5>
-																<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
-																<a href="#/">Report as Inappropriate</a>
-															</div>
-															<!--== End Reviews Content Item ==-->
-														</div>
-
-														<!--== Start Reviews Pagination Item ==-->
-														<div class="review-pagination">
-															<span class="pagination-pag">1</span>
-															<span class="pagination-pag">2</span>
-															<span class="pagination-next">Next »</span>
-														</div>
-														<!--== End Reviews Pagination Item ==-->
 													</div>
 												</div>
 												<div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
@@ -498,9 +362,9 @@
 									<h4 class="product-sidebar-title">Search</h4>
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-search-form">
-											<form action="#">
+											<form action="productSearch.php">
 												<div class="form-group">
-													<input class="form-control" type="search" placeholder="Enter key words">
+													<input class="form-control" name="search" type="search" placeholder="Enter key words">
 													<button type="submit" class="btn-src">Search</button>
 												</div>
 											</form>
@@ -576,63 +440,6 @@
 
 		<!--== Scroll Top Button ==-->
 		<div id="scroll-to-top" class="scroll-to-top"><span class="fa fa-angle-up"></span></div>
-
-		<!--== Start Quick View Menu ==-->
-		<aside class="product-quick-view-modal">
-			<div class="product-quick-view-inner">
-				<div class="product-quick-view-content">
-					<button type="button" class="btn-close">
-						<span class="close-icon"><i class="fa fa-close"></i></span>
-					</button>
-					<div class="row">
-						<div class="col-lg-6 col-md-6 col-12">
-							<div class="thumb">
-								<img src="assets/img/shop/quick-view1.jpg" alt="Alan-Shop">
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-6 col-12">
-							<div class="content">
-								<h4 class="title">3. Variable product</h4>
-								<div class="prices">
-									<del class="price-old">$85.00</del>
-									<span class="price">$70.00</span>
-								</div>
-								<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,</p>
-								<div class="quick-view-select">
-									<div class="quick-view-select-item">
-										<label for="forSize" class="form-label">Size:</label>
-										<select class="form-select" id="forSize" required>
-											<option selected value="">s</option>
-											<option>m</option>
-											<option>l</option>
-											<option>xl</option>
-										</select>
-									</div>
-									<div class="quick-view-select-item">
-										<label for="forColor" class="form-label">Color:</label>
-										<select class="form-select" id="forColor" required>
-											<option selected value="">red</option>
-											<option>green</option>
-											<option>blue</option>
-											<option>yellow</option>
-											<option>white</option>
-										</select>
-									</div>
-								</div>
-								<div class="action-top">
-									<div class="pro-qty">
-										<input type="text" id="quantity2" title="Quantity" value="1" />
-									</div>
-									<button class="btn btn-black">Add to cart</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="canvas-overlay"></div>
-		</aside>
-		<!--== End Quick View Menu ==-->
 
 		<!--== Start Side Menu ==-->
 		<aside class="off-canvas-wrapper">
