@@ -9,6 +9,11 @@ class Product
     public $sale;
     public $description;
     public $img;
+    public $category;
+    public $color;
+    public $type;
+    public $size;
+    public $imgs = [];
     public $stock_time;
     public $tags;
     public $count;
@@ -21,10 +26,13 @@ class Product
             }
         }
     }
-
     public function getId()
     {
         return $this->id;
+    }
+    public function setId($id)
+    {
+        $this->id = $id;
     }
     public function getName()
     {
@@ -53,19 +61,30 @@ class Product
     public function setImg($img)
     {
         $this->img = $img;
-        foreach ($_FILES as $file) {
-            if ($file["error"] == 0) {
-                $arr = explode("/", $file["type"]);
-                $x = end($arr);
-                if (preg_match("/(png || jpg || jpeg)/", $x)) {
-                    $y = mt_rand(1000000, 99999999);
-                    $y .= '.' . $x;
-                    if (move_uploaded_file($file["tmp_name"], "../../../assets/img/product/" . $y)) {
-                        $this->setImg($y);
-                    }
-                }
-            }
-        }
+    }
+    public function getCategory()
+    {
+        return $this->category;
+    }
+    public function getColor()
+    {
+        return $this->color;
+    }
+    public function getType()
+    {
+        return $this->type;
+    }
+    public function getSize()
+    {
+        return $this->size;
+    }
+    public function getImgs()
+    {
+        return $this->imgs;
+    }
+    public function setImgs($img)
+    {
+        array_push($this->imgs, $img);
     }
     public function getStockTime()
     {
@@ -83,24 +102,110 @@ class Product
 
     // insert ******************************************************************
 
+    public function colorInsert($product_id, $name){
+        require_once '../../connect.php';
+        $conn = Config::getConnect();
+        $query = 'INSERT INTO product_color(name, product_id) 
+            VALUES("' . $name . '", "' . $product_id . '")';
+
+        $conn->query($query);
+    }
+
+
+    public function categoryInsert($product_id, $name){
+        require_once '../../connect.php';
+        $conn = Config::getConnect();
+        $query = 'INSERT INTO product_category(name, product_id) 
+            VALUES("' . $name . '", "' . $product_id . '")';
+
+        $conn->query($query);
+    }
+
+    public function sizeInsert($product_id, $name){
+        require_once '../../connect.php';
+        $conn = Config::getConnect();
+        $query = 'INSERT INTO product_size(name, product_id) 
+            VALUES("' . $name . '", "' . $product_id . '")';
+
+        $conn->query($query);
+    }
+
+    public function typeInsert($product_id, $name){
+        require_once '../../connect.php';
+        $conn = Config::getConnect();
+        $query = 'INSERT INTO product_type(name, product_id) 
+            VALUES("' . $name . '", "' . $product_id . '")';
+
+        $conn->query($query);
+    }
+
+    public function imgInsert($product_id, $name){
+        require_once '../../connect.php';
+        $conn = Config::getConnect();
+        $query = 'INSERT INTO product_img(name, product_id) 
+            VALUES("' . $name . '", "' . $product_id . '")';
+
+        $conn->query($query);
+    }
+
+
+    // update ******************************************************************
+
+    public function colorUpdate($product_id, $name){
+        require_once '../../connect.php';
+        $conn = Config::getConnect();
+        $query = "UPDATE product_color SET name = '$name' WHERE product_id = " . $product_id;
+
+        $conn->query($query);
+    }
+
+
+    public function categoryUpdate($product_id, $name){
+        require_once '../../connect.php';
+        $conn = Config::getConnect();
+        $query = "UPDATE product_category SET name = '$name' WHERE product_id = " . $product_id; 
+
+        $conn->query($query);
+    }
+
+    public function sizeUpdate($product_id, $name){
+        require_once '../../connect.php';
+        $conn = Config::getConnect();
+        $query = "UPDATE product_size SET name = '$name' WHERE product_id = " . $product_id; 
+
+        $conn->query($query);
+    }
+
+    public function typeUpdate($product_id, $name){
+        require_once '../../connect.php';
+        $conn = Config::getConnect();
+        $query = "UPDATE product_type SET name = '$name' WHERE product_id = " . $product_id; 
+
+        $conn->query($query);
+    }
+
+
+
     public function insert()
     {
         require_once '../../connect.php';
         $conn = Config::getConnect();
-        // $query = 'INSERT INTO product(name, price, info, sale, description, img, stock_time, tags, count) 
-        //           VALUES("' . $this->getName() . '", "' . $this->getPrice() . '", "' . $this->getInfo() . '", "' . $this->getSale() . '", "' . $this->getDescription() . '", "' . $this->getImg() . '", "' . $this->getStockTime() . '", "' . $this->getTags() . '", "' . $this->getCount() . '")';
+        $query = 'INSERT INTO product(name, price, info, sale, description, img, stock_time, tags, count) 
+                    VALUES("' . $this->getName() . '", "' . $this->getPrice() . '", "' . $this->getInfo() . '", "' . $this->getSale() . '"
+                    , "' . $this->getDescription() . '", "' . $this->getImg() . '", "' . $this->getStockTime() . '", "' . $this->getTags() . '"
+                    , "' . $this->getCount() . '")';
 
-        echo "<pre>";
-        var_dump($_POST);
-        echo "</pre>";
+        $conn->query($query);
+        return $conn->insert_id;
+        $lImgs = count($_FILES["imgs"]["name"]);
+        for ($i = 0; $i < $lImgs; $i++) {
+            $conn->query('INSERT INTO product_img(name, product_id) 
+            VALUES("' . $_FILES["imgs"]["name"][$i] . '", "' . $this->getId() . '")');
+        }
 
-        // $conn->query($query);
-
-        // if ($conn->error) {
-        //     return $conn->error;
-        // } else {
-        //     header("Location: ../product.php");
-        // }
+        if ($conn->error) {
+            return $conn->error;
+        } 
     }
 
     // select ******************************************************************
@@ -133,7 +238,7 @@ class Product
     }
 
 
-    // select ******************************************************************
+    // selectInCat ******************************************************************
 
     public function selectInCat($connect = "../connect.php", $name = null, $limit = null)
     {
@@ -144,7 +249,7 @@ class Product
             $limitQuery = $limit;
         }
 
-            $query = "SELECT * FROM product JOIN product_category ON product.id = product_category.product_id AND product_category.name = '$name' ORDER BY date DESC " . $limitQuery;
+        $query = "SELECT * FROM product JOIN product_category ON product.id = product_category.product_id AND product_category.name = '$name' ORDER BY date DESC " . $limitQuery;
         $result = $conn->query($query);
         $arr = [];
         while ($obj = $result->fetch_object()) {
@@ -180,16 +285,14 @@ class Product
         require_once "../../connect.php";
         $conn = Config::getConnect();
 
-        $query = "UPDATE product SET name='" . $this->getName() . "', price='" . $this->getPrice() . "', info='" . $this->getInfo() . "'
-        , sale='" . $this->getSale() . "', description='" . $this->getDescription() . "', img='" . $this->getImg() . "'
-        , stock_time='" . $this->getStockTime() . "', tags='" . $this->getTags() . "', count='" . $this->getCount() . "'
-        WHERE id = " . $this->getId();
-        echo $query;
+        $query = "UPDATE product SET name='" . $this->getName() . "', price='" . $this->getPrice() . "'
+        , sale='" . $this->getSale() . "', info='" . $this->getInfo() . "', description='" . $this->getDescription() . "'
+        , img='" . $this->getImg() . "', stock_time='" . $this->getStockTime() . "', tags='" . $this->getTags() . "'
+        , count='" . $this->getCount() . "', WHERE id = " . $this->getId();
+
         $result = $conn->query($query);
         if ($result->error) {
             return $result->error;
-        } else {
-            header("Location: ../product.php");
         }
     }
 
@@ -200,13 +303,22 @@ class Product
         require_once "../../connect.php";
         $conn = Config::getConnect();
         $query = "DELETE FROM product WHERE id = " . $id;
+        $query1 = "DELETE FROM product_img WHERE product_id = " . $id;
+        $query2 = "DELETE FROM product_type WHERE product_id = " . $id;
+        $query3 = "DELETE FROM product_size WHERE product_id = " . $id;
+        $query4 = "DELETE FROM product_color WHERE product_id = " . $id;
+        $query5 = "DELETE FROM product_category WHERE product_id = " . $id;
 
         $result = $conn->query($query);
-        if ($result->error) {
+        $result1 = $conn->query($query1);
+        $result2 = $conn->query($query2);
+        $result3 = $conn->query($query3);
+        $result4 = $conn->query($query4);
+        $result5 = $conn->query($query5);
+        if ($result->error || $result1->error || $result2->error || $result3->error || $result4->error || $result5->error) {
             return $result->error;
         } else {
             unlink("../../../assets/img/product/$img");
-            header("Location: ../product.php");
         }
     }
 }

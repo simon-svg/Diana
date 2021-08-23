@@ -20,7 +20,7 @@ function newCat(i) {
     let cat = create("select", moreInfoGroup, `category${i}`);
     cat.classList.add("category__new");
     cat.classList.add("new");
-    cat.setAttribute("name", `category${i}`);
+    cat.setAttribute("name", `category[]`);
     cat.innerHTML = categorySelect.innerHTML;
 }
 
@@ -32,7 +32,6 @@ function newCat(i) {
 // color ----------------------------------
 
 const moreColorGroupPlus = document.querySelector(".more__color_group_plus");
-const colorSelect = document.querySelector("#color");
 
 let j = 1;
 moreColorGroupPlus.addEventListener("click", () => {
@@ -42,11 +41,11 @@ moreColorGroupPlus.addEventListener("click", () => {
 
 function newColor(j) {
     let moreInfoGroup = create("div", productSelectGroup[1], `more__info_group`);
-    let color = create("select", moreInfoGroup, `color${j}`);
+    let color = create("input", moreInfoGroup, `color${j}`);
     color.classList.add("color__new");
     color.classList.add("new");
-    color.setAttribute("name", `color${j}`);
-    color.innerHTML = colorSelect.innerHTML;
+    color.setAttribute("name", `color[]`);
+    color.setAttribute("type", `color`);
 }
 
 
@@ -71,7 +70,7 @@ function newType(q) {
     let type = create("select", moreInfoGroup, `type${q}`);
     type.classList.add("type__new");
     type.classList.add("new");
-    type.setAttribute("name", `type${q}`);
+    type.setAttribute("name", `type[]`);
     type.innerHTML = typeSelect.innerHTML;
 }
 
@@ -84,7 +83,6 @@ function newType(q) {
 // size ----------------------------------
 
 const moreSizeGroupPlus = document.querySelector(".more__size_group_plus");
-const sizeSelect = document.querySelector("#size");
 
 let w = 1;
 moreSizeGroupPlus.addEventListener("click", () => {
@@ -94,9 +92,36 @@ moreSizeGroupPlus.addEventListener("click", () => {
 
 function newSize(w) {
     let moreInfoGroup = create("div", productSelectGroup[3], `more__info_group`);
-    let size = create("select", moreInfoGroup, `size${w}`);
+    let size = create("input", moreInfoGroup, `size${w}`);
     size.classList.add("size__new");
     size.classList.add("new");
-    size.setAttribute("name", `size${w}`);
-    size.innerHTML = sizeSelect.innerHTML;
+    size.setAttribute("name", `size[]`);
+    size.setAttribute("type", `text`);
+}
+
+
+
+
+
+
+
+
+// img ----------------------------------
+
+const moreImgGroupPlus = document.querySelector(".more__img_group_plus");
+const imgSelect = document.querySelector("#img");
+
+let e = 1;
+moreImgGroupPlus.addEventListener("click", () => {
+    newImg(e);
+    e++;
+})
+
+function newImg(e) {
+    let moreInfoGroup = create("div", productSelectGroup[4], `more__info_group`);
+    let img = create("input", moreInfoGroup, `img${e}`);
+    img.classList.add("img__new");
+    img.classList.add("new");
+    img.setAttribute("type", `file`);
+    img.setAttribute("name", `imgs[]`);
 }

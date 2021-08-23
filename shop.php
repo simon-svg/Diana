@@ -93,17 +93,18 @@
 											$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 											$from = ($page - 1) * $itemsCount;
 
-											if(empty($_GET["cat"])){
+											if (empty($_GET["cat"])) {
 												$result = $products->select(false, "php/connect.php", false, "LIMIT $from, $itemsCount");
 												$result2 = $products->select(false, "php/connect.php");
 												$dataCount = ceil(count($result2) / $itemsCount);
-											}
-											else{
+											} else {
 												$result = $products->selectInCat("php/connect.php", $_GET["cat"], "LIMIT $from, $itemsCount");
 												$result2 = $products->selectInCat("php/connect.php", $_GET["cat"]);
 												$dataCount = ceil(count($result2) / $itemsCount);
 											}
+											require_once "components/multiexplode.php";
 											foreach ($result as $res) {
+												// $getURL = multiexplode(["=", "&"], $_SERVER["QUERY_STRING"]);
 											?>
 												<div class="col-sm-6 col-xl-4">
 													<!--== Start Shop Item ==-->
@@ -158,6 +159,7 @@
 													<!--== End Shop Item ==-->
 												</div>
 											<?php } ?>
+											<?php $newGetUrl = explode('page', $_SERVER["QUERY_STRING"]); ?>
 										</div>
 										<!--== Start Pagination Wrap ==-->
 										<div class="row">
@@ -170,7 +172,7 @@
 																		} else {
 																			echo false;
 																		} ?>">
-																<a href="?page=<?php echo $page - 1 ?>">
+																<a href="?<?php echo getUrl($_SERVER['QUERY_STRING'], $page - 1); ?>">
 																	<i class="fa fa-angle-left"></i>Back
 																</a>
 															</li>
@@ -178,7 +180,7 @@
 																<li class="<?php if ($page == $i) {
 																				echo 'active';
 																			} ?>">
-																	<a href="?page=<?php echo $i ?>"><?php echo $i ?></a>
+																	<a href="?<?php echo getUrl($_SERVER['QUERY_STRING'], $i); ?>"><?php echo $i ?></a>
 																</li>
 															<?php } ?>
 															<li class="<?php if (isset($page) && $page == $dataCount) {
@@ -186,7 +188,7 @@
 																		} else {
 																			echo false;
 																		} ?>">
-																<a href="?page=<?php echo $page + 1 ?>">
+																<a href="?<?php echo getUrl($_SERVER['QUERY_STRING'], $page + 1); ?>">
 																	Next <i class="fa fa-angle-right"></i>
 																</a>
 															</li>
@@ -200,13 +202,6 @@
 									<div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
 										<div class="row">
 											<?php
-											$itemsCount = 3;
-											$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-											$from = ($page - 1) * $itemsCount;
-
-											$result = $products->select(false, "php/connect.php", false, "LIMIT $from, $itemsCount");
-											$result2 = $products->select(false, "php/connect.php");
-											$dataCount = ceil(count($result2) / $itemsCount);
 											foreach ($result as $res) {
 											?>
 												<div class="col-12">
@@ -274,7 +269,7 @@
 																		} else {
 																			echo false;
 																		} ?>">
-																<a href="?page=<?php echo $page - 1 ?>">
+																<a href="?<?php echo getUrl($_SERVER['QUERY_STRING'], $page - 1); ?>">
 																	<i class="fa fa-angle-left"></i>Back
 																</a>
 															</li>
@@ -282,7 +277,7 @@
 																<li class="<?php if ($page == $i) {
 																				echo 'active';
 																			} ?>">
-																	<a href="?page=<?php echo $i ?>"><?php echo $i ?></a>
+																	<a href="?<?php echo getUrl($_SERVER['QUERY_STRING'], $i); ?>"><?php echo $i ?></a>
 																</li>
 															<?php } ?>
 															<li class="<?php if (isset($page) && $page == $dataCount) {
@@ -290,7 +285,7 @@
 																		} else {
 																			echo false;
 																		} ?>">
-																<a href="?page=<?php echo $page + 1 ?>">
+																<a href="?<?php echo getUrl($_SERVER['QUERY_STRING'], $page + 1); ?>">
 																	Next <i class="fa fa-angle-right"></i>
 																</a>
 															</li>
@@ -329,11 +324,12 @@
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-nav-menu">
 											<?php
-											require_once "php/admin/productCategory/index.php";
-											$productCatObj = new ProductCategory();
-											$result = $productCatObj->select(false, "php/connect.php", "name");
-											foreach ($result as $res) { ?>
-												<a class="product__info" href="?cat=<?php echo $res->name ?>"><?php echo $res->name ?><span> (<?php echo $res->count ?>)</span></a>
+											require_once "php/admin/category/index.php";
+											$catObj = new Category();
+											$result = $catObj->selectGroup("php/connect.php");
+											foreach ($result as $res) {
+											?>
+												<a class="product__info" href="?cat=<?php echo $res->name ?>"><?php echo $res->name ?><span> (<?php echo $res->cName ?>)</span></a>
 											<?php } ?>
 										</div>
 									</div>
@@ -346,11 +342,13 @@
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-nav-menu">
 											<?php
-											require_once "php/admin/productType/index.php";
-											$productCatObj = new ProductType();
-											$result = $productCatObj->select(false, "php/connect.php");
+											require_once "php/admin/type/index.php";
+											$typeObj = new Type();
+											$result = $typeObj->selectGroup("php/connect.php");
 											foreach ($result as $res) { ?>
-												<a class="product__info" href="#/"><?php echo $res->name; ?> <span>(1)</span></a>
+												<a class="product__info" href="#/"><?php echo $res->name; ?>
+													<span>(<?php echo $res->tCount; ?>)</span>
+												</a>
 											<?php } ?>
 										</div>
 									</div>
@@ -363,11 +361,11 @@
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-color-menu">
 											<?php
-											require_once "php/admin/color/index.php";
-											$colorObj = new Color();
-											$result = $colorObj->select(false, "php/connect.php");
+											require_once "php/admin/productColor/index.php";
+											$colorObj = new ProductColor();
+											$result = $colorObj->select("php/connect.php");
 											foreach ($result as $res) { ?>
-												<div class="<?php echo $res->name ?>"></div>
+												<div style="background-color:<?php echo $res->name ?>"></div>
 											<?php } ?>
 										</div>
 									</div>
@@ -383,7 +381,7 @@
 												<?php
 												require_once "php/admin/size/index.php";
 												$sizeObj = new Size();
-												$result = $sizeObj->select(false, "php/connect.php");
+												$result = $sizeObj->selectGroup("php/connect.php");
 												foreach ($result as $res) { ?>
 													<li><a href="#/"><?php echo $res->name ?></a></li>
 												<?php } ?>

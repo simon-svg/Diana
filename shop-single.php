@@ -162,10 +162,13 @@
 													<div class="select-size-wrap">
 														<span>Size :</span>
 														<ul>
-															<li class="active"><a href="#/">s</a></li>
-															<li><a href="#/">m</a></li>
-															<li><a href="#/">l</a></li>
-															<li><a href="#/">xl</a></li>
+															<?php
+															require_once "php/admin/size/index.php";
+															$objSize = new Size();
+															$result = $objSize->selectGroup("php/connect.php", $_GET["id"]);
+															foreach ($result as $res) { ?>
+																<li class=""><a href="#/"><?php echo $res->name ?></a></li>
+															<?php } ?>
 														</ul>
 													</div>
 												</div>
@@ -173,11 +176,13 @@
 													<div class="select-color-wrap">
 														<span>Color :</span>
 														<ul>
-															<li class="purple active"></li>
-															<li class="violet"></li>
-															<li class="black"></li>
-															<li class="pink"></li>
-															<li class="orange"></li>
+															<?php
+															require_once "php/admin/productColor/index.php";
+															$objColor = new ProductColor();
+															$result = $objColor->selectGroup("php/connect.php", $_GET["id"]);
+															foreach ($result as $res) { ?>
+																<a class="single-page__color" href="#/" style="background-color: <?php echo $res->name ?>;"></a>
+															<?php } ?>
 														</ul>
 													</div>
 												</div>
@@ -185,11 +190,13 @@
 													<div class="select-material-wrap">
 														<span>Material :</span>
 														<ul>
-															<li class="active"><a href="#/">metal</a></li>
-															<li><a href="#/">resin</a></li>
-															<li><a href="#/">leather</a></li>
-															<li><a href="#/">slag</a></li>
-															<li><a href="#/">fiber</a></li>
+															<?php
+															require_once "php/admin/type/index.php";
+															$objType = new Type();
+															$result = $objType->selectIdAll("php/connect.php", $_GET["id"]);
+															foreach ($result as $res) { ?>
+																<li class=""><a href="#/"><?php echo $res->name ?></a></li>
+															<?php } ?>
 														</ul>
 													</div>
 												</div>

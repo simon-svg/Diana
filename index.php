@@ -116,9 +116,9 @@
 										<button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All</button>
 									</li>
 									<?php
-									require_once "php/admin/productCategory/index.php";
-									$objProdCat = new ProductCategory();
-									$result = $objProdCat->select(false, "php/connect.php", "name");
+									require_once "php/admin/category/index.php";
+									$objProdCat = new Category();
+									$result = $objProdCat->selectGroup("php/connect.php");
 									foreach ($result as $res) {
 									?>
 										<li class="nav-item" role="presentation">

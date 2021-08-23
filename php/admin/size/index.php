@@ -42,17 +42,18 @@ class Size
         }
     }
 
-    // select ******************************************************************
+    // select categoryes group by ******************************************************************
 
-    public function select($id = null, $conn="../connect.php")
+    public function selectGroup($conn = "../connect.php", $id = null)
     {
         require_once $conn;
         $conn = Config::getConnect();
-        if ($id) {
-            $query = "SELECT * FROM size WHERE id = $id";
-        } else {
-            $query = "SELECT * FROM size";
+
+        $queryWithId = "";
+        if(isset($id) && !empty($id)){
+            $queryWithId = " WHERE product_id = $id";
         }
+        $query = "SELECT * FROM product_size" . $queryWithId . " GROUP BY name";
         $result = $conn->query($query);
         $arr = [];
         while ($obj = $result->fetch_object()) {

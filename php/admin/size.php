@@ -32,7 +32,7 @@
     <div class="admin">
         <?php require_once "../../components/adminNav.php"; ?>
 
-        <!-- ---------------------------------- HEADER MENUE LIST ----------------------------------------------- -->
+        <!-- ---------------------------------- Size ----------------------------------------------- -->
 
         <div class="admin__section admin__section_header-list">
             <div class="admin__section_head">
@@ -44,15 +44,10 @@
                         <tr>
                             <th class="admin__table_title">id</th>
                             <th class="admin__table_title">name</th>
-                            <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
-                        $id = '';
-                        $name = '';
-
                         $obj = new Size();
-                        $result = $obj->select();
-
+                        $result = $obj->selectGroup();
 
                         foreach ($result as $res) { ?>
                             <tr class="admin__section_item">
@@ -62,41 +57,11 @@
                                 <td class="admin__section_item_td">
                                     <h3 class="admin__section_item_name"><?php echo $res->name ?></h3>
                                 </td>
-                                <td class="admin__section_item_td">
-                                    <a href="?id=<?php echo $res->id ?>">
-                                        <i class="example__class admin__icon fas fa-pencil-alt"></i>
-                                    </a>
-                                    <a href="size/querys.php?id=<?php echo $res->id ?>">
-                                        <i class="admin__icon fas fa-times"></i>
-                                    </a>
-                                </td>
                             </tr>
                         <?php } ?>
 
                     </table>
                 </div>
-                <?php
-
-                if (isset($_GET["id"])) {
-                    $result = $obj->select($_GET["id"]);
-
-                    foreach ($result as $res) {
-                        $id = $res->id;
-                        $name = $res->name;
-                    }
-                }
-
-                ?>
-                <form class="admin__form" action="size/querys.php" method="POST">
-                    <div class="form__flex">
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="name" value="<?php echo $name ?>" placeholder="Name" required>
-
-                        <input type="hidden" name="id" value="<?php echo $id; ?>">
-                    </div>
-                    <div>
-                        <button class="btn custom-btn admin__form_btn" name="submit">Add Size</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

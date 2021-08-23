@@ -38,37 +38,6 @@
             <div class="admin__section_head">
                 <h3 class="admin__section_title">product</h3>
             </div>
-            <?php
-            $obj = new Product();
-            $id = '';
-            $name = '';
-            $price = '';
-            $info = '';
-            $sale = '';
-            $description = '';
-            $img = '';
-            $stockTime = '';
-            $tags = '';
-            $count = '';
-
-            if (isset($_GET["id"])) {
-                $result = $obj->select($_GET["id"]);
-
-                foreach ($result as $res) {
-                    $id = $res->id;
-                    $name = $res->name;
-                    $price = $res->price;
-                    $info = $res->info;
-                    $sale = $res->sale;
-                    $description = $res->description;
-                    $img = $res->img;
-                    $stockTime = $res->stock_time;
-                    $tags = $res->tags;
-                    $count = $res->count;
-                }
-            }
-
-            ?>
             <a href="product/insert.php" class="btn custom-btn admin__form_btn">Add Product</a>
             <div class="admin__section_content">
                 <div class="admin__contact">
@@ -87,9 +56,8 @@
                             <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
-
+                        $obj = new Product();
                         $result = $obj->select();
-
 
                         foreach ($result as $res) { ?>
                             <tr class="admin__section_item">
@@ -126,7 +94,7 @@
                                     <h3 class="admin__section_item_pos"><?php echo $res->count ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
-                                    <a href="product/insert.php?id=<?php echo $res->id ?>">
+                                    <a href="product/update.php?id=<?php echo $res->id ?>">
                                         <i class="example__class admin__icon fas fa-pencil-alt"></i>
                                     </a>
                                     <a href="product/querys.php?id=<?php echo $res->id ?>&img=<?php echo $res->img ?>">

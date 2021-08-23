@@ -2343,6 +2343,12 @@ section .container-fluid {
   padding-top: 85px;
   padding-bottom: 57px;
 }
+.single-page__color{
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-left: 5px;
+}
 @media only screen and (max-width: 1199px) {
   .product-area.product-grid-list-area .container {
     padding-top: 57px;
@@ -6163,9 +6169,6 @@ subscribe
   min-width: 250px;
   max-width: 250px;
   min-height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
 }
 
 #sidebar-admin.active {
@@ -6255,8 +6258,6 @@ p {
 }
 .admin__section{
   width: calc(100% - 250px);
-  position: relative;
-  left: 250px;
 }
 .admin__section_item_pos,
 .admin__section_item_name{

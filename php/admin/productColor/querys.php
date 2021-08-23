@@ -1,7 +1,7 @@
 <?php
 
 require "index.php";
-$obj = new ProductColor($_POST);
+$obj = new Category($_POST);
 
 if(isset($_POST["submit"])){
 	if(!empty($_POST["id"])){

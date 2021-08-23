@@ -32,7 +32,7 @@
     <div class="admin">
         <?php require_once "../../components/adminNav.php"; ?>
 
-        <!-- ---------------------------------- HEADER MENUE LIST ----------------------------------------------- -->
+        <!-- ---------------------------------- Contacts ----------------------------------------------- -->
 
         <div class="admin__section admin__section_header-list">
             <div class="admin__section_head">

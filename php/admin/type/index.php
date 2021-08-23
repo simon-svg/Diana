@@ -44,7 +44,7 @@ class Type
 
     // select ******************************************************************
 
-    public function select($id = null, $conn="../connect.php")
+    public function select($id = null, $conn = "../connect.php")
     {
         require_once $conn;
         $conn = Config::getConnect();
@@ -53,6 +53,38 @@ class Type
         } else {
             $query = "SELECT * FROM type";
         }
+        $result = $conn->query($query);
+        $arr = [];
+        while ($obj = $result->fetch_object()) {
+            array_push($arr, $obj);
+        }
+        return $arr;
+    }
+
+    // select ******************************************************************
+
+    public function selectIdAll($conn = "../connect.php", $id = null)
+    {
+        require_once $conn;
+        $conn = Config::getConnect();
+        $query = "SELECT type.name FROM product_type INNER JOIN type WHERE product_type.name = type.id AND product_type.product_id = $id";
+
+        $result = $conn->query($query);
+        $arr = [];
+        while ($obj = $result->fetch_object()) {
+            array_push($arr, $obj);
+        }
+        return $arr;
+    }
+    // select categoryes group by ******************************************************************
+
+    public function selectGroup($conn = "../connect.php")
+    {
+        require_once $conn;
+        $conn = Config::getConnect();
+
+        $query = "SELECT type.name, count(product_type.name) as tCount FROM type INNER JOIN product_type
+        ON type.id = product_type.name GROUP BY product_type.name";
         $result = $conn->query($query);
         $arr = [];
         while ($obj = $result->fetch_object()) {

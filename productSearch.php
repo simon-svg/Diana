@@ -190,11 +190,13 @@
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-nav-menu">
 											<?php
-											require_once "php/admin/productCategory/index.php";
-											$productCatObj = new ProductCategory();
-											$result = $productCatObj->select(false, "php/connect.php", "name");
+											require_once "php/admin/category/index.php";
+											$productCatObj = new Category();
+											$result = $productCatObj->selectGroup("php/connect.php");
 											foreach ($result as $res) { ?>
-												<a class="product__info" href="#/"><?php echo $res->name ?><span> (<?php echo $res->count ?>)</span></a>
+												<a class="product__info" href="shop.php?cat=<?php echo $res->name ?>"><?php echo $res->name ?>
+													<span> (<?php echo $res->cName ?>)</span>
+												</a>
 											<?php } ?>
 										</div>
 									</div>
@@ -207,9 +209,9 @@
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-nav-menu">
 											<?php
-											require_once "php/admin/productType/index.php";
-											$productCatObj = new ProductType();
-											$result = $productCatObj->select(false, "php/connect.php");
+											require_once "php/admin/type/index.php";
+											$typeObj = new Type();
+											$result = $typeObj->select(false, "php/connect.php");
 											foreach ($result as $res) { ?>
 												<a class="product__info" href="#/"><?php echo $res->name; ?> <span>(1)</span></a>
 											<?php } ?>
@@ -224,8 +226,8 @@
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-color-menu">
 											<?php
-											require_once "php/admin/productColor/index.php";
-											$colorObj = new ProductColor();
+											require_once "php/admin/color/index.php";
+											$colorObj = new Color();
 											$result = $colorObj->select(false, "php/connect.php", "name");
 											foreach ($result as $res) { ?>
 												<div class="<?php echo $res->name ?>"></div>
@@ -242,8 +244,8 @@
 										<div class="product-sidebar-size-menu">
 											<ul>
 												<?php
-												require_once "php/admin/productSize/index.php";
-												$sizeObj = new ProductSize();
+												require_once "php/admin/size/index.php";
+												$sizeObj = new Size();
 												$result = $sizeObj->select(false, "php/connect.php");
 												foreach ($result as $res) { ?>
 													<li><a href="#/"><?php echo $res->name ?></a></li>

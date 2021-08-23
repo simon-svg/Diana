@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 19 2021 г., 11:19
+-- Время создания: Авг 23 2021 г., 11:44
 -- Версия сервера: 10.3.13-MariaDB
 -- Версия PHP: 7.1.22
 
@@ -66,34 +66,6 @@ CREATE TABLE `category` (
 INSERT INTO `category` (`id`, `name`) VALUES
 (1, 'chair'),
 (2, 'sofa');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `color`
---
-
-CREATE TABLE `color` (
-  `id` int(16) NOT NULL,
-  `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `color`
---
-
-INSERT INTO `color` (`id`, `name`) VALUES
-(1, 'red'),
-(2, 'green'),
-(3, 'blue'),
-(4, 'yellow'),
-(5, 'white'),
-(6, 'gold'),
-(7, 'gray'),
-(8, 'magenta'),
-(9, 'maroon'),
-(10, 'navy'),
-(11, 'black');
 
 -- --------------------------------------------------------
 
@@ -225,12 +197,12 @@ INSERT INTO `product_category` (`id`, `name`, `product_id`) VALUES
 (1, 'chair', 8),
 (2, 'chair', 7),
 (5, 'chair', 6),
-(6, 'chair', 5),
-(7, 'chair', 4),
+(6, '1', 5),
+(7, '1', 4),
 (8, 'chair', 3),
-(9, 'chair', 2),
+(9, '1', 2),
 (10, 'chair', 1),
-(11, 'sofa', 16),
+(11, '1', 16),
 (12, 'sofa', 15),
 (13, 'sofa', 14),
 (14, 'sofa', 13),
@@ -256,32 +228,22 @@ CREATE TABLE `product_color` (
 --
 
 INSERT INTO `product_color` (`id`, `name`, `product_id`) VALUES
-(1, 'red', 7),
-(2, 'green', 0),
-(3, 'blue', 0),
-(4, 'yellow', 5),
-(5, 'white', 10),
-(6, 'gold', 5),
-(7, 'gray', 16),
-(8, 'magenta', 0),
-(9, 'maroon', 0),
-(10, 'navy', 0),
-(11, 'red', 3),
-(12, 'yellow', 1),
-(13, 'white', 4),
-(14, 'white', 8),
-(15, 'white', 15),
-(16, 'gold', 1),
-(17, 'gray', 15),
-(18, 'gray', 14),
-(19, 'gray', 11),
-(20, 'gray', 8),
-(21, 'gray', 4),
-(22, 'black', 3),
-(23, 'black', 6),
-(24, 'black', 9),
-(25, 'black', 11),
-(26, 'black', 13);
+(51, '#000000', 16),
+(53, '#cccccc', 1),
+(54, '#6c469b', 2),
+(55, '#cfcfcf', 3),
+(56, '#8feab7', 4),
+(57, '#f1ff2e', 5),
+(58, '#bababa', 6),
+(59, '#232323', 7),
+(60, '#555555', 8),
+(61, '#655455', 9),
+(62, '#132123', 10),
+(63, '#d11dd1', 11),
+(64, '#4a455a', 12),
+(65, '#44f55a', 13),
+(66, '#55f66a', 14),
+(67, '#b123b2', 15);
 
 -- --------------------------------------------------------
 
@@ -312,12 +274,26 @@ CREATE TABLE `product_size` (
 --
 
 INSERT INTO `product_size` (`id`, `name`, `product_id`) VALUES
-(1, 'xs', 0),
-(2, 's', 0),
-(3, 'm', 0),
-(4, 'l', 0),
-(5, 'xl', 0),
-(6, 'xxl', 0);
+(20, 's', 1),
+(21, '', 2),
+(22, 'm', 3),
+(23, '', 4),
+(24, '', 5),
+(25, 'xxl', 1),
+(26, 'l', 6),
+(27, 'm', 6),
+(28, 's', 7),
+(29, 'xl', 8),
+(30, 'xs', 8),
+(31, 'xxl', 9),
+(34, 'xxl', 10),
+(35, 'xl', 11),
+(36, 's', 12),
+(37, 'm', 13),
+(38, 'l', 14),
+(39, 's', 15),
+(40, 'l', 16),
+(41, 's', 16);
 
 -- --------------------------------------------------------
 
@@ -366,34 +342,21 @@ CREATE TABLE `product_type` (
 --
 
 INSERT INTO `product_type` (`id`, `name`, `product_id`) VALUES
-(1, 'metal', 0),
-(2, 'resin', 0),
-(3, 'leather', 0),
-(4, 'slag', 0),
-(5, 'fiber', 0);
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `size`
---
-
-CREATE TABLE `size` (
-  `id` int(16) NOT NULL,
-  `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `size`
---
-
-INSERT INTO `size` (`id`, `name`) VALUES
-(1, 'xs'),
-(2, 's'),
-(3, 'm'),
-(4, 'l'),
-(5, 'xl'),
-(6, 'xxl');
+(18, '1', 3),
+(19, '1', 2),
+(20, '3', 1),
+(21, '1', 5),
+(23, '5', 6),
+(24, '2', 7),
+(25, '3', 8),
+(26, '1', 9),
+(27, '4', 10),
+(28, '5', 11),
+(29, '4', 12),
+(30, '5', 13),
+(31, '1', 14),
+(32, '2', 15),
+(33, '1', 16);
 
 -- --------------------------------------------------------
 
@@ -451,12 +414,6 @@ ALTER TABLE `blog`
 -- Индексы таблицы `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `color`
---
-ALTER TABLE `color`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -520,12 +477,6 @@ ALTER TABLE `product_type`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `size`
---
-ALTER TABLE `size`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Индексы таблицы `subscribe`
 --
 ALTER TABLE `subscribe`
@@ -554,12 +505,6 @@ ALTER TABLE `category`
   MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT для таблицы `color`
---
-ALTER TABLE `color`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
 -- AUTO_INCREMENT для таблицы `contact`
 --
 ALTER TABLE `contact`
@@ -581,31 +526,31 @@ ALTER TABLE `home`
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT для таблицы `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT для таблицы `product_color`
 --
 ALTER TABLE `product_color`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT для таблицы `product_img`
 --
 ALTER TABLE `product_img`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `product_size`
 --
 ALTER TABLE `product_size`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT для таблицы `product_tag`
@@ -617,13 +562,7 @@ ALTER TABLE `product_tag`
 -- AUTO_INCREMENT для таблицы `product_type`
 --
 ALTER TABLE `product_type`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT для таблицы `size`
---
-ALTER TABLE `size`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT для таблицы `subscribe`

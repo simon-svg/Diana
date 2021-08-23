@@ -44,22 +44,33 @@ class Category
 
     // select ******************************************************************
 
-    public function select($id = null, $conn = "../connect.php", $name = null)
+    public function select($id = null, $conn = "../connect.php")
     {
         require_once $conn;
         $conn = Config::getConnect();
 
-        $groupCount = "";
-        $groupName = "";
-        if (!empty($name)) {
-            $groupName = " GROUP BY $name";
-            $groupCount = ", COUNT(id) as count";
-        }
         if ($id) {
-            $query = "SELECT * FROM category WHERE id = $id";
+            $query = " WHERE id = $id";
         } else {
-            $query = "SELECT *" . $groupCount . " FROM category" . $groupName;
+            $query = "SELECT * FROM category" . $id;
         }
+        $result = $conn->query($query);
+        $arr = [];
+        while ($obj = $result->fetch_object()) {
+            array_push($arr, $obj);
+        }
+        return $arr;
+    }
+
+    // select categoryes group by ******************************************************************
+
+    public function selectGroup($conn = "../connect.php")
+    {
+        require_once $conn;
+        $conn = Config::getConnect();
+
+        $query = "SELECT category.name, count(category.name) as cName FROM category INNER JOIN product_category
+        ON category.name = product_category.name GROUP BY product_category.name";
         $result = $conn->query($query);
         $arr = [];
         while ($obj = $result->fetch_object()) {

@@ -83,26 +83,54 @@
             </div>
             <?php
             $obj = new Product();
+            $id = '';
+            $name = '';
+            $price = '';
+            $info = '';
+            $sale = '';
+            $description = '';
+            $img = '';
+            $stockTime = '';
+            $tags = '';
+            $count = '';
+
+            if (isset($_GET["id"])) {
+                $result = $obj->select($_GET["id"], "../../connect.php");
+
+                foreach ($result as $res) {
+                    $id = $res->id;
+                    $name = $res->name;
+                    $price = $res->price;
+                    $info = $res->info;
+                    $sale = $res->sale;
+                    $description = $res->description;
+                    $img = $res->img;
+                    $stockTime = $res->stock_time;
+                    $tags = $res->tags;
+                    $count = $res->count;
+                }
+            }
+
             ?>
             <form class="admin__form" action="querys.php" method="POST" enctype="multipart/form-data">
                 <div class="form__flex insert__admin_flex">
-                    <input class="admin__inp admin__inp_header form-control" type="text" name="name" placeholder="Name" required>
+                    <input class="admin__inp admin__inp_header form-control" type="text" name="name" value="<?php echo $name ?>" placeholder="Name" required>
 
-                    <input class="admin__inp admin__inp_header form-control" type="number" name="price" placeholder="Price" required>
+                    <input class="admin__inp admin__inp_header form-control" type="number" name="price" value="<?php echo $price ?>" placeholder="Price" required>
 
-                    <textarea class="admin__inp admin__inp_header form-control" type="text" name="info" placeholder="Info" required></textarea>
+                    <textarea class="admin__inp admin__inp_header form-control" type="text" name="info" placeholder="Info" required><?php echo $info ?></textarea>
 
-                    <input class="admin__inp admin__inp_header form-control" type="number" name="sale" placeholder="Sale">
+                    <input class="admin__inp admin__inp_header form-control" type="number" name="sale" value="<?php echo $sale ?>" placeholder="Sale">
 
-                    <textarea class="admin__inp admin__inp_header form-control" type="text" name="description" placeholder="Description" required></textarea>
+                    <textarea class="admin__inp admin__inp_header form-control" type="text" name="description" placeholder="Description" required><?php echo $description ?></textarea>
 
-                    <input class="admin__inp admin__inp_header form-control" type="file" name="img" require>
+                    <input class="admin__inp admin__inp_header form-control" type="file" name="img" value="<?php echo $img ?>">
 
-                    <input class="admin__inp admin__inp_header form-control" type="text" name="stock_time" placeholder="1/1/2021+">
+                    <input class="admin__inp admin__inp_header form-control" type="text" name="stock_time" value="<?php echo $stockTime ?>" placeholder="1/1/2021+">
 
-                    <input class="admin__inp admin__inp_header form-control" type="text" name="tags" placeholder="Tags" required>
+                    <input class="admin__inp admin__inp_header form-control" type="text" name="tags" value="<?php echo $tags ?>" placeholder="Tags" required>
 
-                    <input class="admin__inp admin__inp_header form-control" type="number" name="count" placeholder="Count" required>
+                    <input class="admin__inp admin__inp_header form-control" type="number" name="count" value="<?php echo $count ?>" placeholder="Count" required>
 
                     <div class="product__select_group">
                         <span class="select__info">category</span>
@@ -163,6 +191,10 @@
                             <input type="file" name="imgs[]" id="img">
                         </div>
                     </div>
+
+
+                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                    <input type="hidden" name="img" value="<?php echo $img; ?>">
                 </div>
                 <div>
                     <button class="btn custom-btn admin__form_btn" name="submit">Add Product</button>
