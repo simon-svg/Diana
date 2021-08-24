@@ -260,7 +260,7 @@
 											<?php
 											require_once "php/admin/product/index.php";
 											$objProd = new Product();
-											$result = $objProd->selectInCat("php/connect.php", "chair");
+											$result = $objProd->selectInCat("php/connect.php", "1");
 											$l = count($result);
 											for ($i = 0; $i < $l; $i += 2) {
 											?>
@@ -373,7 +373,7 @@
 											<?php
 											require_once "php/admin/product/index.php";
 											$objProd = new Product();
-											$result = $objProd->selectInCat("php/connect.php", "sofa");
+											$result = $objProd->selectInCat("php/connect.php", "2");
 											$l = count($result);
 											for ($i = 0; $i < $l; $i += 2) {
 											?>

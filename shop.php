@@ -329,7 +329,7 @@
 											$result = $catObj->selectGroup("php/connect.php");
 											foreach ($result as $res) {
 											?>
-												<a class="product__info" href="?cat=<?php echo $res->name ?>"><?php echo $res->name ?><span> (<?php echo $res->cName ?>)</span></a>
+												<a class="product__info" href="?cat=<?php echo $res->id ?>"><?php echo $res->name ?><span> (<?php echo $res->cName ?>)</span></a>
 											<?php } ?>
 										</div>
 									</div>

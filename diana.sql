@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 23 2021 г., 11:44
+-- Время создания: Авг 24 2021 г., 09:32
 -- Версия сервера: 10.3.13-MariaDB
 -- Версия PHP: 7.1.22
 
@@ -194,22 +194,22 @@ CREATE TABLE `product_category` (
 --
 
 INSERT INTO `product_category` (`id`, `name`, `product_id`) VALUES
-(1, 'chair', 8),
-(2, 'chair', 7),
-(5, 'chair', 6),
+(1, '1', 8),
+(2, '1', 7),
+(5, '1', 6),
 (6, '1', 5),
 (7, '1', 4),
-(8, 'chair', 3),
+(8, '1', 3),
 (9, '1', 2),
-(10, 'chair', 1),
-(11, '1', 16),
-(12, 'sofa', 15),
-(13, 'sofa', 14),
-(14, 'sofa', 13),
-(15, 'sofa', 12),
-(16, 'sofa', 11),
-(17, 'sofa', 10),
-(18, 'sofa', 9);
+(10, '1', 1),
+(11, '2', 16),
+(12, '2', 15),
+(13, '2', 14),
+(14, '2', 13),
+(15, '2', 12),
+(16, '2', 11),
+(17, '2', 10),
+(18, '2', 9);
 
 -- --------------------------------------------------------
 
@@ -234,8 +234,8 @@ INSERT INTO `product_color` (`id`, `name`, `product_id`) VALUES
 (55, '#cfcfcf', 3),
 (56, '#8feab7', 4),
 (57, '#f1ff2e', 5),
-(58, '#bababa', 6),
-(59, '#232323', 7),
+(58, '#000000', 6),
+(59, '#000000', 7),
 (60, '#555555', 8),
 (61, '#655455', 9),
 (62, '#132123', 10),
@@ -248,6 +248,28 @@ INSERT INTO `product_color` (`id`, `name`, `product_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `product_comments`
+--
+
+CREATE TABLE `product_comments` (
+  `id` int(16) NOT NULL,
+  `message` text NOT NULL,
+  `product_id` int(16) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `up_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `product_comments`
+--
+
+INSERT INTO `product_comments` (`id`, `message`, `product_id`, `date`, `up_date`) VALUES
+(1, 'dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore', 14, '2021-08-24 05:55:08', '2021-08-24 05:55:08'),
+(2, 'Hi it is very good product bro !', 14, '2021-08-24 06:03:46', '2021-08-24 06:03:46');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `product_img`
 --
 
@@ -256,6 +278,13 @@ CREATE TABLE `product_img` (
   `name` varchar(128) NOT NULL,
   `product_id` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `product_img`
+--
+
+INSERT INTO `product_img` (`id`, `name`, `product_id`) VALUES
+(17, 'yt.ku', 445);
 
 -- --------------------------------------------------------
 
@@ -280,9 +309,9 @@ INSERT INTO `product_size` (`id`, `name`, `product_id`) VALUES
 (23, '', 4),
 (24, '', 5),
 (25, 'xxl', 1),
-(26, 'l', 6),
-(27, 'm', 6),
-(28, 's', 7),
+(26, '', 6),
+(27, '', 6),
+(28, '', 7),
 (29, 'xl', 8),
 (30, 'xs', 8),
 (31, 'xxl', 9),
@@ -346,8 +375,8 @@ INSERT INTO `product_type` (`id`, `name`, `product_id`) VALUES
 (19, '1', 2),
 (20, '3', 1),
 (21, '1', 5),
-(23, '5', 6),
-(24, '2', 7),
+(23, '1', 6),
+(24, '1', 7),
 (25, '3', 8),
 (26, '1', 9),
 (27, '4', 10),
@@ -453,6 +482,12 @@ ALTER TABLE `product_color`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `product_comments`
+--
+ALTER TABLE `product_comments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `product_img`
 --
 ALTER TABLE `product_img`
@@ -526,31 +561,37 @@ ALTER TABLE `home`
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT для таблицы `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT для таблицы `product_color`
 --
 ALTER TABLE `product_color`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- AUTO_INCREMENT для таблицы `product_comments`
+--
+ALTER TABLE `product_comments`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `product_img`
 --
 ALTER TABLE `product_img`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `product_size`
 --
 ALTER TABLE `product_size`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT для таблицы `product_tag`
@@ -562,7 +603,7 @@ ALTER TABLE `product_tag`
 -- AUTO_INCREMENT для таблицы `product_type`
 --
 ALTER TABLE `product_type`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT для таблицы `subscribe`

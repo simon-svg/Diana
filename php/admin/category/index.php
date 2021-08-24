@@ -69,8 +69,8 @@ class Category
         require_once $conn;
         $conn = Config::getConnect();
 
-        $query = "SELECT category.name, count(category.name) as cName FROM category INNER JOIN product_category
-        ON category.name = product_category.name GROUP BY product_category.name";
+        $query = "SELECT category.id, category.name, count(category.name) as cName FROM category INNER JOIN product_category
+        ON category.id = product_category.name GROUP BY product_category.name";
         $result = $conn->query($query);
         $arr = [];
         while ($obj = $result->fetch_object()) {

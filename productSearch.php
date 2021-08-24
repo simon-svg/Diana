@@ -211,9 +211,11 @@
 											<?php
 											require_once "php/admin/type/index.php";
 											$typeObj = new Type();
-											$result = $typeObj->select(false, "php/connect.php");
+											$result = $typeObj->selectGroup("php/connect.php");
 											foreach ($result as $res) { ?>
-												<a class="product__info" href="#/"><?php echo $res->name; ?> <span>(1)</span></a>
+												<a class="product__info" href="#/"><?php echo $res->name; ?>
+													<span>(<?php echo $res->tCount; ?>)</span>
+												</a>
 											<?php } ?>
 										</div>
 									</div>
@@ -226,11 +228,11 @@
 									<div class="product-sidebar-body">
 										<div class="product-sidebar-color-menu">
 											<?php
-											require_once "php/admin/color/index.php";
-											$colorObj = new Color();
-											$result = $colorObj->select(false, "php/connect.php", "name");
+											require_once "php/admin/productColor/index.php";
+											$colorObj = new ProductColor();
+											$result = $colorObj->select("php/connect.php");
 											foreach ($result as $res) { ?>
-												<div class="<?php echo $res->name ?>"></div>
+												<div style="background-color:<?php echo $res->name ?>"></div>
 											<?php } ?>
 										</div>
 									</div>
@@ -246,7 +248,7 @@
 												<?php
 												require_once "php/admin/size/index.php";
 												$sizeObj = new Size();
-												$result = $sizeObj->select(false, "php/connect.php");
+												$result = $sizeObj->selectGroup("php/connect.php");
 												foreach ($result as $res) { ?>
 													<li><a href="#/"><?php echo $res->name ?></a></li>
 												<?php } ?>

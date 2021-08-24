@@ -72,39 +72,23 @@
 													<div class="swiper-wrapper">
 														<div class="swiper-slide">
 															<div class="zoom zoom-hover">
-																<a class="lightbox-image" data-fancybox="gallery" href="assets/img/shop/product-single/1.jpg">
+																<a class="lightbox-image" data-fancybox="gallery" href="assets/img/product/<?php echo $res->img ?>">
 																	<img src="assets/img/product/<?php echo $res->img ?>" alt="<?php echo $res->name ?>">
 																</a>
 															</div>
 														</div>
-														<div class="swiper-slide">
-															<div class="zoom zoom-hover">
-																<a class="lightbox-image" data-fancybox="gallery" href="assets/img/shop/product-single/2.jpg">
-																	<img src="assets/img/shop/product-single/2.jpg" alt="Image-HasTech">
-																</a>
+														<?php
+														$imgResult = $product->selectImgs("php/connect.php", $_GET["id"]);
+														foreach ($imgResult as $img) {
+														?>
+															<div class="swiper-slide">
+																<div class="zoom zoom-hover">
+																	<a class="lightbox-image" data-fancybox="gallery" href="assets/img/product/<?php echo $img->name ?>">
+																		<img src="assets/img/product/<?php echo $img->name ?>" alt="<?php echo $img->name ?>">
+																	</a>
+																</div>
 															</div>
-														</div>
-														<div class="swiper-slide">
-															<div class="zoom zoom-hover">
-																<a class="lightbox-image" data-fancybox="gallery" href="assets/img/shop/product-single/3.jpg">
-																	<img src="assets/img/shop/product-single/3.jpg" alt="Image-HasTech">
-																</a>
-															</div>
-														</div>
-														<div class="swiper-slide">
-															<div class="zoom zoom-hover">
-																<a class="lightbox-image" data-fancybox="gallery" href="assets/img/shop/product-single/4.jpg">
-																	<img src="assets/img/shop/product-single/3.jpg" alt="Image-HasTech">
-																</a>
-															</div>
-														</div>
-														<div class="swiper-slide">
-															<div class="zoom zoom-hover">
-																<a class="lightbox-image" data-fancybox="gallery" href="assets/img/shop/product-single/4.jpg">
-																	<img src="assets/img/shop/product-single/4.jpg" alt="Image-HasTech">
-																</a>
-															</div>
-														</div>
+														<?php } ?>
 													</div>
 												</div>
 											</div>
@@ -114,20 +98,15 @@
 											<div class="swiper-container single-product-nav-slider product-nav">
 												<div class="swiper-wrapper">
 													<div class="swiper-slide">
-														<img src="assets/img/shop/product-single/nav1.jpg" alt="Image-HasTech">
+														<img src="assets/img/product/<?php echo $res->img ?>" alt="<?php echo $res->name ?>">
 													</div>
-													<div class="swiper-slide">
-														<img src="assets/img/shop/product-single/nav2.jpg" alt="Image-HasTech">
-													</div>
-													<div class="swiper-slide">
-														<img src="assets/img/shop/product-single/nav3.jpg" alt="Image-HasTech">
-													</div>
-													<div class="swiper-slide">
-														<img src="assets/img/shop/product-single/nav3.jpg" alt="Image-HasTech">
-													</div>
-													<div class="swiper-slide">
-														<img src="assets/img/shop/product-single/nav4.jpg" alt="Image-HasTech">
-													</div>
+													<?php
+													foreach ($imgResult as $img) {
+													?>
+														<div class="swiper-slide">
+															<img src="assets/img/product/<?php echo $img->name ?>" alt="<?php echo $img->name ?>">
+														</div>
+													<?php } ?>
 												</div>
 
 												<!--== Add Swiper navigation Buttons ==-->
@@ -166,8 +145,8 @@
 															require_once "php/admin/size/index.php";
 															$objSize = new Size();
 															$result = $objSize->selectGroup("php/connect.php", $_GET["id"]);
-															foreach ($result as $res) { ?>
-																<li class=""><a href="#/"><?php echo $res->name ?></a></li>
+															foreach ($result as $resS) { ?>
+																<li class=""><a href="#/"><?php echo $resS->name ?></a></li>
 															<?php } ?>
 														</ul>
 													</div>
@@ -180,8 +159,8 @@
 															require_once "php/admin/productColor/index.php";
 															$objColor = new ProductColor();
 															$result = $objColor->selectGroup("php/connect.php", $_GET["id"]);
-															foreach ($result as $res) { ?>
-																<a class="single-page__color" href="#/" style="background-color: <?php echo $res->name ?>;"></a>
+															foreach ($result as $resC) { ?>
+																<a class="single-page__color" href="#/" style="background-color: <?php echo $resC->name ?>;"></a>
 															<?php } ?>
 														</ul>
 													</div>
@@ -194,8 +173,8 @@
 															require_once "php/admin/type/index.php";
 															$objType = new Type();
 															$result = $objType->selectIdAll("php/connect.php", $_GET["id"]);
-															foreach ($result as $res) { ?>
-																<li class=""><a href="#/"><?php echo $res->name ?></a></li>
+															foreach ($result as $resT) { ?>
+																<li class=""><a href="#/"><?php echo $resT->name ?></a></li>
 															<?php } ?>
 														</ul>
 													</div>
@@ -278,12 +257,23 @@
 												</div>
 												<div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
 													<div class="product-comment-content">
-														<form action="#">
+														<?php
+														require_once "php/comments/index.php";
+														$commentObj = new Comments();
+														$result = $commentObj->select("php/connect.php", $_GET["id"]);
+														foreach ($result as $res) {
+														?>
 															<div class="product-comment">
-																<img src="assets/img/photos/comment.png" alt="Image-HasTech">
-																<textarea name="con_message" placeholder="Start the discussion…"></textarea>
+																<img src="assets/img/icons/user.jpeg" alt="Image-HasTech">
+																<p><?php echo $res->message ?></p>
 															</div>
-															<button class="btn-theme" type="submit">Post as Product</button>
+														<?php } ?>
+														<form action="php/comments/querys.php" method="POST">
+															<div class="product-comment">
+																<textarea name="message" placeholder="Start the discussion…"></textarea>
+																<input type="hidden" name="product_id" value="<?php echo $_GET['id'] ?>">
+															</div>
+															<button class="btn-theme" name="submit" type="submit">Post as Product</button>
 														</form>
 													</div>
 												</div>

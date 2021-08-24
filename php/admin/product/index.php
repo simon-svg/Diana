@@ -240,7 +240,7 @@ class Product
 
     // selectInCat ******************************************************************
 
-    public function selectInCat($connect = "../connect.php", $name = null, $limit = null)
+    public function selectInCat($connect = "../connect.php", $id = null, $limit = null)
     {
         require_once $connect;
         $conn = Config::getConnect();
@@ -249,7 +249,23 @@ class Product
             $limitQuery = $limit;
         }
 
-        $query = "SELECT * FROM product JOIN product_category ON product.id = product_category.product_id AND product_category.name = '$name' ORDER BY date DESC " . $limitQuery;
+        $query = "SELECT *, product.name FROM product JOIN product_category ON product.id = product_category.product_id AND product_category.name = '$id' ORDER BY date DESC " . $limitQuery;
+        $result = $conn->query($query);
+        $arr = [];
+        while ($obj = $result->fetch_object()) {
+            array_push($arr, $obj);
+        }
+        return $arr;
+    }
+
+    // selectInCat ******************************************************************
+
+    public function selectImgs($connect = "../connect.php", $id = null)
+    {
+        require_once $connect;
+        $conn = Config::getConnect();
+
+        $query = "SELECT * FROM product_img WHERE product_img.product_id = $id";
         $result = $conn->query($query);
         $arr = [];
         while ($obj = $result->fetch_object()) {
