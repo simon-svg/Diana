@@ -5487,10 +5487,9 @@ section .container-fluid {
 .product-sidebar-nav-menu a:hover {
   color: #ff383f;
 }
-.product-sidebar-color-menu div {
+.product-sidebar-color-menu a {
   border: 1px solid #dadada;
   cursor: pointer;
-  float: left;
   height: inherit;
   margin: 0 10px 10px 0;
   min-width: 20px;
@@ -5509,47 +5508,7 @@ section .container-fluid {
 .discount__products_inner{
   margin-bottom: 7px !important;
 }
-.product-sidebar-color-menu div.red {
-  background: red no-repeat center;
-  background-size: initial;
-}
-.product-sidebar-color-menu div.green {
-  background: green no-repeat center;
-  background-size: initial;
-}
-.product-sidebar-color-menu div.blue {
-  background: blue no-repeat center;
-  background-size: initial;
-}
-.product-sidebar-color-menu div.yellow {
-  background: yellow no-repeat center;
-  background-size: initial;
-}
-.product-sidebar-color-menu div.white {
-  background: white no-repeat center;
-  background-size: initial;
-}
-.product-sidebar-color-menu div.gold {
-  background: gold no-repeat center;
-  background-size: initial;
-}
-.product-sidebar-color-menu div.gray {
-  background: gray no-repeat center;
-  background-size: initial;
-}
-.product-sidebar-color-menu div.magenta {
-  background: magenta no-repeat center;
-  background-size: initial;
-}
-.product-sidebar-color-menu div.maroon {
-  background: maroon no-repeat center;
-  background-size: initial;
-}
-.product-sidebar-color-menu div.navy {
-  background: navy no-repeat center;
-  background-size: initial;
-}
-.product-sidebar-color-menu div:hover {
+.product-sidebar-color-menu a:hover {
   border: 1px solid #fff;
   outline: 2px solid #ff383f;
 }

@@ -65,21 +65,6 @@
 										</div>
 									</nav>
 								</div>
-								<div class="nav-short-area">
-									<div class="toolbar-shorter">
-										<label for="SortBy">Sort by</label>
-										<select id="SortBy" class="form-select" aria-label="Sort by">
-											<option value="manual">Featured</option>
-											<option value="best-selling">Best Selling</option>
-											<option value="title-ascending" selected>Alphabetically, A-Z</option>
-											<option value="title-descending">Alphabetically, Z-A</option>
-											<option value="price-ascending">Price, low to high</option>
-											<option value="price-descending">Price, high to low</option>
-											<option value="created-descending">Date, new to old</option>
-											<option value="created-ascending">Date, old to new</option>
-										</select>
-									</div>
-								</div>
 							</div>
 							<div class="product-body-wrap">
 								<div class="tab-content" id="nav-tabContent">
@@ -93,18 +78,33 @@
 											$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 											$from = ($page - 1) * $itemsCount;
 
-											if (empty($_GET["cat"])) {
-												$result = $products->select(false, "php/connect.php", false, "LIMIT $from, $itemsCount");
-												$result2 = $products->select(false, "php/connect.php");
-												$dataCount = ceil(count($result2) / $itemsCount);
-											} else {
+											if (isset($_GET["cat"])) {
 												$result = $products->selectInCat("php/connect.php", $_GET["cat"], "LIMIT $from, $itemsCount");
 												$result2 = $products->selectInCat("php/connect.php", $_GET["cat"]);
+												$dataCount = ceil(count($result2) / $itemsCount);
+											} elseif (isset($_GET["type"])) {
+												$result = $products->selectInType("php/connect.php", $_GET["type"], "LIMIT $from, $itemsCount");
+												$result2 = $products->selectInType("php/connect.php", $_GET["type"]);
+												$dataCount = ceil(count($result2) / $itemsCount);
+											} elseif (isset($_GET["color"])) {
+												$result = $products->selectInColor("php/connect.php", $_GET["color"], "LIMIT $from, $itemsCount");
+												$result2 = $products->selectInColor("php/connect.php", $_GET["color"]);
+												$dataCount = ceil(count($result2) / $itemsCount);
+											} elseif (isset($_GET["size"])) {
+												$result = $products->selectInSize("php/connect.php", $_GET["size"], "LIMIT $from, $itemsCount");
+												$result2 = $products->selectInSize("php/connect.php", $_GET["size"]);
+												$dataCount = ceil(count($result2) / $itemsCount);
+											} elseif (isset($_GET["tag"])) {
+												$result = $products->selectInTag("php/connect.php", $_GET["tag"], "LIMIT $from, $itemsCount");
+												$result2 = $products->selectInTag("php/connect.php", $_GET["tag"]);
+												$dataCount = ceil(count($result2) / $itemsCount);
+											} else {
+												$result = $products->select(false, "php/connect.php", false, "LIMIT $from, $itemsCount");
+												$result2 = $products->select(false, "php/connect.php");
 												$dataCount = ceil(count($result2) / $itemsCount);
 											}
 											require_once "components/multiexplode.php";
 											foreach ($result as $res) {
-												// $getURL = multiexplode(["=", "&"], $_SERVER["QUERY_STRING"]);
 											?>
 												<div class="col-sm-6 col-xl-4">
 													<!--== Start Shop Item ==-->
@@ -319,95 +319,103 @@
 								<!--== End Product Sidebar Item ==-->
 
 								<!--== Start Sidebar Item ==-->
-								<div class="product-sidebar-item">
-									<h4 class="product-sidebar-title">Categories</h4>
-									<div class="product-sidebar-body">
-										<div class="product-sidebar-nav-menu">
-											<?php
-											require_once "php/admin/category/index.php";
-											$catObj = new Category();
-											$result = $catObj->selectGroup("php/connect.php");
-											foreach ($result as $res) {
-											?>
-												<a class="product__info" href="?cat=<?php echo $res->id ?>"><?php echo $res->name ?><span> (<?php echo $res->cName ?>)</span></a>
-											<?php } ?>
-										</div>
-									</div>
-								</div>
-								<!--== End Sidebar Item ==-->
-
-								<!--== Start Sidebar Item ==-->
-								<div class="product-sidebar-item">
-									<h4 class="product-sidebar-title">Products Types</h4>
-									<div class="product-sidebar-body">
-										<div class="product-sidebar-nav-menu">
-											<?php
-											require_once "php/admin/type/index.php";
-											$typeObj = new Type();
-											$result = $typeObj->selectGroup("php/connect.php");
-											foreach ($result as $res) { ?>
-												<a class="product__info" href="#/"><?php echo $res->name; ?>
-													<span>(<?php echo $res->tCount; ?>)</span>
-												</a>
-											<?php } ?>
-										</div>
-									</div>
-								</div>
-								<!--== End Sidebar Item ==-->
-
-								<!--== Start Sidebar Item ==-->
-								<div class="product-sidebar-item mb-5 pb-2">
-									<h4 class="product-sidebar-title">Color</h4>
-									<div class="product-sidebar-body">
-										<div class="product-sidebar-color-menu">
-											<?php
-											require_once "php/admin/productColor/index.php";
-											$colorObj = new ProductColor();
-											$result = $colorObj->select("php/connect.php");
-											foreach ($result as $res) { ?>
-												<div style="background-color:<?php echo $res->name ?>"></div>
-											<?php } ?>
-										</div>
-									</div>
-								</div>
-								<!--== End Sidebar Item ==-->
-
-								<!--== Start Sidebar Item ==-->
-								<div class="product-sidebar-item mb-5 pb-2">
-									<h4 class="product-sidebar-title">Size</h4>
-									<div class="product-sidebar-body">
-										<div class="product-sidebar-size-menu">
-											<ul>
+								<?php
+								$getExplodeArr = multiexplode(["=", "&"], $_SERVER["QUERY_STRING"]);
+								if ($getExplodeArr[0] == "") {
+									array_shift($getExplodeArr);
+								}
+								if (!((count($getExplodeArr) > 2) || (count($getExplodeArr) == 2 && $getExplodeArr[0] != "page"))) {
+								?>
+									<div class="product-sidebar-item">
+										<h4 class="product-sidebar-title">Categories</h4>
+										<div class="product-sidebar-body">
+											<div class="product-sidebar-nav-menu">
 												<?php
-												require_once "php/admin/size/index.php";
-												$sizeObj = new Size();
-												$result = $sizeObj->selectGroup("php/connect.php");
-												foreach ($result as $res) { ?>
-													<li><a href="#/"><?php echo $res->name ?></a></li>
+												require_once "php/admin/category/index.php";
+												$catObj = new Category();
+												$result = $catObj->selectGroup("php/connect.php");
+												foreach ($result as $res) {
+												?>
+													<a class="product__info" href="?cat=<?php echo $res->id ?>"><?php echo $res->name ?><span> (<?php echo $res->cName ?>)</span></a>
 												<?php } ?>
-											</ul>
+											</div>
 										</div>
 									</div>
-								</div>
-								<!--== End Sidebar Item ==-->
+									<!--== End Sidebar Item ==-->
 
-								<!--== Start Sidebar Item ==-->
-								<div class="product-sidebar-item mb-5 pb-2">
-									<h4 class="product-sidebar-title">Tags</h4>
-									<div class="product-sidebar-body">
-										<div class="product-sidebar-tag-menu">
-											<ul>
+									<!--== Start Sidebar Item ==-->
+									<div class="product-sidebar-item">
+										<h4 class="product-sidebar-title">Products Types</h4>
+										<div class="product-sidebar-body">
+											<div class="product-sidebar-nav-menu">
 												<?php
-												require_once "php/admin/productTag/index.php";
-												$tagObj = new ProductTag();
-												$result = $tagObj->select(false, "php/connect.php");
+												require_once "php/admin/type/index.php";
+												$typeObj = new Type();
+												$result = $typeObj->selectGroup("php/connect.php");
 												foreach ($result as $res) { ?>
-													<li><a href="#/"><?php echo $res->name ?></a></li>
+													<a class="product__info" href="?type=<?php echo $res->name; ?>"><?php echo $res->name; ?>
+														<span>(<?php echo $res->tCount; ?>)</span>
+													</a>
 												<?php } ?>
-											</ul>
+											</div>
 										</div>
 									</div>
-								</div>
+									<!--== End Sidebar Item ==-->
+
+									<!--== Start Sidebar Item ==-->
+									<div class="product-sidebar-item mb-5 pb-2">
+										<h4 class="product-sidebar-title">Color</h4>
+										<div class="product-sidebar-body">
+											<div class="product-sidebar-color-menu">
+												<?php
+												require_once "php/admin/productColor/index.php";
+												$colorObj = new ProductColor();
+												$result = $colorObj->select("php/connect.php");
+												foreach ($result as $res) { ?>
+													<a href="?color=<?php echo substr($res->name, 1); ?>" style="background-color:<?php echo $res->name ?>"></a>
+												<?php } ?>
+											</div>
+										</div>
+									</div>
+									<!--== End Sidebar Item ==-->
+
+									<!--== Start Sidebar Item ==-->
+									<div class="product-sidebar-item mb-5 pb-2">
+										<h4 class="product-sidebar-title">Size</h4>
+										<div class="product-sidebar-body">
+											<div class="product-sidebar-size-menu">
+												<ul>
+													<?php
+													require_once "php/admin/size/index.php";
+													$sizeObj = new Size();
+													$result = $sizeObj->selectGroup("php/connect.php");
+													foreach ($result as $res) { ?>
+														<li><a href="?size=<?php echo $res->name ?>"><?php echo $res->name ?></a></li>
+													<?php } ?>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<!--== End Sidebar Item ==-->
+
+									<!--== Start Sidebar Item ==-->
+									<div class="product-sidebar-item mb-5 pb-2">
+										<h4 class="product-sidebar-title">Tags</h4>
+										<div class="product-sidebar-body">
+											<div class="product-sidebar-tag-menu">
+												<ul>
+													<?php
+													require_once "php/admin/productTag/index.php";
+													$tagObj = new ProductTag();
+													$result = $tagObj->select(false, "php/connect.php");
+													foreach ($result as $res) { ?>
+														<li><a href="?tag=<?php echo $res->name ?>"><?php echo $res->name ?></a></li>
+													<?php } ?>
+												</ul>
+											</div>
+										</div>
+									</div>
+								<?php } ?>
 								<!--== End Sidebar Item ==-->
 							</div>
 							<!--== End Product Sidebar Wrapper ==-->

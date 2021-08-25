@@ -102,7 +102,8 @@ class Product
 
     // insert ******************************************************************
 
-    public function colorInsert($product_id, $name){
+    public function colorInsert($product_id, $name)
+    {
         require_once '../../connect.php';
         $conn = Config::getConnect();
         $query = 'INSERT INTO product_color(name, product_id) 
@@ -112,7 +113,8 @@ class Product
     }
 
 
-    public function categoryInsert($product_id, $name){
+    public function categoryInsert($product_id, $name)
+    {
         require_once '../../connect.php';
         $conn = Config::getConnect();
         $query = 'INSERT INTO product_category(name, product_id) 
@@ -121,7 +123,8 @@ class Product
         $conn->query($query);
     }
 
-    public function sizeInsert($product_id, $name){
+    public function sizeInsert($product_id, $name)
+    {
         require_once '../../connect.php';
         $conn = Config::getConnect();
         $query = 'INSERT INTO product_size(name, product_id) 
@@ -130,7 +133,8 @@ class Product
         $conn->query($query);
     }
 
-    public function typeInsert($product_id, $name){
+    public function typeInsert($product_id, $name)
+    {
         require_once '../../connect.php';
         $conn = Config::getConnect();
         $query = 'INSERT INTO product_type(name, product_id) 
@@ -139,7 +143,8 @@ class Product
         $conn->query($query);
     }
 
-    public function imgInsert($product_id, $name){
+    public function imgInsert($product_id, $name)
+    {
         require_once '../../connect.php';
         $conn = Config::getConnect();
         $query = 'INSERT INTO product_img(name, product_id) 
@@ -151,7 +156,8 @@ class Product
 
     // update ******************************************************************
 
-    public function colorUpdate($product_id, $name){
+    public function colorUpdate($product_id, $name)
+    {
         require_once '../../connect.php';
         $conn = Config::getConnect();
         $query = "UPDATE product_color SET name = '$name' WHERE product_id = " . $product_id;
@@ -160,26 +166,29 @@ class Product
     }
 
 
-    public function categoryUpdate($product_id, $name){
+    public function categoryUpdate($product_id, $name)
+    {
         require_once '../../connect.php';
         $conn = Config::getConnect();
-        $query = "UPDATE product_category SET name = '$name' WHERE product_id = " . $product_id; 
+        $query = "UPDATE product_category SET name = '$name' WHERE product_id = " . $product_id;
 
         $conn->query($query);
     }
 
-    public function sizeUpdate($product_id, $name){
+    public function sizeUpdate($product_id, $name)
+    {
         require_once '../../connect.php';
         $conn = Config::getConnect();
-        $query = "UPDATE product_size SET name = '$name' WHERE product_id = " . $product_id; 
+        $query = "UPDATE product_size SET name = '$name' WHERE product_id = " . $product_id;
 
         $conn->query($query);
     }
 
-    public function typeUpdate($product_id, $name){
+    public function typeUpdate($product_id, $name)
+    {
         require_once '../../connect.php';
         $conn = Config::getConnect();
-        $query = "UPDATE product_type SET name = '$name' WHERE product_id = " . $product_id; 
+        $query = "UPDATE product_type SET name = '$name' WHERE product_id = " . $product_id;
 
         $conn->query($query);
     }
@@ -205,7 +214,7 @@ class Product
 
         if ($conn->error) {
             return $conn->error;
-        } 
+        }
     }
 
     // select ******************************************************************
@@ -237,7 +246,6 @@ class Product
         return $arr;
     }
 
-
     // selectInCat ******************************************************************
 
     public function selectInCat($connect = "../connect.php", $id = null, $limit = null)
@@ -259,6 +267,86 @@ class Product
     }
 
     // selectInCat ******************************************************************
+
+    public function selectInType($connect = "../connect.php", $id = null, $limit = null)
+    {
+        require_once $connect;
+        $conn = Config::getConnect();
+        $limitQuery = "";
+        if (isset($limit)) {
+            $limitQuery = $limit;
+        }
+
+        $query = "SELECT *, product.name, product.id FROM product JOIN product_type ON product.id = product_type.product_id JOIN type
+        ON product_type.name = type.id AND type.name = '$id' ORDER BY date DESC " . $limitQuery;
+        $result = $conn->query($query);
+        $arr = [];
+        while ($obj = $result->fetch_object()) {
+            array_push($arr, $obj);
+        }
+        return $arr;
+    }
+
+    // selectInColor ******************************************************************
+
+    public function selectInColor($connect = "../connect.php", $id = null, $limit = null)
+    {
+        require_once $connect;
+        $conn = Config::getConnect();
+        $limitQuery = "";
+        if (isset($limit)) {
+            $limitQuery = $limit;
+        }
+        $query = "SELECT *, product.name, product.id FROM product JOIN product_color ON product.id = product_color.product_id
+        AND product_color.name = '#$id' ORDER BY date DESC " . $limitQuery;
+        $result = $conn->query($query);
+        $arr = [];
+        while ($obj = $result->fetch_object()) {
+            array_push($arr, $obj);
+        }
+        return $arr;
+    }
+
+    // selectInSize ******************************************************************
+
+    public function selectInSize($connect = "../connect.php", $id = null, $limit = null)
+    {
+        require_once $connect;
+        $conn = Config::getConnect();
+        $limitQuery = "";
+        if (isset($limit)) {
+            $limitQuery = $limit;
+        }
+        $query = "SELECT *, product.name, product.id FROM product JOIN product_size ON product.id = product_size.product_id
+        AND product_size.name = '$id' ORDER BY date DESC " . $limitQuery;
+        $result = $conn->query($query);
+        $arr = [];
+        while ($obj = $result->fetch_object()) {
+            array_push($arr, $obj);
+        }
+        return $arr;
+    }
+    
+    // selectInTag ******************************************************************
+
+    public function selectInTag($connect = "../connect.php", $id = null, $limit = null)
+    {
+        require_once $connect;
+        $conn = Config::getConnect();
+        $limitQuery = "";
+        if (isset($limit)) {
+            $limitQuery = $limit;
+        }
+        $query = "SELECT * FROM product WHERE tags LIKE '%$id%' ORDER BY date DESC " . $limitQuery;
+        $result = $conn->query($query);
+        $arr = [];
+        while ($obj = $result->fetch_object()) {
+            array_push($arr, $obj);
+        }
+        return $arr;
+    }
+
+    // selectImgs ******************************************************************
 
     public function selectImgs($connect = "../connect.php", $id = null)
     {
