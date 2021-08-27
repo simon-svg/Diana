@@ -89,12 +89,6 @@
 																	<i class="hover-icon bardy bardy-shopping-cart"></i>
 																</span>
 															</a>
-															<a class="add-wishlist" href="wishlist.php">
-																<span class="icon">
-																	<i class="bardy bardy-wishlist"></i>
-																	<i class="hover-icon bardy bardy-wishlist"></i>
-																</span>
-															</a>
 														</div>
 													</div>
 													<?php if (!empty($res->stock_time)) { ?>

@@ -191,14 +191,6 @@
 												</div>
 												<div class="cart-wishlist-button">
 													<a href="shop-cart.php" class="btn-cart">Add to cart</a>
-													<div class="product-wishlist">
-														<a class="add-wishlist" href="wishlist.php">
-															<span class="icon">
-																<i class="bardy bardy-wishlist"></i>
-																<i class="hover-icon bardy bardy-wishlist"></i>
-															</span>
-														</a>
-													</div>
 												</div>
 												<div class="buy-now-btn">
 													<button class="btn btn-Buy">Buy it now</button>
