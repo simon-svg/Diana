@@ -51,16 +51,8 @@
                             <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
-                        $id = '';
-                        $name = '';
-                        $email = '';
-                        $phone = '';
-                        $subject = '';
-                        $message = '';
-
                         $obj = new Contact();
                         $result = $obj->select();
-
 
                         foreach ($result as $res) { ?>
                             <tr class="admin__section_item">
@@ -83,7 +75,7 @@
                                     <h3 class="admin__section_item_name"><?php echo $res->message ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
-                                    <a href="?id=<?php echo $res->id ?>">
+                                    <a href="contact/update.php?id=<?php echo $res->id ?>">
                                         <i class="example__class admin__icon fas fa-pencil-alt"></i>
                                     </a>
                                     <a href="contact/querys.php?id=<?php echo $res->id ?>">
@@ -95,47 +87,9 @@
 
                     </table>
                 </div>
-                <?php
-
-                $id = '';
-                $name = '';
-                $email = '';
-                $phone = '';
-                $subject = '';
-                $message = '';
-
-                if (isset($_GET["id"])) {
-                    $result = $obj->select($_GET["id"]);
-
-                    foreach ($result as $res) {
-                        $id = $res->id;
-                        $name = $res->name;
-                        $email = $res->email;
-                        $phone = $res->phone;
-                        $subject = $res->subject;
-                        $message = $res->message;
-                    }
-                }
-
-                ?>
-                <form class="admin__form" action="contact/querys.php" method="POST">
-                    <div class="form__flex">
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="name" value="<?php echo $name ?>" placeholder="Name" required>
-
-                        <input class="admin__inp admin__inp_header form-control" type="email" name="email" value="<?php echo $email ?>" placeholder="Email" required>
-
-                        <input class="admin__inp admin__inp_header form-control" type="tel" name="phone" value="<?php echo $phone ?>" placeholder="Phone" required>
-
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="subject" value="<?php echo $subject ?>" placeholder="Subject" required>
-
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="message" value="<?php echo $message ?>" placeholder="Message" required>
-
-                        <input type="hidden" name="id" value="<?php echo $id; ?>">
-                    </div>
-                    <div>
-                        <button class="btn custom-btn admin__form_btn" name="submit">comment</button>
-                    </div>
-                </form>
+                <a href="contact/insert.php">
+                    <button class="btn custom-btn admin__form_btn" name="submit">Add Contact</button>
+                </a>
             </div>
         </div>
     </div>

@@ -47,12 +47,8 @@
                             <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
-                        $id = '';
-                        $name = '';
-
                         $obj = new productTag();
                         $result = $obj->select();
-
 
                         foreach ($result as $res) { ?>
                             <tr class="admin__section_item">
@@ -63,7 +59,7 @@
                                     <h3 class="admin__section_item_name"><?php echo $res->name ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
-                                    <a href="?id=<?php echo $res->id ?>">
+                                    <a href="productTag/update.php?id=<?php echo $res->id ?>">
                                         <i class="example__class admin__icon fas fa-pencil-alt"></i>
                                     </a>
                                     <a href="productTag/querys.php?id=<?php echo $res->id ?>">
@@ -75,31 +71,9 @@
 
                     </table>
                 </div>
-                <?php
-
-                $id = '';
-                $name = '';
-
-                if (isset($_GET["id"])) {
-                    $result = $obj->select($_GET["id"]);
-
-                    foreach ($result as $res) {
-                        $id = $res->id;
-                        $name = $res->name;
-                    }
-                }
-
-                ?>
-                <form class="admin__form" action="productTag/querys.php" method="POST">
-                    <div class="form__flex">
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="name" value="<?php echo $name ?>" placeholder="Name" required>
-
-                        <input type="hidden" name="id" value="<?php echo $id; ?>">
-                    </div>
-                    <div>
-                        <button class="btn custom-btn admin__form_btn" name="submit">Add Product Tag</button>
-                    </div>
-                </form>
+                <a href="productTag/insert.php">
+                    <button class="btn custom-btn admin__form_btn" name="submit">Add Product Tag</button>
+                </a>
             </div>
         </div>
     </div>

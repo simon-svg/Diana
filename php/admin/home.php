@@ -49,14 +49,8 @@
                             <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
-                        $id = '';
-                        $title = '';
-                        $subTitle = '';
-                        $img = '';
-
                         $obj = new Home();
                         $result = $obj->select();
-
 
                         foreach ($result as $res) { ?>
                             <tr class="admin__section_item">
@@ -75,7 +69,7 @@
                                     </div>
                                 </td>
                                 <td class="admin__section_item_td">
-                                    <a href="?id=<?php echo $res->id ?>">
+                                    <a href="home/update.php?id=<?php echo $res->id ?>">
                                         <i class="example__class admin__icon fas fa-pencil-alt"></i>
                                     </a>
                                     <a href="home/querys.php?id=<?php echo $res->id ?>&img=<?php echo $res->img ?>">
@@ -87,42 +81,9 @@
 
                     </table>
                 </div>
-                <?php
-
-                $id = '';
-                $title = '';
-                $subTitle = '';
-                $img = '';
-
-                if (isset($_GET["id"])) {
-                    $result = $obj->select($_GET["id"]);
-
-                    foreach ($result as $res) {
-                        $id = $res->id;
-                        $title = $res->title;
-                        $subTitle = $res->sub_title;
-                        $img = $res->img;
-                    }
-                }
-
-                ?>
-                <form class="admin__form" action="home/querys.php" method="POST" enctype="multipart/form-data">
-                    <div class="form__flex">
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="title" value="<?php echo $title ?>" placeholder="Title" required>
-
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="sub_title" value="<?php echo $subTitle ?>" placeholder="Sub Title" required>
-
-                        <input class="admin__inp admin__inp_header form-control" type="file" name="img" value="<?php echo $img ?>" <?php if (!isset($_GET["id"])) {
-                                                                                                                                        echo "required";
-                                                                                                                                    } ?>>
-
-                        <input type="hidden" name="id" value="<?php echo $id; ?>">
-                        <input type="hidden" name="img" value="<?php echo $img; ?>">
-                    </div>
-                    <div>
-                        <button class="btn custom-btn admin__form_btn" name="submit">Add Home Item</button>
-                    </div>
-                </form>
+                <a href="home/insert.php">
+                    <button class="btn custom-btn admin__form_btn" name="submit">Add Home Item</button>
+                </a>
             </div>
         </div>
     </div>

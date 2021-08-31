@@ -50,9 +50,9 @@ class Category
         $conn = Config::getConnect();
 
         if ($id) {
-            $query = " WHERE id = $id";
+            $query = "SELECT * FROM category WHERE id = $id";
         } else {
-            $query = "SELECT * FROM category" . $id;
+            $query = "SELECT * FROM category";
         }
         $result = $conn->query($query);
         $arr = [];

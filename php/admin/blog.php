@@ -49,14 +49,8 @@
                             <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
-                        $id = '';
-                        $title = '';
-                        $text = '';
-                        $img = '';
-
                         $obj = new Blog();
                         $result = $obj->select();
-
 
                         foreach ($result as $res) { ?>
                             <tr class="admin__section_item">
@@ -75,7 +69,7 @@
                                     </div>
                                 </td>
                                 <td class="admin__section_item_td">
-                                    <a href="?id=<?php echo $res->id ?>">
+                                    <a href="blog/update.php?id=<?php echo $res->id ?>">
                                         <i class="example__class admin__icon fas fa-pencil-alt"></i>
                                     </a>
                                     <a href="blog/querys.php?id=<?php echo $res->id ?>&img=<?php echo $res->img ?>">
@@ -87,40 +81,9 @@
 
                     </table>
                 </div>
-                <?php
-
-                $id = '';
-                $title = '';
-                $text = '';
-                $img = '';
-
-                if (isset($_GET["id"])) {
-                    $result = $obj->select($_GET["id"]);
-
-                    foreach ($result as $res) {
-                        $id = $res->id;
-                        $title = $res->title;
-                        $text = $res->text;
-                        $img = $res->img;
-                    }
-                }
-
-                ?>
-                <form class="admin__form" action="blog/querys.php" method="POST" enctype="multipart/form-data">
-                    <div class="form__flex">
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="title" value="<?php echo $title ?>" placeholder="Title" required>
-                        
-                        <textarea class="admin__inp admin__inp_header form-control" type="text" name="text" placeholder="Text" required><?php echo $text ?></textarea>
-                        
-                        <input class="admin__inp admin__inp_header form-control" type="file" name="img" value="<?php echo $img ?>" <?php if(!isset($_GET["id"])){echo "required";} ?>>
-
-                        <input type="hidden" name="id" value="<?php echo $id; ?>">
-                        <input type="hidden" name="img" value="<?php echo $img; ?>">
-                    </div>
-                    <div>
-                        <button class="btn custom-btn admin__form_btn" name="submit">Add Blog</button>
-                    </div>
-                </form>
+                <a href="blog/insert.php">
+                    <button class="btn custom-btn admin__form_btn" name="submit">Add Blog</button>
+                </a>
             </div>
         </div>
     </div>

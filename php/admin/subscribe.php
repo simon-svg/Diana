@@ -47,8 +47,6 @@
                             <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
-                        $id = '';
-                        $email = '';
 
                         $obj = new Subscribe();
                         $result = $obj->select();
@@ -63,7 +61,7 @@
                                     <h3 class="admin__section_item_name"><?php echo $res->email ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
-                                    <a href="?id=<?php echo $res->id ?>">
+                                    <a href="../subscribe/update.php?id=<?php echo $res->id ?>">
                                         <i class="example__class admin__icon fas fa-pencil-alt"></i>
                                     </a>
                                     <a href="../subscribe/querys.php?delete_id=<?php echo $res->id ?>">
@@ -75,43 +73,12 @@
 
                     </table>
                 </div>
-                <?php
-
-                $id = '';
-                $email = '';
-
-                if (isset($_GET["id"])) {
-                    $result = $obj->select($_GET["id"]);
-
-                    foreach ($result as $res) {
-                        $id = $res->id;
-                        $email = $res->email;
-                    }
-                }
-
-                ?>
-                <form class="admin__form" action="../subscribe/querys.php" method="POST">
-                    <div class="form__flex">
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="id" value="<?php echo $id ?>" placeholder="Id" required>
-
-                        <input class="admin__inp admin__inp_header form-control" type="email" name="email" value="<?php echo $email ?>" placeholder="Email" required>
-
-                        <input type="hidden" name="id" value="<?php echo $id; ?>">
-                    </div>
-                    <div>
-                        <button class="btn custom-btn admin__form_btn" name="submit">subscribe</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 
-
     <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
-    <script>
-        $('option[value="<?php echo $parentId ?>"]').attr('selected', true);
-    </script>
 </body>
 
 </html>

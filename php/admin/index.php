@@ -49,11 +49,6 @@
                             <th class="admin__table_title">panel</th>
                         </tr>
                         <?php
-                        $id = '';
-                        $name = '';
-                        $link = '';
-                        $parent_id = '';
-
                         $obj = new HeaderList();
                         $result = $obj->select();
 
@@ -73,7 +68,7 @@
                                     <h3 class="admin__section_item_name"><?php echo $res->parent_id ?></h3>
                                 </td>
                                 <td class="admin__section_item_td">
-                                    <a href="?id=<?php echo $res->id ?>">
+                                    <a href="headerList/update.php?id=<?php echo $res->id ?>">
                                         <i class="example__class admin__icon fas fa-pencil-alt"></i>
                                     </a>
                                     <a href="headerList/querys.php?id=<?php echo $res->id ?>">
@@ -85,47 +80,11 @@
 
                     </table>
                 </div>
-                <?php
-
-                $id = '';
-                $parentId = '';
-                $name = '';
-                $link = '';
-
-                if (isset($_GET["id"])) {
-                    $result = $obj->select($_GET["id"]);
-
-                    foreach ($result as $res) {
-                        $id = $res->id;
-                        $parentId = $res->parent_id;
-                        $name = $res->name;
-                        $link = $res->link;
-                    }
-                }
-
-                ?>
-                <form class="admin__form" action="headerList/querys.php" method="POST">
-                    <div class="form__flex">
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="name" value="<?php echo $name ?>" placeholder="Name" required>
-
-                        <input class="admin__inp admin__inp_header form-control" type="text" name="link" value="<?php echo $link ?>" placeholder="Link" required>
-
-                        <select id="parentId" name="parent_id">
-                            <option value="0">no</option>
-                            <?php
-                            $result = $obj->select();
-
-                            foreach ($result as $res) { ?>
-                                <option value="<?php echo $res->id ?>"><?php echo $res->name ?></option>
-                            <?php } ?>
-                        </select>
-
-                        <input type="hidden" name="id" value="<?php echo $id; ?>">
-                    </div>
-                    <div>
+                <div>
+                    <a href="headerList/insert.php">
                         <button class="btn custom-btn admin__form_btn" name="submit">Add Header Item</button>
-                    </div>
-                </form>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
