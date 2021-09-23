@@ -33,12 +33,6 @@
 									<ul>
 										<li class="active"><a href="#/">USD - US Dollar</a></li>
 										<li class="#/"><a href="#/">EUR - Euro</a></li>
-										<li class="#/"><a href="#/">GBP - British Pound</a></li>
-										<li class="#/"><a href="#/">INR - Indian Rupee</a></li>
-										<li class="#/"><a href="#/">USD - Bangladesh Taka</a></li>
-										<li class="#/"><a href="#/">JPY - Japan Yen</a></li>
-										<li class="#/"><a href="#/">CAD - Canada Dollar</a></li>
-										<li class="#/"><a href="#/">AUD - Australian Dollar</a></li>
 									</ul>
 								</li>
 							</ul>

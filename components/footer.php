@@ -76,9 +76,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <p class="copyright">Copyright © <a target="_blank" href="https://hasthemes.com/">Diana</a>
-                        All Right
-                        Reserved.</p>
+                    <p class="copyright">© <a target="_blank" href="http://simon-portfolio.epizy.com/">Simon karapetyan</a></p>
                 </div>
                 <div class="col-lg-6">
                     <div class="payment-method">

@@ -3,6 +3,7 @@
 require "index.php";
 
 $obj = new Product($_POST);
+
 $file = $_FILES["img"];
 if ($file["error"] == 0) {
 	$arr = explode("/", $file["type"]);

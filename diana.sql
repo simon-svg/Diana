@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 25 2021 г., 09:41
+-- Время создания: Авг 31 2021 г., 11:44
 -- Версия сервера: 10.3.13-MariaDB
 -- Версия PHP: 7.1.22
 
@@ -279,13 +279,6 @@ CREATE TABLE `product_img` (
   `product_id` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Дамп данных таблицы `product_img`
---
-
-INSERT INTO `product_img` (`id`, `name`, `product_id`) VALUES
-(17, 'yt.ku', 445);
-
 -- --------------------------------------------------------
 
 --
@@ -398,8 +391,7 @@ CREATE TABLE `subscribe` (
 
 INSERT INTO `subscribe` (`id`, `email`) VALUES
 (1, 'simonkarapetyan605@gmail.com'),
-(2, 'simon.karapetyan.2000@mail.ru'),
-(6, 'simonkarapetyan604@gmail.com');
+(2, 'simon.karapetyan.2000@mail.ru');
 
 -- --------------------------------------------------------
 
@@ -525,31 +517,31 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT для таблицы `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `header_list`
 --
 ALTER TABLE `header_list`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `home`
 --
 ALTER TABLE `home`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `product`
@@ -591,7 +583,7 @@ ALTER TABLE `product_size`
 -- AUTO_INCREMENT для таблицы `product_tag`
 --
 ALTER TABLE `product_tag`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT для таблицы `product_type`
@@ -609,7 +601,7 @@ ALTER TABLE `subscribe`
 -- AUTO_INCREMENT для таблицы `type`
 --
 ALTER TABLE `type`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

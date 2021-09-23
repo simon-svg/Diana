@@ -59,21 +59,20 @@
 								<div class="info-item">
 									<div class="info">
 										<h4 class="title">Address</h4>
-										<p>Your current address goes to here,120 example, country.</p>
+										<p>Yerevan Armenia</p>
 									</div>
 								</div>
 								<div class="info-item">
 									<div class="info">
 										<h4 class="title">Phone</h4>
-										<a href="tel:+8801234 567 890">+8801234 567 890</a>
-										<a href="tel:+8801234 567 890">+8801234 567 890</a>
+										<a href="tel:+37455321413">+374 55321413</a>
 									</div>
 								</div>
 								<div class="info-item">
 									<div class="info">
 										<h4 class="title">Web</h4>
-										<a href="mailto:info@example.com">info@example.com</a>
-										<a href="mailto:www.example.com">www.example.com</a>
+										<a href="mailto:simonkarapetyan605@gmail.com">simonkarapetyan605@gmail.com</a>
+										<a href="mailto:simon.karapetyan.2000@mail.ru">simon.karapetyan.2000@mail.ru</a>
 									</div>
 								</div>
 							</div>

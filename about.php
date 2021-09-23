@@ -26,7 +26,7 @@
 
 	<!--wrapper start-->
 	<div class="wrapper">
-
+ 
 		<!--== Start Preloader Content ==-->
 		<div class="preloader-wrap">
 			<div class="preloader">
@@ -69,7 +69,6 @@
 													<p>It was a tremendous departure from all furniture design that had gone before it. There was an opposition to the decorative arts, which included Art Nouveau, Neoclassical, and Victorian styles.</p>
 												</div>
 											</div>
-											<a href="#" class="btn-theme">LEARN MORE</a>
 										</div>
 									</div>
 									<div class="col-lg-6 col-xl-5 offset-xl-1">

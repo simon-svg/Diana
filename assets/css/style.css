@@ -1369,7 +1369,7 @@ section .container-fluid {
   margin-bottom: 0;
 }
 .header-action-area .header-action .currency-menu .currency-dropdown.show {
-  height: 320px;
+  height: 110px;
   visibility: visible;
 }
 .header-action-area .header-action .currency-menu:hover .title {
